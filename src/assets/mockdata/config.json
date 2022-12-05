@@ -1,0 +1,55 @@
+[
+  {
+    "metadata": {
+      "name": "UE Event Collector i1",
+      "configName": "UEEC-appconfig",
+      "namespace": "ricxapp"
+    },
+    "config": {
+      "local": {
+        "host": ":8080"
+      },
+      "logger": {
+        "level": 3
+      },
+      "rmr": {
+        "protPort": "tcp:4560",
+        "maxSize": 2072,
+        "numWorkers": 1,
+        "txMessages": [ "RIC_SUB_REQ", "RIC_SUB_DEL_REQ" ],
+        "rxMessages": [ "RIC_SUB_RESP", "RIC_SUB_FAILURE", "RIC_SUB_DEL_RESP", "RIC_SUB_DEL_FAILURE", "RIC_INDICATION" ]
+      },
+      "db": {
+        "host": "localhost",
+        "port": 6379,
+        "namespaces": [ "sdl", "rnib" ]
+      },
+      "controls": {
+        "active": true,
+        "requestorId": 66,
+        "ranFunctionId": 1,
+        "ricActionId": 0,
+        "interfaceId": {
+          "globalENBId": {
+            "plmnId": "43962",
+            "eNBId": "43962"
+          }
+        }
+      },
+      "metrics": [
+        {
+          "name": "UEContextCreated",
+          "type": "counter",
+          "enabled": true,
+          "description": "The total number of UE context creation events"
+        },
+        {
+          "name": "UEContextReleased",
+          "type": "counter",
+          "enabled": true,
+          "description": "The total number of UE context release events"
+        }
+      ]
+    }
+  }
+]

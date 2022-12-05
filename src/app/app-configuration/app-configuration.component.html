@@ -1,0 +1,39 @@
+<!--
+  ========================LICENSE_START=================================
+  O-RAN-SC
+  %%
+  Copyright (C) 2019 AT&T Intellectual Property
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  ========================LICENSE_END===================================
+  -->
+
+<div mat-dialog-title *ngIf="loading$ | async">
+  Loading {{data.xapp}} Configuration
+  <mat-spinner diameter=70></mat-spinner>
+</div>
+
+<div *ngIf="((loading$ | async)==false) " class="config-div">
+
+  <div mat-dialog-title class="config-title">
+    {{data.xapp}} Configuration
+  </div>
+
+  <mat-form-field>
+    <textarea #configTextarea matInput class="config-textarea">{{xappConfig | json}}</textarea>
+  </mat-form-field>
+  <div class="modal-footer justify-content-center">
+    <button mat-button class="mat-raised-button  mat-primary" (click)="updateconfig(configTextarea.value)" >upload</button>
+    <button mat-button class="mat-raised-button" [mat-dialog-close]="false">Cancel</button>
+  </div>
+</div>

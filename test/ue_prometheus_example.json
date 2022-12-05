@@ -1,0 +1,98 @@
+{
+  "status": "success",
+  "data": {
+    "resultType": "matrix",
+    "result": [
+      {
+        "metric": {
+          "__name__": "ue_bytes_ul",
+          "id": "1000000000000",
+          "instance": "140.96.102.142:32080",
+          "job": "upf"
+        },
+        "values": []
+      },
+      {
+        "metric": {
+          "__name__": "ue_bytes_ul",
+          "id": "1000000000001",
+          "instance": "140.96.102.142:32080",
+          "job": "upf"
+        },
+        "values": []
+      },
+      {
+        "metric": {
+          "__name__": "ue_bytes_ul",
+          "id": "1000000000002",
+          "instance": "140.96.102.142:32080",
+          "job": "upf"
+        },
+        "values": []
+      },
+      {
+        "metric": {
+          "__name__": "ue_bytes_ul",
+          "id": "1000000000003",
+          "instance": "140.96.102.142:32080",
+          "job": "upf"
+        },
+        "values": []
+      },
+      {
+        "metric": {
+          "__name__": "ue_bytes_ul",
+          "id": "1000000000004",
+          "instance": "140.96.102.142:32080",
+          "job": "upf"
+        },
+        "values": []
+      },
+      {
+        "metric": {
+          "__name__": "ue_bytes_ul",
+          "id": "1000000000005",
+          "instance": "140.96.102.142:32080",
+          "job": "upf"
+        },
+        "values": []
+      },
+      {
+        "metric": {
+          "__name__": "ue_bytes_ul",
+          "id": "1000000000006",
+          "instance": "140.96.102.142:32080",
+          "job": "upf"
+        },
+        "values": []
+      },
+      {
+        "metric": {
+          "__name__": "ue_bytes_ul",
+          "id": "1000000000007",
+          "instance": "140.96.102.142:32080",
+          "job": "upf"
+        },
+        "values": []
+      },
+      {
+        "metric": {
+          "__name__": "ue_bytes_ul",
+          "id": "1000000000008",
+          "instance": "140.96.102.142:32080",
+          "job": "upf"
+        },
+        "values": []
+      },
+      {
+        "metric": {
+          "__name__": "ue_bytes_ul",
+          "id": "1000000000009",
+          "instance": "140.96.102.142:32080",
+          "job": "upf"
+        },
+        "values": []
+      }
+    ]
+  }
+}

@@ -1,0 +1,472 @@
+[
+  {
+    "BWP-Data": {
+      "BWP-ID": 0,
+      "Location-And-Bandwidth": 549
+    },
+    "Meas-Time-RF": {
+      "tv-nsec": 1669099314121779545,
+      "tv-sec": 1669099314
+    },
+    "Meas-Timestamp-PDCP-Bytes": {
+      "tv-nsec": 1669099314121779545,
+      "tv-sec": 1669099314
+    },
+    "Meas-Timestamp-PRB": {
+      "tv-nsec": 1669099314121779545,
+      "tv-sec": 1669099314
+    },
+    "Neighbor-Cell-RF": [
+      {
+        "CID": "546573000031323",
+        "Cell-RF": {
+          "rsSinr": -9,
+          "rsrp": -104,
+          "rsrq": 0
+        }
+      },
+      {
+        "CID": "546573000031324",
+        "Cell-RF": {
+          "rsSinr": -10,
+          "rsrp": -105,
+          "rsrq": 0
+        }
+      }
+    ],
+    "PDCP-Bytes-DL": 0,
+    "PDCP-Bytes-UL": 1265205,
+    "PRB-Usage-DL": 0,
+    "PRB-Usage-UL": 68,
+    "Serving-Cell-ID": "546573000031325",
+    "Serving-Cell-RF": {
+      "rsSinr": -1,
+      "rsrp": -96,
+      "rsrq": 0
+    },
+    "UE-ID": "1000000000000"
+  },
+  {
+    "BWP-Data": {
+      "BWP-ID": 0,
+      "Location-And-Bandwidth": 549
+    },
+    "Meas-Time-RF": {
+      "tv-nsec": 1669099314122185945,
+      "tv-sec": 1669099314
+    },
+    "Meas-Timestamp-PDCP-Bytes": {
+      "tv-nsec": 1669099314122185945,
+      "tv-sec": 1669099314
+    },
+    "Meas-Timestamp-PRB": {
+      "tv-nsec": 1669099314122185945,
+      "tv-sec": 1669099314
+    },
+    "Neighbor-Cell-RF": [
+      {
+        "CID": "546573000031323",
+        "Cell-RF": {
+          "rsSinr": -10,
+          "rsrp": -105,
+          "rsrq": 0
+        }
+      },
+      {
+        "CID": "546573000031324",
+        "Cell-RF": {
+          "rsSinr": -11,
+          "rsrp": -106,
+          "rsrq": 0
+        }
+      }
+    ],
+    "PDCP-Bytes-DL": 0,
+    "PDCP-Bytes-UL": 1265205,
+    "PRB-Usage-DL": 0,
+    "PRB-Usage-UL": 68,
+    "Serving-Cell-ID": "546573000031325",
+    "Serving-Cell-RF": {
+      "rsSinr": -1,
+      "rsrp": -96,
+      "rsrq": 0
+    },
+    "UE-ID": "1000000000001"
+  },
+  {
+    "BWP-Data": {
+      "BWP-ID": 0,
+      "Location-And-Bandwidth": 549
+    },
+    "Meas-Time-RF": {
+      "tv-nsec": 1669099314122585469,
+      "tv-sec": 1669099314
+    },
+    "Meas-Timestamp-PDCP-Bytes": {
+      "tv-nsec": 1669099314122585469,
+      "tv-sec": 1669099314
+    },
+    "Meas-Timestamp-PRB": {
+      "tv-nsec": 1669099314122585469,
+      "tv-sec": 1669099314
+    },
+    "Neighbor-Cell-RF": [
+      {
+        "CID": "546573000031323",
+        "Cell-RF": {
+          "rsSinr": -10,
+          "rsrp": -105,
+          "rsrq": 0
+        }
+      },
+      {
+        "CID": "546573000031324",
+        "Cell-RF": {
+          "rsSinr": -10,
+          "rsrp": -105,
+          "rsrq": 0
+        }
+      }
+    ],
+    "PDCP-Bytes-DL": 0,
+    "PDCP-Bytes-UL": 792856,
+    "PRB-Usage-DL": 0,
+    "PRB-Usage-UL": 68,
+    "Serving-Cell-ID": "546573000031325",
+    "Serving-Cell-RF": {
+      "rsSinr": -2,
+      "rsrp": -97,
+      "rsrq": 0
+    },
+    "UE-ID": "1000000000002"
+  },
+  {
+    "BWP-Data": {
+      "BWP-ID": 0,
+      "Location-And-Bandwidth": 549
+    },
+    "Meas-Time-RF": {
+      "tv-nsec": 1669099314143742438,
+      "tv-sec": 1669099314
+    },
+    "Meas-Timestamp-PDCP-Bytes": {
+      "tv-nsec": 1669099314143742438,
+      "tv-sec": 1669099314
+    },
+    "Meas-Timestamp-PRB": {
+      "tv-nsec": 1669099314143742438,
+      "tv-sec": 1669099314
+    },
+    "Neighbor-Cell-RF": [
+      {
+        "CID": "546573000031323",
+        "Cell-RF": {
+          "rsSinr": -14,
+          "rsrp": -109,
+          "rsrq": 0
+        }
+      },
+      {
+        "CID": "546573000031325",
+        "Cell-RF": {
+          "rsSinr": -9,
+          "rsrp": -104,
+          "rsrq": 0
+        }
+      }
+    ],
+    "PDCP-Bytes-DL": 0,
+    "PDCP-Bytes-UL": 524684,
+    "PRB-Usage-DL": 0,
+    "PRB-Usage-UL": 45,
+    "Serving-Cell-ID": "546573000031324",
+    "Serving-Cell-RF": {
+      "rsSinr": -3,
+      "rsrp": -98,
+      "rsrq": 0
+    },
+    "UE-ID": "1000000000003"
+  },
+  {
+    "BWP-Data": {
+      "BWP-ID": 0,
+      "Location-And-Bandwidth": 549
+    },
+    "Meas-Time-RF": {
+      "tv-nsec": 1669099314143996773,
+      "tv-sec": 1669099314
+    },
+    "Meas-Timestamp-PDCP-Bytes": {
+      "tv-nsec": 1669099314143996773,
+      "tv-sec": 1669099314
+    },
+    "Meas-Timestamp-PRB": {
+      "tv-nsec": 1669099314143996773,
+      "tv-sec": 1669099314
+    },
+    "Neighbor-Cell-RF": [
+      {
+        "CID": "546573000031323",
+        "Cell-RF": {
+          "rsSinr": -14,
+          "rsrp": -109,
+          "rsrq": 0
+        }
+      },
+      {
+        "CID": "546573000031325",
+        "Cell-RF": {
+          "rsSinr": -11,
+          "rsrp": -106,
+          "rsrq": 0
+        }
+      }
+    ],
+    "PDCP-Bytes-DL": 0,
+    "PDCP-Bytes-UL": 837268,
+    "PRB-Usage-DL": 0,
+    "PRB-Usage-UL": 45,
+    "Serving-Cell-ID": "546573000031324",
+    "Serving-Cell-RF": {
+      "rsSinr": -1,
+      "rsrp": -96,
+      "rsrq": 0
+    },
+    "UE-ID": "1000000000004"
+  },
+  {
+    "BWP-Data": {
+      "BWP-ID": 0,
+      "Location-And-Bandwidth": 549
+    },
+    "Meas-Time-RF": {
+      "tv-nsec": 1669099314144247244,
+      "tv-sec": 1669099314
+    },
+    "Meas-Timestamp-PDCP-Bytes": {
+      "tv-nsec": 1669099314144247244,
+      "tv-sec": 1669099314
+    },
+    "Meas-Timestamp-PRB": {
+      "tv-nsec": 1669099314144247244,
+      "tv-sec": 1669099314
+    },
+    "Neighbor-Cell-RF": [
+      {
+        "CID": "546573000031323",
+        "Cell-RF": {
+          "rsSinr": -14,
+          "rsrp": -109,
+          "rsrq": 0
+        }
+      },
+      {
+        "CID": "546573000031325",
+        "Cell-RF": {
+          "rsSinr": -13,
+          "rsrp": -108,
+          "rsrq": 0
+        }
+      }
+    ],
+    "PDCP-Bytes-DL": 0,
+    "PDCP-Bytes-UL": 837268,
+    "PRB-Usage-DL": 0,
+    "PRB-Usage-UL": 45,
+    "Serving-Cell-ID": "546573000031324",
+    "Serving-Cell-RF": {
+      "rsSinr": -1,
+      "rsrp": -96,
+      "rsrq": 0
+    },
+    "UE-ID": "1000000000005"
+  },
+  {
+    "BWP-Data": {
+      "BWP-ID": 0,
+      "Location-And-Bandwidth": 549
+    },
+    "Meas-Time-RF": {
+      "tv-nsec": 1669099314144521367,
+      "tv-sec": 1669099314
+    },
+    "Meas-Timestamp-PDCP-Bytes": {
+      "tv-nsec": 1669099314144521367,
+      "tv-sec": 1669099314
+    },
+    "Meas-Timestamp-PRB": {
+      "tv-nsec": 1669099314144521367,
+      "tv-sec": 1669099314
+    },
+    "Neighbor-Cell-RF": [
+      {
+        "CID": "546573000031323",
+        "Cell-RF": {
+          "rsSinr": -12,
+          "rsrp": -107,
+          "rsrq": 0
+        }
+      },
+      {
+        "CID": "546573000031325",
+        "Cell-RF": {
+          "rsSinr": -13,
+          "rsrp": -108,
+          "rsrq": 0
+        }
+      }
+    ],
+    "PDCP-Bytes-DL": 0,
+    "PDCP-Bytes-UL": 837268,
+    "PRB-Usage-DL": 0,
+    "PRB-Usage-UL": 45,
+    "Serving-Cell-ID": "546573000031324",
+    "Serving-Cell-RF": {
+      "rsSinr": -1,
+      "rsrp": -96,
+      "rsrq": 0
+    },
+    "UE-ID": "1000000000006"
+  },
+  {
+    "BWP-Data": {
+      "BWP-ID": 0,
+      "Location-And-Bandwidth": 549
+    },
+    "Meas-Time-RF": {
+      "tv-nsec": 1669099314144790886,
+      "tv-sec": 1669099314
+    },
+    "Meas-Timestamp-PDCP-Bytes": {
+      "tv-nsec": 1669099314144790886,
+      "tv-sec": 1669099314
+    },
+    "Meas-Timestamp-PRB": {
+      "tv-nsec": 1669099314144790886,
+      "tv-sec": 1669099314
+    },
+    "Neighbor-Cell-RF": [
+      {
+        "CID": "546573000031323",
+        "Cell-RF": {
+          "rsSinr": -10,
+          "rsrp": -105,
+          "rsrq": 0
+        }
+      },
+      {
+        "CID": "546573000031325",
+        "Cell-RF": {
+          "rsSinr": -13,
+          "rsrp": -108,
+          "rsrq": 0
+        }
+      }
+    ],
+    "PDCP-Bytes-DL": 0,
+    "PDCP-Bytes-UL": 524684,
+    "PRB-Usage-DL": 0,
+    "PRB-Usage-UL": 45,
+    "Serving-Cell-ID": "546573000031324",
+    "Serving-Cell-RF": {
+      "rsSinr": -3,
+      "rsrp": -98,
+      "rsrq": 0
+    },
+    "UE-ID": "1000000000007"
+  },
+  {
+    "BWP-Data": {
+      "BWP-ID": 0,
+      "Location-And-Bandwidth": 549
+    },
+    "Meas-Time-RF": {
+      "tv-nsec": 1669099314145027874,
+      "tv-sec": 1669099314
+    },
+    "Meas-Timestamp-PDCP-Bytes": {
+      "tv-nsec": 1669099314145027874,
+      "tv-sec": 1669099314
+    },
+    "Meas-Timestamp-PRB": {
+      "tv-nsec": 1669099314145027874,
+      "tv-sec": 1669099314
+    },
+    "Neighbor-Cell-RF": [
+      {
+        "CID": "546573000031323",
+        "Cell-RF": {
+          "rsSinr": -5,
+          "rsrp": -100,
+          "rsrq": 0
+        }
+      },
+      {
+        "CID": "546573000031325",
+        "Cell-RF": {
+          "rsSinr": -9,
+          "rsrp": -104,
+          "rsrq": 0
+        }
+      }
+    ],
+    "PDCP-Bytes-DL": 0,
+    "PDCP-Bytes-UL": 524684,
+    "PRB-Usage-DL": 0,
+    "PRB-Usage-UL": 45,
+    "Serving-Cell-ID": "546573000031324",
+    "Serving-Cell-RF": {
+      "rsSinr": -4,
+      "rsrp": -99,
+      "rsrq": 0
+    },
+    "UE-ID": "1000000000008"
+  },
+  {
+    "BWP-Data": {
+      "BWP-ID": 0,
+      "Location-And-Bandwidth": 549
+    },
+    "Meas-Time-RF": {
+      "tv-nsec": 1669099314122967790,
+      "tv-sec": 1669099314
+    },
+    "Meas-Timestamp-PDCP-Bytes": {
+      "tv-nsec": 1669099314122967790,
+      "tv-sec": 1669099314
+    },
+    "Meas-Timestamp-PRB": {
+      "tv-nsec": 1669099314122967790,
+      "tv-sec": 1669099314
+    },
+    "Neighbor-Cell-RF": [
+      {
+        "CID": "546573000031323",
+        "Cell-RF": {
+          "rsSinr": 1,
+          "rsrp": -93,
+          "rsrq": 0
+        }
+      },
+      {
+        "CID": "546573000031324",
+        "Cell-RF": {
+          "rsSinr": -12,
+          "rsrp": -107,
+          "rsrq": 0
+        }
+      }
+    ],
+    "PDCP-Bytes-DL": 0,
+    "PDCP-Bytes-UL": 792856,
+    "PRB-Usage-DL": 0,
+    "PRB-Usage-UL": 68,
+    "Serving-Cell-ID": "546573000031325",
+    "Serving-Cell-RF": {
+      "rsSinr": -3,
+      "rsrp": -98,
+      "rsrq": 0
+    },
+    "UE-ID": "1000000000009"
+  }
+]

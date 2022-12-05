@@ -1,0 +1,35 @@
+<!--
+  ========================LICENSE_START=================================
+  O-RAN-SC
+  %%
+  Copyright (C) 2019 - 2022 AT&T Intellectual Property
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  ========================LICENSE_END===================================
+  -->
+<div *ngFor="let bs of data.bsList; let i = index">
+  <b>gNB{{i + 1}}:</b>
+  <mat-form-field class="button" appearance="fill">
+    <mat-label>ID</mat-label>
+    <input matInput [(ngModel)]="data.bsListInput[i].index">
+  </mat-form-field>
+  <mat-form-field class="button" appearance="fill">
+    <mat-label>X</mat-label>
+    <input matInput [(ngModel)]="data.bsListInput[i].x">
+  </mat-form-field>
+  <mat-form-field class="button" appearance="fill">
+    <mat-label>Y</mat-label>
+    <input matInput [(ngModel)]="data.bsListInput[i].y">
+  </mat-form-field><br>
+</div>
+<br><button mat-flat-button color="primary" class="right-button" (click)="applyGNB()">Apply</button><br><br>

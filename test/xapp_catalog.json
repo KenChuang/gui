@@ -1,0 +1,44 @@
+{
+  "bwpxapp": [
+    {
+      "name": "bwpxapp",
+      "version": "1.0.0",
+      "description": "Standard xApp Helm Chart",
+      "apiVersion": "v1",
+      "appVersion": "1.0",
+      "urls": [
+        "charts/bwpxapp-1.0.0.tgz"
+      ],
+      "created": "2022-11-23T03:20:52.072958626Z",
+      "digest": "86f695d207389ecd7fee564f01fc80c173ebde698628a1610c99cb9a475e397c"
+    }
+  ],
+  "hoxapp": [
+    {
+      "name": "hoxapp",
+      "version": "1.0.0",
+      "description": "Standard xApp Helm Chart",
+      "apiVersion": "v1",
+      "appVersion": "1.0",
+      "urls": [
+        "charts/hoxapp-1.0.0.tgz"
+      ],
+      "created": "2022-11-23T03:20:51.736950781Z",
+      "digest": "68c4350072a530ef0dfd1a2f033ca876e238ac8bb7419554a46f49518832edbe"
+    }
+  ],
+  "kpimon": [
+    {
+      "name": "kpimon",
+      "version": "1.1.0",
+      "description": "Standard xApp Helm Chart",
+      "apiVersion": "v1",
+      "appVersion": "1.0",
+      "urls": [
+        "charts/kpimon-1.1.0.tgz"
+      ],
+      "created": "2022-11-23T03:20:52.352965165Z",
+      "digest": "14e11b81c0979323cb35ac70696288b879620d633fc75045238b2c5cfcdef563"
+    }
+  ]
+}

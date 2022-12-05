@@ -1,0 +1,65 @@
+<!--
+  ========================LICENSE_START=================================
+  O-RAN-SC
+  %%
+  Copyright (C) 2019 - 2021 AT&T Intellectual Property
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  ========================LICENSE_END===================================
+  -->
+<div>
+  <table border=0>
+    <tr>
+      <td><h3>UE Bytes DL</h3></td>
+      <td><h3>UE PRB DL</h3></td>
+    </tr>
+    <tr>
+      <td>
+        <rd-prometheus-chart [updateInterval]="5" [lineChartRange]="5"
+          [chartLabels]="['UEs']" [prometheusUrl]='"ue_bytes_dl"'></rd-prometheus-chart>
+      </td>
+      <td>
+        <rd-prometheus-chart [updateInterval]="5" [lineChartRange]="5"
+          [chartLabels]="['UEs']" [prometheusUrl]='"ue_prb_dl"'></rd-prometheus-chart>
+      </td>
+    </tr>
+    <tr>
+      <td><h3>UE RSRP</h3></td>
+      <td><h3>UE SINR</h3></td>
+    </tr>
+    <tr>
+      <td>
+        <rd-prometheus-chart [updateInterval]="5" [lineChartRange]="5"
+          [chartLabels]="['UEs']" [prometheusUrl]='"ue_rsrp"'></rd-prometheus-chart>
+      </td>
+      <td>
+        <rd-prometheus-chart [updateInterval]="5" [lineChartRange]="5"
+          [chartLabels]="['UEs']" [prometheusUrl]='"ue_sinr"'></rd-prometheus-chart>
+      </td>
+    </tr>
+    <tr>
+      <td><h3>Cell Bytes DL</h3></td>
+      <td><h3>Cell Available PRB DL</h3></td>
+    </tr>
+    <tr>
+      <td>
+        <rd-prometheus-chart [updateInterval]="5" [lineChartRange]="5"
+          [chartLabels]="['UEs']" [prometheusUrl]='"cell_bytes_dl"'></rd-prometheus-chart>
+      </td>
+      <td>
+        <rd-prometheus-chart [updateInterval]="5" [lineChartRange]="5"
+          [chartLabels]="['UEs']" [prometheusUrl]='"cell_avail_prb_dl"'></rd-prometheus-chart>
+      </td>
+    </tr>
+  </table>
+</div>

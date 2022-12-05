@@ -1,0 +1,60 @@
+<!--
+  ========================LICENSE_START=================================
+  O-RAN-SC
+  %%
+  Copyright (C) 2020 AT&T Intellectual Property
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  ========================LICENSE_END===================================
+  -->
+
+
+
+<mat-tab-group>
+  <mat-tab label="From Local">
+    <input #configInput type="file" (change)="selectConfigFile($event)" style="display:none;" ngModel />
+    <mat-form-field class="example-full-width" (click)="configInput.click()">
+      <input matInput placeholder="Choose config file" value="{{configInput.value.substr(configInput.value.lastIndexOf('\\')+1)}}">
+      <mat-icon matSuffix>folder_open</mat-icon>
+    </mat-form-field>
+    <input #schemaInput type="file" (change)="selectControlsSchema($event)" style="display:none;" ngModel />
+    <mat-form-field class="example-full-width" (click)="schemaInput.click()">
+      <input matInput placeholder="Choose control schema" value="{{schemaInput.value.substr(schemaInput.value.lastIndexOf('\\')+1)}}">
+      <mat-icon matSuffix>folder_open</mat-icon>
+    </mat-form-field>
+    <div class="modal-footer justify-content-center">
+      <button mat-button class="mat-raised-button  mat-primary" (click)="uploadFromLocal()">upload</button>
+      <button mat-button class="mat-raised-button" [mat-dialog-close]="false">Cancel</button>
+    </div>
+
+  </mat-tab>
+
+  <mat-tab label="From URL">
+    <form [formGroup]="urlOnboardForm">
+      <mat-form-field >
+        <mat-label>config file URL</mat-label>
+        <input matInput formControlName="configURL">
+      </mat-form-field>
+      <mat-form-field >
+        <mat-label>control schema URL</mat-label>
+        <input matInput formControlName="schemaURL">
+      </mat-form-field>
+      <div class="modal-footer justify-content-center">
+        <button mat-button class="mat-raised-button  mat-primary"  [disabled]="!urlOnboardForm.valid" (click)="uploadFromURL(urlOnboardForm.value)" >upload</button>
+        <button mat-button class="mat-raised-button" [mat-dialog-close]="false">Cancel</button>
+      </div>
+    </form>
+  </mat-tab>
+
+</mat-tab-group>
+

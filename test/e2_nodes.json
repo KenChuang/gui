@@ -1,0 +1,83 @@
+[
+  {
+    "nodebIdentity": {
+      "globalNbId": {
+        "nbId": "0000000000110001001100100011",
+        "plmnId": "546573"
+      },
+      "inventoryName": "gnb_455_637_00313230"
+    },
+    "nodebStatus": {
+      "connectionStatus": "CONNECTED",
+      "enb": null,
+      "failureType": null,
+      "globalNbId": {
+        "nbId": "0000000000110001001100100011",
+        "plmnId": "546573"
+      },
+      "gnb": {
+        "servedNrCells": null,
+        "ranFunctions": null
+      },
+      "ip": null,
+      "nodeType": "GNB",
+      "port": null,
+      "ranName": "gnb_455_637_00313230",
+      "setupFailure": null
+    }
+  },
+  {
+    "nodebIdentity": {
+      "globalNbId": {
+        "nbId": "0000000000110001001100100101",
+        "plmnId": "546573"
+      },
+      "inventoryName": "gnb_455_637_00313250"
+    },
+    "nodebStatus": {
+      "connectionStatus": "CONNECTED",
+      "enb": null,
+      "failureType": null,
+      "globalNbId": {
+        "nbId": "0000000000110001001100100101",
+        "plmnId": "546573"
+      },
+      "gnb": {
+        "servedNrCells": null,
+        "ranFunctions": null
+      },
+      "ip": null,
+      "nodeType": "GNB",
+      "port": null,
+      "ranName": "gnb_455_637_00313250",
+      "setupFailure": null
+    }
+  },
+  {
+    "nodebIdentity": {
+      "globalNbId": {
+        "nbId": "0000000000110001001100100100",
+        "plmnId": "546573"
+      },
+      "inventoryName": "gnb_455_637_00313240"
+    },
+    "nodebStatus": {
+      "connectionStatus": "CONNECTED",
+      "enb": null,
+      "failureType": null,
+      "globalNbId": {
+        "nbId": "0000000000110001001100100100",
+        "plmnId": "546573"
+      },
+      "gnb": {
+        "servedNrCells": null,
+        "ranFunctions": null
+      },
+      "ip": null,
+      "nodeType": "GNB",
+      "port": null,
+      "ranName": "gnb_455_637_00313240",
+      "setupFailure": null
+    }
+  }
+]

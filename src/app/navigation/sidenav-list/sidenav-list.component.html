@@ -1,0 +1,53 @@
+<!--
+  ========================LICENSE_START=================================
+  O-RAN-SC
+  %%
+  Copyright (C) 2019 AT&T Intellectual Property
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  ========================LICENSE_END===================================
+  -->
+
+<!-- browse icons at https://material.io/tools/icons/?style=baseline -->
+<mat-nav-list [ngClass]="{'dark': darkMode}">
+  <a mat-list-item routerLink="/" (click)="onSidenavClose()">
+    <mat-icon>home</mat-icon> <span class="nav-caption">Home</span>
+  </a>
+  <a mat-list-item routerLink="/catalog" (click)="onSidenavClose()">
+    <mat-icon>list</mat-icon> <span class="nav-caption">Catalog</span>
+  </a>
+  <a mat-list-item routerLink="/control" (click)="onSidenavClose()">
+    <mat-icon>settings</mat-icon><span class="nav-caption">Control</span>
+  </a>
+  <a mat-list-item routerLink="/stats" (click)="onSidenavClose()">
+    <mat-icon>assessment</mat-icon> <span class="nav-caption">Stats</span>
+  </a>
+  <a mat-list-item routerLink="/platform" (click)="onSidenavClose()">
+    <mat-icon>settings_system_daydream</mat-icon> <span class="nav-caption">Platform</span>
+  </a>
+  <a mat-list-item routerLink="/user" (click)="onSidenavClose()">
+    <mat-icon>assignment_ind</mat-icon> <span class="nav-caption">Users</span>
+  </a>
+  <a mat-list-item routerLink="/ts" (click)="onSidenavClose()">
+    <mat-icon>subject</mat-icon> <span class="nav-caption">Traffic Steering</span>
+  </a>
+  <a mat-list-item routerLink="/monitor" (click)="onSidenavClose()">
+    <mat-icon>timeline</mat-icon> <span class="nav-caption">E2 Node Monitor</span>
+  </a>
+  <a mat-list-item routerLink="/bouncer" (click)="onSidenavClose()">
+    <mat-icon>timeline</mat-icon> <span class="nav-caption">RIC Performance</span>
+  </a>
+  <a mat-list-item routerLink="/handover" (click)="onSidenavClose()">
+    <mat-icon>subject</mat-icon> <span class="nav-caption">Drone</span>
+  </a>
+</mat-nav-list>

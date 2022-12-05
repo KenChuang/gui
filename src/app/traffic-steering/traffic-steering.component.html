@@ -1,0 +1,73 @@
+<!--
+  ========================LICENSE_START=================================
+  O-RAN-SC
+  %%
+  Copyright (C) 2019 - 2021 AT&T Intellectual Property
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  ========================LICENSE_END===================================
+  -->
+<div style="background-color: rgba(234, 236, 238, 0.3);">
+  <div [style]="'position: relative; width: ' + fieldWidth + 'px; height: ' + fieldHeight + 'px; overflow: hidden;'
+    + 'background-color: white;'">
+    <span *ngFor="let bs of bsList" class="dot" [style]="getBsCoverageStyle(bs)"></span>
+    <div ngDraggable *ngFor="let bs of bsList" [position]="bs.position" [ngDraggable]=false style="position: absolute;">
+      <img [src]="'../../assets/' + bs.icon" [height]="bsSize"
+      [matTooltip]="'BS ID: ' + bs.index + ', x: ' + bs.position.x + ', y: ' + bs.position.y"
+      matTooltipClass="mat-tooltip-large">
+    </div>
+    <div ngDraggable *ngFor="let ue of ueList" [position]="ue.position" [ngDraggable]=false style="position: absolute;">
+      <img [src]="'../../assets/' + ueIcons[ue.connectTo]" [height]="ueSize"
+      [matTooltip]="'UE ID: ' + ue.index + ', x: ' + ue.position.x + ', y: ' + ue.position.y"
+      matTooltipClass="mat-tooltip-large" [tabindex]="ue.index"
+      (focus)="ueFocus[ue.index] = true" (blur)="ueFocus[ue.index] = false">
+    </div>
+    <img [src]="'../../assets/' + graphicLegend"
+      [style]="'position: absolute; top: ' + (fieldHeight - 120) + 'px; left: ' + (fieldWidth - 310) + 'px;'">
+    <svg [attr.width]="fieldWidth" [attr.height]="fieldHeight">
+      <line *ngFor="let ue of oldUeList" [attr.x1]="bsList[ue.connectTo].position.x + bsSize / 2"
+        [attr.y1]="bsList[ue.connectTo].position.y + bsSize / 2"
+        [attr.x2]="ue.position.x + ueSize / 2 - 5"
+        [attr.y2]="ue.position.y + ueSize / 2" stroke-width="2" [attr.stroke]="ue.lineColor" />
+      Sorry, your browser does not support inline SVG.
+    </svg>
+  </div>
+  <div [style]="'position: absolute; top: ' + ueInfoIndex + 'px; left: '
+    + (fieldWidth + 50) + 'px; width: ' + ueInfoWidth +'px; height: ' + ueInfoHeight + 'px;'">
+    <h3><b>UE Info</b></h3>
+    <div [style]="'overflow: scroll;'">
+      <table border="0">
+        <tr>
+          <th>UE ID</th><th>X Axis</th><th>Y Axis</th><th>Connect BS ID</th><th>RSRP</th><th>SINR</th>
+        </tr>
+        <tr *ngFor="let ue of oldUeList" [style]="(ueFocus[ue.index]) ? 'color:red' : ''">
+          <th>{{ue.index}}</th><th>{{ue.position.x}}</th><th>{{ue.position.y}}</th>
+          <th>{{ue.connectTo}}</th><th>{{ue.rsrp}}</th><th>{{ue.sinr}}</th>
+        </tr>
+      </table>
+    </div>
+    <div [style]="'position: absolute; top: ' + ueInfoHeight + 'px; width: ' + ueInfoWidth + 'px; display: block'">
+      <canvas baseChart
+        [datasets]="barChartData"
+        [labels]="barChartLabels"
+        [options]="barChartOptions"
+        [plugins]="barChartPlugins"
+        [legend]="barChartLegend"
+        [chartType]="barChartType">
+      </canvas>
+    </div>
+    <div [style]="'position: absolute; top: ' + (ueInfoHeight + 250) + 'px;'">
+      <button mat-button class="mat-raised-button  mat-primary" (click)="openLogArea()">UE Handover Record</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,196 @@
+<!--
+  ========================LICENSE_START=================================
+  O-RAN-SC
+  %%
+  Copyright (C) 2019 - 2021 AT&T Intellectual Property
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+       http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  ========================LICENSE_END===================================
+  -->
+<div style="background-color: rgba(234, 236, 238, 0.3);">
+  <!-- <button mat-flat-button color="primary" class="right-button" (click)="startTracking()" [(disabled)]="isTracking">Start UAV Tracking</button>
+  <button mat-flat-button color="primary" class="right-button" (click)="stopTracking()">Stop UAV Tracking</button> -->
+  <button mat-flat-button color="primary" class="right-button" (click)="changeTracking()">{{isTracking?'Stop':'Start'}} UAV Tracking</button>
+  <!-- zoom related components -->
+  <button mat-flat-button color="primary" class="left-margin-button" (click)="zoomInOperation()">Zoom In</button>
+  <button mat-flat-button color="primary" class="right-button" (click)="zoomOutOperation()">Zoom Out</button>Percentage: {{zoomPercentage}}%
+  <img src="../../assets/ruler.png" width=100>{{getRuler()}}m
+  <!-- network topology -->
+  <div [style]="'position: relative; width: ' + fieldData.fieldWidth + 'px; height: ' + fieldData.fieldHeight + 'px; overflow: hidden;'
+  + 'background-color: white;'">
+    <div ngDraggable [style]="'position: relative; width: ' + fieldData.fieldWidth + 'px; height: ' + fieldData.fieldHeight + 'px; overflow: visible;'
+      + 'background-color: white;'">
+      <div ngDraggable [position]="boundarySetup.position" [ngDraggable]=false style="position: absolute;">
+        <img src="../../assets/boundary.png" [width]="boundarySetup.width" [height]="boundarySetup.height">
+      </div>
+      <span *ngFor="let bs of bsList" class="dot" [style]="getBsCoverageStyle(bs)"></span>
+      <div ngDraggable *ngFor="let bs of bsList; let i = index" [position]="bs.position" [ngDraggable]=false style="position: absolute;">
+        <img [src]="'../../assets/' + bs.icon" [height]="bsSize"
+        [matTooltip]="'BS ID: ' + bs.index + ', x: ' + bs.realPosition.x + ', y: ' + bs.realPosition.y"
+        matTooltipClass="mat-tooltip-large">
+        <br>gNB{{i + 1}}
+      </div>
+      <div ngDraggable *ngFor="let ue of ueList" [position]="ue.position" [ngDraggable]=false style="position: absolute;">
+        <img [src]="'../../assets/' + ueIcons[getConnectBsIndex(ue)]" [height]="ueSize"
+        [matTooltip]="'UE IMSI: ' + ue.id + ', x: ' + ue.realPosition.x + ', y: ' + ue.realPosition.y"
+        matTooltipClass="mat-tooltip-large" [tabindex]="ue.index"
+        (focus)="ueFocus[ue.index] = true" (blur)="ueFocus[ue.index] = false">
+        <br>{{ue.name}}
+      </div>
+    </div>
+  </div>
+
+  <!-- right side pannel -->
+  <div [style]="'position: absolute; top: ' + ueInfoIndex + 'px; left: '
+    + getUeInfoLeftOffset() + 'px; width: ' + ueInfoWidth +'px; height: ' + ueInfoHeight + 'px;'">
+    <table border="0">
+      <tr>
+        <th>
+          <button mat-flat-button color="primary" class="right-button" (click)="openAreaSetup()">Field Setup</button>
+          <button mat-flat-button color="primary" class="right-button" (click)="openOffsetSetup()">Offset Setup</button>
+          <button mat-flat-button color="primary" class="right-button" (click)="openIntervalSetup()">GUI Setup</button>
+          <!-- <button mat-flat-button color="primary" class="right-button" (click)="openGnbSetup()">gNB Setup</button><br><br> -->
+
+          <h5><b>UE Info</b></h5>
+          <button mat-flat-button color="primary" class="right-button" (click)="openUeInfo()">UE Info On/Off</button>
+          <button mat-flat-button color="primary" class="right-button" (click)="onboard()">Config UE Name</button><br><br>
+        </th>
+        <th>
+          <h5 align="center"><b>Performance (ms)</b></h5>
+          <table border="0">
+            <tr>
+              <th>
+                <rd-gauge-chart [name]="'HO Processing Time'" [canvasWidth]=150 [optionVal]="processGaugeOption"
+                [sdlNamespace]="'ho_perf_ns'" [sdlKey]="'ho_perf'" [isTracking]="isTracking"></rd-gauge-chart>
+              </th>
+              <th>
+                <rd-gauge-chart [name]="'BWP Processing Time'" [canvasWidth]=150 [optionVal]="processGaugeOption"
+                [sdlNamespace]="'bwp_perf_ns'" [sdlKey]="'bwp_perf'" [isTracking]="isTracking"></rd-gauge-chart>
+              </th>
+            </tr>
+          </table>
+        </th>
+        <th>
+          <table border="0">
+            <tr>
+              <th>
+                Total UE Throughput (Mbps)
+                <table border="1" width=200>
+                  <tr align="center">{{getTotalThroughput()}}</tr>
+                </table>
+              </th>
+            </tr>
+            <tr>
+              <th>
+                Avg UE Throughput (Mbps)
+                <table border="1" width=200>
+                  <tr align="center">{{avg_throughput}}</tr>
+                </table>
+              </th>
+            </tr>
+          </table>
+        </th>
+      </tr>
+    </table>
+    <div *ngIf="ueInfoOn" [style]="'overflow: hidden;'">
+      <table border="1">
+        <tr align="center">
+          <th>UE Name</th><th>X Axis</th><th>Y Axis</th><th>Connect BS ID</th><th>BWP ID</th><th>Start</th><th>Bandwidth</th>
+          <!-- <th>RSRP</th><th>SINR</th> -->
+        </tr>
+        <tr *ngFor="let ue of ueList" [style]="'text-align: center; ' + ((ueFocus[ue.index]) ? 'color:red' : '')">
+          <th>{{ue.name}}</th><th>{{ue.realPosition.x}}</th><th>{{ue.realPosition.y}}</th>
+          <th>{{getConnectedBsName(ue)}}</th><th>{{ue.bwpData.bwpId}}</th><th>{{ue.bwpData.start}}</th><th>{{ue.bwpData.bandwidth}}</th>
+          <!-- <th>{{ue.rsrp}}</th><th>{{ue.sinr}}</th> -->
+        </tr>
+      </table>
+    </div>
+    <div [style]="'position: relative; width: ' + ueInfoWidth + 'px;'">
+      <rd-statistics-chart [isTracking]="isTracking" [throughput_map]="throughput_map" [ueList]="ueList"></rd-statistics-chart>
+    </div>
+    <table border="0">
+      <tr *ngIf="ueList.length > 0">
+        <th *ngIf="ueList.length > 0">
+          <rd-gauge-chart [name]="ueList[0].name" [canvasWidth]=150 [optionVal]="throughputGaugeOption"
+            [sdlNamespace]="'mqtt_ns'" [sdlKey]="ueList[0].id" [isTracking]="isTracking" [throughput_map]="throughput_map"></rd-gauge-chart>
+        </th>
+        <th *ngIf="ueList.length > 1">
+          <rd-gauge-chart [name]="ueList[1].name" [canvasWidth]=150 [optionVal]="throughputGaugeOption"
+            [sdlNamespace]="'mqtt_ns'" [sdlKey]="ueList[1].id" [isTracking]="isTracking" [throughput_map]="throughput_map"></rd-gauge-chart>
+        </th>
+        <th *ngIf="ueList.length > 2">
+          <rd-gauge-chart [name]="ueList[2].name" [canvasWidth]=150 [optionVal]="throughputGaugeOption"
+            [sdlNamespace]="'mqtt_ns'" [sdlKey]="ueList[2].id" [isTracking]="isTracking" [throughput_map]="throughput_map"></rd-gauge-chart>
+        </th>
+        <th *ngIf="ueList.length > 3">
+          <rd-gauge-chart [name]="ueList[3].name" [canvasWidth]=150 [optionVal]="throughputGaugeOption"
+            [sdlNamespace]="'mqtt_ns'" [sdlKey]="ueList[3].id" [isTracking]="isTracking" [throughput_map]="throughput_map"></rd-gauge-chart>
+        </th>
+        <th *ngIf="ueList.length > 4">
+          <rd-gauge-chart [name]="ueList[4].name" [canvasWidth]=150 [optionVal]="throughputGaugeOption"
+            [sdlNamespace]="'mqtt_ns'" [sdlKey]="ueList[4].id" [isTracking]="isTracking" [throughput_map]="throughput_map"></rd-gauge-chart>
+        </th>
+      </tr>
+      <tr *ngIf="ueList.length > 5">
+        <th *ngIf="ueList.length > 5">
+          <rd-gauge-chart [name]="ueList[5].name" [canvasWidth]=150 [optionVal]="throughputGaugeOption"
+            [sdlNamespace]="'mqtt_ns'" [sdlKey]="ueList[5].id" [isTracking]="isTracking" [throughput_map]="throughput_map"></rd-gauge-chart>
+        </th>
+        <th *ngIf="ueList.length > 6">
+          <rd-gauge-chart [name]="ueList[6].name" [canvasWidth]=150 [optionVal]="throughputGaugeOption"
+            [sdlNamespace]="'mqtt_ns'" [sdlKey]="ueList[6].id" [isTracking]="isTracking" [throughput_map]="throughput_map"></rd-gauge-chart>
+        </th>
+        <th *ngIf="ueList.length > 7">
+          <rd-gauge-chart [name]="ueList[7].name" [canvasWidth]=150 [optionVal]="throughputGaugeOption"
+            [sdlNamespace]="'mqtt_ns'" [sdlKey]="ueList[7].id" [isTracking]="isTracking" [throughput_map]="throughput_map"></rd-gauge-chart>
+        </th>
+        <th *ngIf="ueList.length > 8">
+          <rd-gauge-chart [name]="ueList[8].name" [canvasWidth]=150 [optionVal]="throughputGaugeOption"
+            [sdlNamespace]="'mqtt_ns'" [sdlKey]="ueList[8].id" [isTracking]="isTracking" [throughput_map]="throughput_map"></rd-gauge-chart>
+        </th>
+        <th *ngIf="ueList.length > 9">
+          <rd-gauge-chart [name]="ueList[9].name" [canvasWidth]=150 [optionVal]="throughputGaugeOption"
+            [sdlNamespace]="'mqtt_ns'" [sdlKey]="ueList[9].id" [isTracking]="isTracking" [throughput_map]="throughput_map"></rd-gauge-chart>
+        </th>
+      </tr>
+      <tr *ngIf="ueList.length > 10">
+        <th *ngIf="ueList.length > 10">
+          <rd-gauge-chart [name]="ueList[10].name" [canvasWidth]=150 [optionVal]="throughputGaugeOption"
+            [sdlNamespace]="'mqtt_ns'" [sdlKey]="ueList[10].id" [isTracking]="isTracking" [throughput_map]="throughput_map"></rd-gauge-chart>
+        </th>
+        <th *ngIf="ueList.length > 11">
+          <rd-gauge-chart [name]="ueList[11].name" [canvasWidth]=150 [optionVal]="throughputGaugeOption"
+            [sdlNamespace]="'mqtt_ns'" [sdlKey]="ueList[11].id" [isTracking]="isTracking" [throughput_map]="throughput_map"></rd-gauge-chart>
+        </th>
+        <th *ngIf="ueList.length > 12">
+          <rd-gauge-chart [name]="ueList[12].name" [canvasWidth]=150 [optionVal]="throughputGaugeOption"
+            [sdlNamespace]="'mqtt_ns'" [sdlKey]="ueList[12].id" [isTracking]="isTracking" [throughput_map]="throughput_map"></rd-gauge-chart>
+        </th>
+        <th *ngIf="ueList.length > 13">
+          <rd-gauge-chart [name]="ueList[13].name" [canvasWidth]=150 [optionVal]="throughputGaugeOption"
+            [sdlNamespace]="'mqtt_ns'" [sdlKey]="ueList[13].id" [isTracking]="isTracking" [throughput_map]="throughput_map"></rd-gauge-chart>
+        </th>
+        <th *ngIf="ueList.length > 14">
+          <rd-gauge-chart [name]="ueList[14].name" [canvasWidth]=150 [optionVal]="throughputGaugeOption"
+            [sdlNamespace]="'mqtt_ns'" [sdlKey]="ueList[14].id" [isTracking]="isTracking" [throughput_map]="throughput_map"></rd-gauge-chart>
+        </th>
+      </tr>
+      <tr *ngIf="ueList.length > 15">
+        <th *ngIf="ueList.length > 15">
+          <rd-gauge-chart [name]="ueList[15].name" [canvasWidth]=150 [optionVal]="throughputGaugeOption"
+            [sdlNamespace]="'mqtt_ns'" [sdlKey]="ueList[15].id" [isTracking]="isTracking" [throughput_map]="throughput_map"></rd-gauge-chart>
+        </th>
+      </tr>
+    </table>
+  </div>
+</div>

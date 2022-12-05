@@ -1,0 +1,47 @@
+[
+  {
+    "Avail-PRB-DL": 600,
+    "Avail-PRB-UL": 3,
+    "Meas-Timestamp-PDCP-Bytes": {
+      "tv-nsec": 0,
+      "tv-sec": 0
+    },
+    "Meas-Timestamp-PRB": {
+      "tv-nsec": 0,
+      "tv-sec": 0
+    },
+    "PDCP-Bytes-DL": 0,
+    "PDCP-Bytes-UL": 27742581,
+    "RAN-Name": "gnb_455_637_00313230"
+  },
+  {
+    "Avail-PRB-DL": 600,
+    "Avail-PRB-UL": 4294967294,
+    "Meas-Timestamp-PDCP-Bytes": {
+      "tv-nsec": 0,
+      "tv-sec": 0
+    },
+    "Meas-Timestamp-PRB": {
+      "tv-nsec": 0,
+      "tv-sec": 0
+    },
+    "PDCP-Bytes-DL": 0,
+    "PDCP-Bytes-UL": 10000239,
+    "RAN-Name": "gnb_455_637_00313240"
+  },
+  {
+    "Avail-PRB-DL": 600,
+    "Avail-PRB-UL": 273,
+    "Meas-Timestamp-PDCP-Bytes": {
+      "tv-nsec": 0,
+      "tv-sec": 0
+    },
+    "Meas-Timestamp-PRB": {
+      "tv-nsec": 0,
+      "tv-sec": 0
+    },
+    "PDCP-Bytes-DL": 0,
+    "PDCP-Bytes-UL": 0,
+    "RAN-Name": "gnb_455_637_00313250"
+  }
+]

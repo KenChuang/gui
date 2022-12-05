@@ -1,0 +1,35 @@
+{
+  "status": "success",
+  "data": {
+    "resultType": "matrix",
+    "result": [
+      {
+        "metric": {
+          "__name__": "cell_bytes_ul",
+          "id": "546573000031323",
+          "instance": "140.96.102.142:32080",
+          "job": "upf"
+        },
+        "values": []
+      },
+      {
+        "metric": {
+          "__name__": "cell_bytes_ul",
+          "id": "546573000031324",
+          "instance": "140.96.102.142:32080",
+          "job": "upf"
+        },
+        "values": []
+      },
+      {
+        "metric": {
+          "__name__": "cell_bytes_ul",
+          "id": "546573000031325",
+          "instance": "140.96.102.142:32080",
+          "job": "upf"
+        },
+        "values": []
+      }
+    ]
+  }
+}

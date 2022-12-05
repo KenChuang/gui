@@ -1,0 +1,92 @@
+[
+  {
+    "instances": [
+      {
+        "ip": "service-ricxapp-bwpxapp-rmr.ricxapp",
+        "name": "bwpxapp-776fd7c847-knb7d",
+        "policies": [
+          20009
+        ],
+        "port": 4560,
+        "rxMessages": [
+          "HO_XAPP_TASK_RESTART",
+          "RIC_SUB_RESP",
+          "RIC_SUB_FAILURE",
+          "RIC_SUB_DEL_RESP",
+          "RIC_SUB_DEL_FAILURE",
+          "RIC_CONTROL_ACK",
+          "RIC_CONTROL_FAILURE"
+        ],
+        "status": "running",
+        "txMessages": [
+          "RIC_SUB_REQ",
+          "RIC_SUB_DEL_REQ",
+          "RIC_CONTROL_REQ"
+        ]
+      }
+    ],
+    "name": "bwpxapp",
+    "status": "deployed",
+    "version": "1.0"
+  },
+  {
+    "instances": [
+      {
+        "ip": "service-ricxapp-hoxapp-rmr.ricxapp",
+        "name": "hoxapp-6cfcb7d889-5k2sk",
+        "policies": [
+          20009
+        ],
+        "port": 4560,
+        "rxMessages": [
+          "HO_POS_PREDICTION",
+          "HO_XAPP_TASK_RESTART",
+          "A1_POLICY_REQ",
+          "A1_POLICY_QUERY",
+          "RIC_SUB_RESP",
+          "RIC_SUB_FAILURE",
+          "RIC_SUB_DEL_RESP",
+          "RIC_SUB_DEL_FAILURE",
+          "RIC_CONTROL_ACK",
+          "RIC_CONTROL_FAILURE"
+        ],
+        "status": "running",
+        "txMessages": [
+          "HO_UE_LIST",
+          "A1_POLICY_RESP",
+          "RIC_SUB_REQ",
+          "RIC_SUB_DEL_REQ",
+          "RIC_CONTROL_REQ"
+        ]
+      }
+    ],
+    "name": "hoxapp",
+    "status": "deployed",
+    "version": "1.0"
+  },
+  {
+    "instances": [
+      {
+        "ip": "service-ricxapp-kpimon-rmr.ricxapp",
+        "name": "kpimon-6cf5d9566c-ww8tj",
+        "policies": null,
+        "port": 4560,
+        "rxMessages": [
+          "RIC_INDICATION",
+          "RIC_SUB_RESP",
+          "RIC_SUB_FAILURE",
+          "SUB_DEL_RESP",
+          "SUB_DEL_FAILURE"
+        ],
+        "status": "running",
+        "txMessages": [
+          "RIC_SUB_REQ",
+          "RIC_SUB_DEL_REQ"
+        ]
+      }
+    ],
+    "name": "kpimon",
+    "status": "deployed",
+    "version": "1.0"
+  }
+]

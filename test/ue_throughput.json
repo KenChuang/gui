@@ -1,0 +1,92 @@
+[
+  {
+    "event_name": "oam_throughput_psa_n3_ul",
+    "event_time": "1640165895313",
+    "imsi": "0000000000000",
+    "interface": "10.10.0.43:n3",
+    "mgt_type": "am",
+    "mo": "oam",
+    "throughput": 0
+  },
+  {
+    "event_name": "oam_throughput_psa_n3_ul",
+    "event_time": "1640165895313",
+    "imsi": "0000000000001",
+    "interface": "10.10.0.43:n3",
+    "mgt_type": "am",
+    "mo": "oam",
+    "throughput": 732331
+  },
+  {
+    "event_name": "oam_throughput_psa_n3_ul",
+    "event_time": "1640165895313",
+    "imsi": "0000000000002",
+    "interface": "10.10.0.43:n3",
+    "mgt_type": "am",
+    "mo": "oam",
+    "throughput": 0
+  },
+  {
+    "event_name": "oam_throughput_psa_n3_ul",
+    "event_time": "1640165895313",
+    "imsi": "0000000000003",
+    "interface": "10.10.0.43:n3",
+    "mgt_type": "am",
+    "mo": "oam",
+    "throughput": 127176
+  },
+  {
+    "event_name": "oam_throughput_psa_n3_ul",
+    "event_time": "1640165895313",
+    "imsi": "0000000000004",
+    "interface": "10.10.0.43:n3",
+    "mgt_type": "am",
+    "mo": "oam",
+    "throughput": 0
+  },
+  {
+    "event_name": "oam_throughput_psa_n3_ul",
+    "event_time": "1640165895313",
+    "imsi": "0000000000005",
+    "interface": "10.10.0.43:n3",
+    "mgt_type": "am",
+    "mo": "oam",
+    "throughput": 0
+  },
+  {
+    "event_name": "oam_throughput_psa_n3_ul",
+    "event_time": "1640165895313",
+    "imsi": "0000000000006",
+    "interface": "10.10.0.43:n3",
+    "mgt_type": "am",
+    "mo": "oam",
+    "throughput": 0
+  },
+  {
+    "event_name": "oam_throughput_psa_n3_ul",
+    "event_time": "1640165895313",
+    "imsi": "0000000000007",
+    "interface": "10.10.0.43:n3",
+    "mgt_type": "am",
+    "mo": "oam",
+    "throughput": 502360
+  },
+  {
+    "event_name": "oam_throughput_psa_n3_ul",
+    "event_time": "1640165895313",
+    "imsi": "0000000000008",
+    "interface": "10.10.0.43:n3",
+    "mgt_type": "am",
+    "mo": "oam",
+    "throughput": 0
+  },
+  {
+    "event_name": "oam_throughput_psa_n3_ul",
+    "event_time": "1640165895313",
+    "imsi": "0000000000009",
+    "interface": "10.10.0.43:n3",
+    "mgt_type": "am",
+    "mo": "oam",
+    "throughput": 0
+  }
+]

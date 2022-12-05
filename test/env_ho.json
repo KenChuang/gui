@@ -1,0 +1,54 @@
+[
+  {
+    "altitude": 100.0,
+    "bs_data": [
+      {
+        "cid": "201507",
+        "gnb_id": 201507,
+        "len_of_gnb_id": 28,
+        "mcc": 455,
+        "mnc": 637,
+        "radius_of_handover": 30.0,
+        "radius_of_predict": 40.0,
+        "sc_x": -5.0,
+        "sc_y": 25.0,
+        "sc_z": 10.0,
+        "x": -5.0,
+        "y": 25.0,
+        "z": 10.0
+      },
+      {
+        "cid": "201508",
+        "gnb_id": 201507,
+        "len_of_gnb_id": 28,
+        "mcc": 455,
+        "mnc": 637,
+        "radius_of_handover": 30.0,
+        "radius_of_predict": 40.0,
+        "sc_x": 45.0,
+        "sc_y": 25.0,
+        "sc_z": 10.0,
+        "x": 45.0,
+        "y": 25.0,
+        "z": 10.0
+      },
+      {
+        "cid": "201509",
+        "gnb_id": 201507,
+        "len_of_gnb_id": 28,
+        "mcc": 455,
+        "mnc": 637,
+        "radius_of_handover": 30.0,
+        "radius_of_predict": 40.0,
+        "sc_x": 20.0,
+        "sc_y": 0.0,
+        "sc_z": 10.0,
+        "x": 20.0,
+        "y": 0.0,
+        "z": 10.0
+      }
+    ],
+    "height": 75.0,
+    "width": 100.0
+  }
+]

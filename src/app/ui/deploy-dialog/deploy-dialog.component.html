@@ -1,0 +1,50 @@
+<!--
+  ========================LICENSE_START=================================
+  O-RAN-SC
+  %%
+  Copyright (C) 2020 AT&T Intellectual Property
+  %%
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  ========================LICENSE_END===================================
+  -->
+
+<div mat-dialog-title>
+  Deploy Xapp
+</div>
+<form [formGroup]="deployForm" novalidate autocomplete="off" (ngSubmit)="deploy(deployForm.value)">
+  <mat-form-field>
+    <mat-label>xappName</mat-label>
+    <input matInput formControlName="xappName">
+  </mat-form-field>
+  <!-- <mat-form-field>
+    <mat-label>helmVersion (Optional)</mat-label>
+    <input matInput formControlName="helmVersion">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>releaseName (Optional)</mat-label>
+    <input matInput formControlName="releaseName">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>namespace (Optional)</mat-label>
+    <input matInput formControlName="namespace">
+  </mat-form-field>
+  <input #overrideFile type="file" (change)="selectoverrideFile($event)" style="display:none;" />
+  <mat-form-field class="example-full-width" (click)="overrideFile.click()">
+    <input matInput placeholder="Choose override File (Optional)"  value="{{overrideFile.value.substr(overrideFile.value.lastIndexOf('\\')+1)}}" >
+    <mat-icon matSuffix>folder_open</mat-icon>
+  </mat-form-field> -->
+  <div mat-dialog-actions class="modal-footer justify-content-center">
+    <button mat-button class="mat-raised-button" [mat-dialog-close]="false">Cancel</button>
+    <button mat-button class="mat-raised-button mat-primary" [disabled]="!deployForm.valid">OK</button>
+  </div>
+</form>
