@@ -17,14 +17,27 @@
   limitations under the License.
   ========================LICENSE_END===================================
   -->
-<div style="background-color: rgba(234, 236, 238, 0.3);">
-  <!-- <button mat-flat-button color="primary" class="right-button" (click)="startTracking()" [(disabled)]="isTracking">Start UAV Tracking</button>
-  <button mat-flat-button color="primary" class="right-button" (click)="stopTracking()">Stop UAV Tracking</button> -->
-  <button mat-flat-button color="primary" class="right-button" (click)="changeTracking()">{{isTracking?'Stop':'Start'}} UAV Tracking</button>
-  <!-- zoom related components -->
-  <button mat-flat-button color="primary" class="left-margin-button" (click)="zoomInOperation()">Zoom In</button>
-  <button mat-flat-button color="primary" class="right-button" (click)="zoomOutOperation()">Zoom Out</button>Percentage: {{zoomPercentage}}%
-  <img src="../../assets/ruler.png" width=100>{{getRuler()}}m
+<div>
+  <div class="header">
+    <h5>UAV Tracking</h5>
+      <span class="switch">
+        <input type="checkbox" id="switch" />
+        <label for="switch">
+            <span class="switch-txt" turnOn="On" turnOff="Off"></span>
+        </label>
+      </span>
+    
+    <button (click)="startTracking()" [(disabled)]="isTracking">Start UAV Tracking</button>
+    <button (click)="stopTracking()">Stop UAV Tracking</button>
+    <!-- zoom related components -->
+    
+    <span>Percentage: {{zoomPercentage}}% <img src="../../assets/ruler.png" width=100> {{getRuler()}} m </span>
+    <span>
+      <button (click)="zoomInOperation()">Zoom In</button>
+      <button (click)="zoomOutOperation()">Zoom Out</button>
+    </span>
+  </div>
+  
   <!-- network topology -->
   <div [style]="'position: relative; width: ' + fieldData.fieldWidth + 'px; height: ' + fieldData.fieldHeight + 'px; overflow: hidden;'
   + 'background-color: white;'">
