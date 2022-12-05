@@ -42,3 +42,76 @@ html, body {
   font-size: 25px;
   font-weight: 100;
 }
+
+/*  switch on/off */
+.switch {
+  display: inline-block;
+}
+.switch input[type=checkbox]{
+	height: 0;
+	width: 0;
+	visibility: hidden;
+}
+
+.switch label {
+	cursor: pointer;
+  width: 55px;
+  height: 20px;
+	background: #a5a5a5;
+	display: block;
+	border-radius: 100px;
+	position: relative;
+  margin: 0;
+}
+
+.switch label:after {
+	content: '';
+	position: absolute;
+	top: -3px;
+	left: -3px;
+	width: 25px;
+	height: 25px;
+	background: #fff;
+  border:2px solid #2d9fe2;
+	border-radius: 90px;
+	transition: 0.3s;
+}
+
+.switch .switch-txt span {
+  color: #ececec;
+  position: absolute;
+  font-size: .9em;
+  top: -2px;
+}
+.switch input + label .switch-txt .off {
+  display: block;
+  right: 9px;
+  content: "Off";
+}
+.switch input + label .switch-txt .on {
+  display: none;
+}
+.switch input:checked + label .switch-txt .on {
+  left: 9px;
+  content: "On";
+  display: block;
+} 
+.switch input:checked + label .switch-txt .off {
+  display: none;
+  
+}
+
+.switch input:checked + label {
+	background: #2d9fe2;
+}
+.switch label:active:after {
+	width: 130px;
+}
+.switch input:checked + label:after {
+	left: 32px;
+	transition: all .25s;
+}/*  switch on/off end */
+
+.float-right {
+  float: right;
+}
