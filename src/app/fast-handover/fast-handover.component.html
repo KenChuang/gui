@@ -54,72 +54,66 @@
   <!-- right side pannel -->
   <div class="rightArea" [style]="'position: absolute; top: ' + ueInfoIndex + 'px; left: '
     + getUeInfoLeftOffset() + 'px; width: ' + ueInfoWidth +'px; height: ' + ueInfoHeight + 'px;'">
-    <table border="0">
-      <tr>
-        <th>
-          <button mat-flat-button color="primary" class="right-button" (click)="openAreaSetup()">Field Setup</button>
-          <button mat-flat-button color="primary" class="right-button" (click)="openOffsetSetup()">Offset Setup</button>
-          <button mat-flat-button color="primary" class="right-button" (click)="openIntervalSetup()">GUI Setup</button>
-          <!-- <button mat-flat-button color="primary" class="right-button" (click)="openGnbSetup()">gNB Setup</button><br><br> -->
-
-          <h5><b>UE Info</b></h5>
-          <button mat-flat-button color="primary" class="right-button" (click)="openUeInfo()">UE Info On/Off</button>
-          <button mat-flat-button color="primary" class="right-button" (click)="onboard()">Config UE Name</button><br><br>
-        </th>
-        <th>
-          <h5 align="center"><b>Performance (ms)</b></h5>
-          <table border="0">
-            <tr>
-              <th>
-                <rd-gauge-chart [name]="'HO Processing Time'" [canvasWidth]=150 [optionVal]="processGaugeOption"
-                [sdlNamespace]="'ho_perf_ns'" [sdlKey]="'ho_perf'" [isTracking]="isTracking"></rd-gauge-chart>
-              </th>
-              <th>
-                <rd-gauge-chart [name]="'BWP Processing Time'" [canvasWidth]=150 [optionVal]="processGaugeOption"
-                [sdlNamespace]="'bwp_perf_ns'" [sdlKey]="'bwp_perf'" [isTracking]="isTracking"></rd-gauge-chart>
-              </th>
-            </tr>
-          </table>
-        </th>
-        <th>
-          <table border="0">
-            <tr>
-              <th>
-                Total UE Throughput (Mbps)
-                <table border="1" width=200>
-                  <tr align="center">{{getTotalThroughput()}}</tr>
-                </table>
-              </th>
-            </tr>
-            <tr>
-              <th>
-                Avg UE Throughput (Mbps)
-                <table border="1" width=200>
-                  <tr align="center">{{avg_throughput}}</tr>
-                </table>
-              </th>
-            </tr>
-          </table>
-        </th>
-      </tr>
-    </table>
-    <div *ngIf="ueInfoOn" [style]="'overflow: hidden;'">
-      <table border="1">
-        <tr align="center">
-          <th>UE Name</th><th>X Axis</th><th>Y Axis</th><th>Connect BS ID</th><th>BWP ID</th><th>Start</th><th>Bandwidth</th>
-          <!-- <th>RSRP</th><th>SINR</th> -->
-        </tr>
-        <tr *ngFor="let ue of ueList" [style]="'text-align: center; ' + ((ueFocus[ue.index]) ? 'color:red' : '')">
-          <th>{{ue.name}}</th><th>{{ue.realPosition.x}}</th><th>{{ue.realPosition.y}}</th>
-          <th>{{getConnectedBsName(ue)}}</th><th>{{ue.bwpData.bwpId}}</th><th>{{ue.bwpData.start}}</th><th>{{ue.bwpData.bandwidth}}</th>
-          <!-- <th>{{ue.rsrp}}</th><th>{{ue.sinr}}</th> -->
-        </tr>
-      </table>
+    <span>
+      <button (click)="openAreaSetup()">Field Setup</button>
+      <button (click)="openOffsetSetup()">Offset Setup</button>
+      <button (click)="openIntervalSetup()">GUI Setup</button>
+    </span>
+    <h5>UE Info</h5>
+    <div>
+      <span>
+        <span>Total UE Throughput {{getTotalThroughput()}} Mbps</span>
+        <span>Avg UE Throughput {{avg_throughput}} Mbps</span>
+      </span>
+      <span>
+        <rd-gauge-chart [name]="'HO Processing Time'" [canvasWidth]=150 [optionVal]="processGaugeOption"
+          [sdlNamespace]="'ho_perf_ns'" [sdlKey]="'ho_perf'" [isTracking]="isTracking"></rd-gauge-chart>
+                
+        <rd-gauge-chart [name]="'BWP Processing Time'" [canvasWidth]=150 [optionVal]="processGaugeOption"
+        [sdlNamespace]="'bwp_perf_ns'" [sdlKey]="'bwp_perf'" [isTracking]="isTracking"></rd-gauge-chart>
+      </span>
+      <!-- <button (click)="openGnbSetup()">gNB Setup</button><br><br> -->
     </div>
-    <div [style]="'position: relative; width: ' + ueInfoWidth + 'px;'">
+   
+    
+    <div class="throughputMAP" [style]="'position: relative; width: ' + ueInfoWidth + 'px;'">
       <rd-statistics-chart [isTracking]="isTracking" [throughput_map]="throughput_map" [ueList]="ueList"></rd-statistics-chart>
     </div>
-    <table border="0">
+
+    <h5>UE List
+      <span class="groupBtn">connect BS
+        <label class="active">gNB1</label>
+        <label>gNB2</label>
+        <label>gNB3</label>
+      </span>
+    </h5>
+
+    <div class="barChart">
+
+    </div>
+
+    <div>
+      <table>
+        <thead>
+        <tr>
+          <th>UE Name</th>
+          <th>BWP ID</th>
+          <th>Start</th>
+          <th>Bandwidth</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ue of ueList">
+          <td>{{ue.name}}</td>
+          <td>{{getConnectedBsName(ue)}}</td>
+          <td>{{ue.bwpData.bwpId}}</td>
+          <td>{{ue.bwpData.start}}</td>
+          <td>{{ue.bwpData.bandwidth}}</td>
+        </tr>
+      </tbody>
+      </table>
+    </div>
+    <!-- <table border="0">
       <tr *ngIf="ueList.length > 0">
         <th *ngIf="ueList.length > 0">
           <rd-gauge-chart [name]="ueList[0].name" [canvasWidth]=150 [optionVal]="throughputGaugeOption"
@@ -192,6 +186,6 @@
             [sdlNamespace]="'mqtt_ns'" [sdlKey]="ueList[15].id" [isTracking]="isTracking" [throughput_map]="throughput_map"></rd-gauge-chart>
         </th>
       </tr>
-    </table>
+    </table> -->
   </div>
 </div>
