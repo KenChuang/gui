@@ -1,40 +1,28 @@
-<!--
-  ========================LICENSE_START=================================
-  O-RAN-SC
-  %%
-  Copyright (C) 2019 - 2021 AT&T Intellectual Property
-  %%
-  Licensed under the Apache License, Version 2.0 (the "License");
-  you may not use this file except in compliance with the License.
-  You may obtain a copy of the License at
-  
-       http://www.apache.org/licenses/LICENSE-2.0
-  
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License.
-  ========================LICENSE_END===================================
-  -->
-<div>
+<div class="wrap">
+<div class="leftArea">
   <div class="header">
+
     <h5>UAV Tracking</h5>
-      <span class="switch">
-        <input type="checkbox" id="switch" />
-        <label for="switch">
-            <span class="switch-txt" turnOn="On" turnOff="Off"></span>
-        </label>
-      </span>
+
+    <span class="switch">
+      <input type="checkbox" id="switch" />
+      <label for="switch">
+          <span class="switch-txt" turnOn="On" turnOff="Off">
+            <span class="on">On</span>
+            <span class="off">Off</span>
+          </span>
+      </label>
+    </span>
     
     <button (click)="startTracking()" [(disabled)]="isTracking">Start UAV Tracking</button>
     <button (click)="stopTracking()">Stop UAV Tracking</button>
     <!-- zoom related components -->
     
-    <span>Percentage: {{zoomPercentage}}% <img src="../../assets/ruler.png" width=100> {{getRuler()}} m </span>
-    <span>
-      <button (click)="zoomInOperation()">Zoom In</button>
-      <button (click)="zoomOutOperation()">Zoom Out</button>
+    <span class="percent">Percentage: {{zoomPercentage}}% <img src="../../assets/ruler.png" width=100> {{getRuler()}} m </span>
+
+    <span class="float-right">
+      <button (click)="zoomInOperation()"><i class="fa-light fa-magnifying-glass-plus"></i></button>
+      <button (click)="zoomOutOperation()"><i class="fa-light fa-magnifying-glass-minus"></i></button>
     </span>
   </div>
   
@@ -62,9 +50,9 @@
       </div>
     </div>
   </div>
-
+</div>
   <!-- right side pannel -->
-  <div [style]="'position: absolute; top: ' + ueInfoIndex + 'px; left: '
+  <div class="rightArea" [style]="'position: absolute; top: ' + ueInfoIndex + 'px; left: '
     + getUeInfoLeftOffset() + 'px; width: ' + ueInfoWidth +'px; height: ' + ueInfoHeight + 'px;'">
     <table border="0">
       <tr>

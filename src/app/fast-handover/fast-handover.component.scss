@@ -1,21 +1,30 @@
-.dot {
-  height: 25px;
-  width: 25px;
-  background-color: #bbb;
-  border-radius: 50%;
+* {
+  font-family: Microsoft JhengHei;
+}
+  
+.header h5 {
   display: inline-block;
+  font-weight: bold;
+  font-size: 1.2em;
 }
-
-.mat-tooltip-large {
-  font-size: 16px;
+.header .switch {
+  margin: 0 1em;
+  vertical-align: text-bottom;
 }
-
-.button {
-  height: 50px;
-  width: 100px;
-  margin-right: 8px;
+.leftArea,.rightArea {
+  width: 50%;
+  display: inline-block;
+  vertical-align: top;
 }
-
-.left-margin-button {
-  margin-left: 100px;
+.dot {
+  border-radius: 100em;
+}
+.percent {
+  font-size: .9em;
+  color: #333;
+  margin: 0 1em;
+}
+.percent img {
+  width: 2.5em;
+  height: auto;
 }
