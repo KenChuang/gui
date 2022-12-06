@@ -52,7 +52,7 @@ export class FastHandoverComponent implements OnInit {
     fieldHeight: 800
   }
   ueInfoWidth = 800;
-  ueInfoHeight = 600;
+  ueInfoHeight = 400;
   ueInfoIndex = 80;
   bsIcons = ['bs1_bare.png', 'bs3_bare.png', 'bs2_bare.png'];
   bsColorList = ['blue', 'red', 'black'];
