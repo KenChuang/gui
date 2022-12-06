@@ -87,11 +87,14 @@ h6 {
   padding: 0;
 }
 .barTable table {
+  margin-top: 0.2em;
   display: table;
+  width: 100%;
 }
 .barTable table th,
 .barTable table td {
   padding: .5em;
+  text-align: center;
 }
 .barTable table thead tr th {
   background-color: #bedcff;
