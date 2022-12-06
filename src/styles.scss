@@ -72,7 +72,7 @@ html, body {
 	width: 25px;
 	height: 25px;
 	background: #fff;
-  border:2px solid #2d9fe2;
+  border:2px solid #8f9090;
 	border-radius: 90px;
 	transition: 0.3s;
 }
@@ -100,9 +100,11 @@ html, body {
   display: none;
   
 }
-
 .switch input:checked + label {
 	background: #2d9fe2;
+}
+.switch input:checked + label:after {
+  border:2px solid #2d9fe2;
 }
 .switch label:active:after {
 	width: 130px;
@@ -111,7 +113,42 @@ html, body {
 	left: 32px;
 	transition: all .25s;
 }/*  switch on/off end */
-
+h5 {
+  font-weight: bold;
+}
 .float-right {
   float: right;
+}
+.groupBTN {
+  font-size: .9em;
+}
+.groupBTN button {
+  display: inline-block;
+  background-color: #2d9fe2;
+  color: #fff;
+  padding: .3em 1em;
+  border: 1px solid #fff;
+}
+.groupBTN button:first-child {
+  border-radius: 3px 0 0 3px;
+}
+.groupBTN button:last-child {
+  border-radius: 0 3px 3px 0;
+}
+.groupBTN label {
+  display: inline-block;
+  padding: .3em 1em;
+  border: 1px solid #2d9fe2;
+  color: #999;
+  cursor: pointer;
+}
+.groupBTN label.active {
+  background-color: #2d9fe2;
+  color: #fff;
+}
+.groupBTN label:first-child {
+  border-radius: 3px 0 0 3px;
+}
+.groupBTN label:last-child {
+  border-radius: 0 3px 3px 0;
 }
