@@ -2,19 +2,27 @@
   font-family: Microsoft JhengHei;
 }
   
-.header h5 {
+h5 {
   display: inline-block;
   font-weight: bold;
   font-size: 1.2em;
+  margin-bottom: 0;
 }
 .header .switch {
   margin: 0 1em;
   vertical-align: text-bottom;
 }
-.leftArea,.rightArea {
-  width: 50%;
+.leftArea {
+  width: 55%;
   display: inline-block;
   vertical-align: top;
+  padding: 1em;
+}
+.rightArea {
+  width: 45%;
+  display: inline-block;
+  vertical-align: top;
+  padding: 1em;
 }
 .dot {
   border-radius: 100em;
@@ -27,4 +35,73 @@
 .percent img {
   width: 2.5em;
   height: auto;
+}
+.ueINFO {
+  margin: 1.5em 0;
+}
+.ueINFO span {
+  display: inline-block;
+  vertical-align: top;
+  font-weight: bold;
+}
+.ueINFO h6 {
+  margin: 0 ;
+  font-size: 1.1em;
+}
+.ueINFO h6 + span {
+  font-size: 1.3em;
+  color: #3b83e9;
+  margin: 0.2em 0 0 2em;
+}
+.ueINFO > span  {
+  margin: 0 0 0 .5em;
+  border-radius: 5px;
+  height: 4.5em;
+  width: 24%;
+}
+.ueINFO > span label {
+  vertical-align: sub;
+} 
+.ueINFO > span >  label {
+  font-size: .8em;
+  font-weight: normal;
+  margin: 0 0 0 .5em;
+}
+.blueBG {
+  background-color: #abd2ff;
+  padding: .5em;
+}
+.blueBorder {
+  border:2px solid #bedcff;
+  padding: .5em;
+}
+.blueBorder h6 + span {
+  margin: 0.2em 0 0 3.4em;
+}
+h5 + .groupBTN {
+  margin: 0 0 0 1em;
+}
+h6 {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+.barTable table {
+  display: table;
+}
+.barTable table th,
+.barTable table td {
+  padding: .5em;
+}
+.barTable table thead tr th {
+  background-color: #bedcff;
+  border: 1px solid #fff;
+  font-size: .9em;
+}
+.barTable table tbody tr td {
+  border-bottom: 1px solid #ddd;
+  font-size: .9em;
+}
+.throughputMAP {
+  margin: 1.5em 0;
 }

@@ -18,7 +18,7 @@
     <button (click)="stopTracking()">Stop UAV Tracking</button>
     <!-- zoom related components -->
     
-    <span class="percent">Percentage: {{zoomPercentage}}% <img src="../../assets/ruler.png" width=100> {{getRuler()}} m </span>
+    <span class="percent">Percentage: {{zoomPercentage}}% <img src="../../assets/ruler.png"> {{getRuler()}} m </span>
 
     <span class="float-right">
       <button (click)="zoomInOperation()"><i class="fa-light fa-magnifying-glass-plus"></i></button>
@@ -27,6 +27,7 @@
   </div>
   
   <!-- network topology -->
+  
   <div [style]="'position: relative; width: ' + fieldData.fieldWidth + 'px; height: ' + fieldData.fieldHeight + 'px; overflow: hidden;'
   + 'background-color: white;'">
     <div ngDraggable [style]="'position: relative; width: ' + fieldData.fieldWidth + 'px; height: ' + fieldData.fieldHeight + 'px; overflow: visible;'
@@ -52,63 +53,68 @@
   </div>
 </div>
   <!-- right side pannel -->
-  <div class="rightArea" [style]="'position: absolute; top: ' + ueInfoIndex + 'px; left: '
-    + getUeInfoLeftOffset() + 'px; width: ' + ueInfoWidth +'px; height: ' + ueInfoHeight + 'px;'">
-    <span>
+  <!-- <div class="rightArea" [style]="'position: absolute; top: ' + ueInfoIndex + 'px; left: '
+  + getUeInfoLeftOffset() + 'px; width: ' + ueInfoWidth +'px; height: ' + ueInfoHeight + 'px;'"> -->
+  <div class="rightArea">
+    
+    <h5>UE Info</h5>
+    <span class="groupBTN float-right">
       <button (click)="openAreaSetup()">Field Setup</button>
       <button (click)="openOffsetSetup()">Offset Setup</button>
       <button (click)="openIntervalSetup()">GUI Setup</button>
     </span>
-    <h5>UE Info</h5>
-    <div>
-      <span>
-        <span>Total UE Throughput {{getTotalThroughput()}} Mbps</span>
-        <span>Avg UE Throughput {{avg_throughput}} Mbps</span>
-      </span>
-      <span>
-        <rd-gauge-chart [name]="'HO Processing Time'" [canvasWidth]=150 [optionVal]="processGaugeOption"
-          [sdlNamespace]="'ho_perf_ns'" [sdlKey]="'ho_perf'" [isTracking]="isTracking"></rd-gauge-chart>
-                
-        <rd-gauge-chart [name]="'BWP Processing Time'" [canvasWidth]=150 [optionVal]="processGaugeOption"
-        [sdlNamespace]="'bwp_perf_ns'" [sdlKey]="'bwp_perf'" [isTracking]="isTracking"></rd-gauge-chart>
-      </span>
-      <!-- <button (click)="openGnbSetup()">gNB Setup</button><br><br> -->
+    <div class="ueINFO">
+        <span class="blueBG"><h6>Total UE Throughput</h6><span>{{getTotalThroughput()}}</span><label>Mbps</label></span>
+        <span class="blueBG"><h6>Avg UE Throughput</h6><span>{{avg_throughput}}</span><label>Mbps</label></span>
+        <span class="blueBorder">
+          <h6>HO Processing Time</h6><span>20</span><label>ms</label>
+        </span>
+        
+        <span class="blueBorder">
+          <h6>BWP Processing Time</h6><span>20</span><label>ms</label>
+        </span>
     </div>
+        <!-- <rd-gauge-chart [name]="'HO Processing Time'" [canvasWidth]=150 [optionVal]="processGaugeOption"
+        [sdlNamespace]="'ho_perf_ns'" [sdlKey]="'ho_perf'" [isTracking]="isTracking"></rd-gauge-chart> -->
+        <!-- <rd-gauge-chart [name]="'BWP Processing Time'" [canvasWidth]=150 [optionVal]="processGaugeOption"
+        [sdlNamespace]="'bwp_perf_ns'" [sdlKey]="'bwp_perf'" [isTracking]="isTracking"></rd-gauge-chart> -->
+        <!-- <button (click)="openGnbSetup()">gNB Setup</button><br><br> -->
+    
    
     
     <div class="throughputMAP" [style]="'position: relative; width: ' + ueInfoWidth + 'px;'">
       <rd-statistics-chart [isTracking]="isTracking" [throughput_map]="throughput_map" [ueList]="ueList"></rd-statistics-chart>
     </div>
 
-    <h5>UE List
-      <span class="groupBtn">connect BS
-        <label class="active">gNB1</label>
-        <label>gNB2</label>
-        <label>gNB3</label>
-      </span>
-    </h5>
+    <h5>UE List</h5>
+    <span class="groupBTN">connect BS
+      <label class="active">gNB1</label>
+      <label>gNB2</label>
+      <label>gNB3</label>
+    </span>
 
     <div class="barChart">
 
     </div>
 
-    <div>
+    <div class="barTable">
       <table>
         <thead>
-        <tr>
-          <th>UE Name</th>
-          <th>BWP ID</th>
-          <th>Start</th>
-          <th>Bandwidth</th>
-        </tr>
+          <tr>
+            <th>UE Name</th>
+            <th>Connect BS ID</th>
+            <th>BWP ID</th>
+            <th>Start</th>
+            <th>Bandwidth</th>
+          </tr>
       </thead>
       <tbody>
         <tr *ngFor="let ue of ueList">
-          <td>{{ue.name}}</td>
-          <td>{{getConnectedBsName(ue)}}</td>
-          <td>{{ue.bwpData.bwpId}}</td>
-          <td>{{ue.bwpData.start}}</td>
-          <td>{{ue.bwpData.bandwidth}}</td>
+          <td>ue.name{{ue.name}}</td>
+          <td>ue.name{{getConnectedBsName(ue)}}</td>
+          <td>ue.name{{ue.bwpData.bwpId}}</td>
+          <td>ue.name{{ue.bwpData.start}}</td>
+          <td>ue.name{{ue.bwpData.bandwidth}}</td>
         </tr>
       </tbody>
       </table>
