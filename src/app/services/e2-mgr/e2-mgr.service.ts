@@ -57,7 +57,7 @@ export class E2ManagerService {
    */
   getRan(instanceKey: string): Observable<Array<E2RanDetails>> {
     // const path = this.dashboardSvc.buildPath(this.component, instanceKey, this.nodebPath, 'ran');
-    const path = 'http://192.168.0.180:8888/e2mgr/v1/nodeb/states';
+    const path = 'http://127.0.0.1:8888/e2mgr/v1/nodeb/states';
     return this.httpClient.get<Array<E2RanDetails>>(path);
   }
 

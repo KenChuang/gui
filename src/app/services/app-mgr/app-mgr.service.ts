@@ -38,25 +38,25 @@ export class AppMgrService {
 
   getDeployable(instanceKey: string): Observable<string> {
     // const path = this.dashboardSvc.buildPath(this.onboardComponent, instanceKey, 'charts');
-    const path = 'http://192.168.0.180:8888/xapp/catalog';
+    const path = 'http://127.0.0.1:8888/xapp/catalog';
     return this.httpClient.get<string>(path);
   }
 
   getDeployed(instanceKey: string): Observable<XMAllDeployedXapps> {
     // const path = this.dashboardSvc.buildPath(this.component, instanceKey, this.xappsPath);
-    const path = 'http://192.168.0.180:8888/xapp/deployed';
+    const path = 'http://127.0.0.1:8888/xapp/deployed';
     return this.httpClient.get<XMAllDeployedXapps>(path);
   }
 
   deployXapp(instanceKey: string, xappDescriptor: XMXappDescriptor): Observable<HttpResponse<Object>> {
     // const path = this.dashboardSvc.buildPath(this.component, instanceKey, this.xappsPath);
-    const path = 'http://192.168.0.180:8888/deploy_xapp';
+    const path = 'http://127.0.0.1:8888/deploy_xapp';
     return this.httpClient.post(path, xappDescriptor, { observe: 'response' });
   }
 
   undeployXapp(instanceKey: string, name: string): Observable<HttpResponse<Object>> {
     // const path = this.dashboardSvc.buildPath(this.component, instanceKey, this.xappsPath, name);
-    const path = 'http://192.168.0.180:8888/delete_xapp/' + name;
+    const path = 'http://127.0.0.1:8888/delete_xapp/' + name;
     return this.httpClient.delete(path, { observe: 'response' });
   }
 

@@ -44,13 +44,13 @@ export class StatisticsChartComponent implements OnInit {
       // We use this empty structure as a placeholder for dynamic theming.
       xAxes: [{}],
       yAxes: [{
-          id: 'y-axis-0',
-          position: 'left',
-          ticks: {
-            max: 500,
-            min: 0
-          }
+        id: 'y-axis-0',
+        position: 'left',
+        ticks: {
+          max: 500,
+          min: 0
         }
+      }
       ]
     },
     annotation: {
@@ -70,6 +70,11 @@ export class StatisticsChartComponent implements OnInit {
         },
       ],
     },
+  
+      legend: {
+        position:'right'
+      }
+    
   };
   public lineChartColors: Color[] = [
     { // green
@@ -103,7 +108,7 @@ export class StatisticsChartComponent implements OnInit {
   }
 
   startQuery(): void {
-    let func = function(vm) {
+    let func = function (vm) {
       if (!vm.exists) {
         clearTimeout(vm.setTimeoutTask);
         return;
@@ -113,7 +118,9 @@ export class StatisticsChartComponent implements OnInit {
         for (let key in vm.throughput_map) {
           if (!vm.lineChartData[id]) {
             let color = vm.ueColors[id];
-            vm.lineChartData[id] = {data: [], label: key,
+            vm.lineChartData[id] = {
+              data: [],
+              label: key,
               backgroundColor: `rgba(${color[0]}, ${color[1]}, ${color[2]}, 0.3)`,
               borderColor: `rgb(${color[0]}, ${color[1]}, ${color[2]})`
             };
@@ -124,7 +131,7 @@ export class StatisticsChartComponent implements OnInit {
           id++;
         }
         vm.lineChartData.length = id;
-        vm.lineChartData[0].data.push(total);
+        vm.lineChartData[0].data.push(total.toFixed(2));
         let date = new Date();
         let label = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
         vm.lineChartLabels.push(label);

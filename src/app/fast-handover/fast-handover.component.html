@@ -1,12 +1,14 @@
+<button (click)="debug()">DD</button>
+
 <div class="wrap">
 <div class="leftArea">
   <div class="header">
 
     <h5>UAV Tracking</h5>
 
-    <span class="switch">@ken
+    <span class="switch">
       <input type="checkbox" id="switch" />
-      <label for="switch">
+      <label for="switch" (click)="changeTracking()">
           <span class="switch-txt" turnOn="On" turnOff="Off">
             <span class="on">On</span>
             <span class="off">Off</span>
@@ -14,8 +16,8 @@
       </label>
     </span>
     
-    <button (click)="startTracking()" [(disabled)]="isTracking">Start UAV Tracking</button>
-    <button (click)="stopTracking()">Stop UAV Tracking</button>
+    <!-- <button (click)="startTracking()" [(disabled)]="isTracking">Start UAV Tracking</button>
+    <button (click)="stopTracking()">Stop UAV Tracking</button> -->
     <!-- zoom related components -->
     
     <span class="percent">Percentage: {{zoomPercentage}}% <img src="../../assets/ruler.png"> {{getRuler()}} m </span>

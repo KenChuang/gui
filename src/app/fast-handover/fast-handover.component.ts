@@ -34,16 +34,16 @@ import { IntervalSetupComponent } from './interval-setup/interval-setup.componen
   styleUrls: ['./fast-handover.component.scss']
 })
 export class FastHandoverComponent implements OnInit {
-  position = {x: 0, y: 0};
+  position = { x: 0, y: 0 };
   public setTimeoutTask;
   public readFieldTask;
   constructor(
     private a1MediatorService: A1MediatorService,
     private httpClient: HttpClient,
-    private dialog: MatDialog) {}
+    private dialog: MatDialog) { }
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type':  'text/plain'
+      'Content-Type': 'text/plain'
     }),
     responseType: 'text' as 'text'
   };
@@ -132,100 +132,110 @@ export class FastHandoverComponent implements OnInit {
   }
 
   updatePosition(): void {
-    var func = function(vm) {
+    var func = function (vm) {
       if (!vm.isTracking) {
         clearTimeout(vm.setTimeoutTask);
         return;
       }
       vm.a1MediatorService.getUeCurrentPosition(null)
-      .subscribe(
-        (res: string) => {
-          // Answers 204/No content on success
-          for (let i = 0; i < res.length; i++) {
-            if (!vm.ueList[i]) {
-              vm.ueList[i] = {
-                index: 0,
-                id: '',
-                name: '',
-                position: {
-                  x: 0,
-                  y: 0
-                },
-                realPosition: {
-                  x: 0,
-                  y: 0
-                },
-                connectTo: '',
-                rsrp: 0,
-                sinr: 0,
-                bwpData: {
-                  bwpId: 0,
-                  start: 0,
-                  bandwidth: 100
+        .subscribe(
+          (res: string) => {
+            // Answers 204/No content on success
+            for (let i = 0; i < res.length; i++) {
+              if (!vm.ueList[i]) {
+                vm.ueList[i] = {
+                  index: 0,
+                  id: '',
+                  name: '',
+                  position: {
+                    x: 0,
+                    y: 0
+                  },
+                  realPosition: {
+                    x: 0,
+                    y: 0
+                  },
+                  connectTo: '',
+                  rsrp: 0,
+                  sinr: 0,
+                  bwpData: {
+                    bwpId: 0,
+                    start: 0,
+                    bandwidth: 100
+                  }
+                }
+                vm.ueList[i].index = i;
+                vm.ueList[i].id = res[i]['ue_imsi'];
+                vm.ueList[i].name = 'UE' + (parseInt(res[i]['ue_imsi']) + 1);
+
+                // initialize throughput data
+                vm.throughput_map[res[i]['ue_imsi']] = {
+                  value: 0
                 }
               }
-              vm.ueList[i].index = i;
-              vm.ueList[i].id = res[i]['ue_imsi'];
-              vm.ueList[i].name = 'UE' + (parseInt(res[i]['ue_imsi']) + 1);
-
-              // initialize throughput data
-              vm.throughput_map[res[i]['ue_imsi']] = {
-                value: 0
-              }
+              vm.ueList[i].connectTo = res[i]['pci'];
+              vm.ueList[i].realPosition.x = Math.round(parseFloat(res[i]['pos_x']) * 10) / 10;
+              vm.ueList[i].realPosition.y = Math.round(parseFloat(res[i]['pos_y']) * 10) / 10;
+              let newX = vm.transformPositionWidth(vm.ueList[i].realPosition.x);
+              let newY = vm.transformPositionHeight(vm.ueList[i].realPosition.y);
+              vm.ueList[i].position = { x: newX, y: newY };
             }
-            vm.ueList[i].connectTo = res[i]['pci'];
-            vm.ueList[i].realPosition.x = Math.round(parseFloat(res[i]['pos_x']) * 10) / 10;
-            vm.ueList[i].realPosition.y = Math.round(parseFloat(res[i]['pos_y']) * 10) / 10;
-            let newX = vm.transformPositionWidth(vm.ueList[i].realPosition.x);
-            let newY = vm.transformPositionHeight(vm.ueList[i].realPosition.y);
-            vm.ueList[i].position = {x: newX, y: newY};
-          }
-          // get UE AMF Mapping
-          vm.a1MediatorService.getSdlData('amf_ns', 'ue_amf')
-          .subscribe(
-            (res: string) => {
-              res = res[0];
-              for (let i = 0; i < res.length; i++) {
-                vm.ueAmfMapping[res[i]['ran_ue_ngap_id'] + ''] = res[i]['ue_imsi'];
-              }
-              // get UE BWP information
-              vm.a1MediatorService.getSdlData('TS-UE-metrics', '0')
-              .pipe(
-                finalize(() => vm.setTimeoutTask = setTimeout(func, vm.intervalData.refreshInterval, vm))
-              )
+            // get UE AMF Mapping
+            vm.a1MediatorService.getSdlData('amf_ns', 'ue_amf')
               .subscribe(
                 (res: string) => {
+                  res = res[0];
                   for (let i = 0; i < res.length; i++) {
-                    let imsi = vm.ueAmfMapping[res[i]['UE-ID']];
-                    if (imsi == undefined) {
-                      console.log('ERROR: can not get AMF mapping!');
-                    } else {
-                      // find this UE by imsi
-                      for (let j = 0; j < vm.ueList.length; j++) {
-                        let ue = vm.ueList[j]
-                        if (ue.id == imsi) {
-                          // update BWP data
-                          let bwpId = res[i]['BWP-Data']['BWP-ID']
-                          let start, bandwidth;
-                          let locationAndBandwidth = res[i]['BWP-Data']['Location-And-Bandwidth'];
-                          let remainder = locationAndBandwidth % vm.NUM_PRB;
-                          let quotient = Math.floor(locationAndBandwidth / vm.NUM_PRB);
-                          let num_of_rb = quotient + 1;
-                          let rb_start = remainder;
-                          if (num_of_rb + rb_start > vm.NUM_PRB) {
-                            rb_start = vm.NUM_PRB - 1 - remainder;
-                            num_of_rb = vm.NUM_PRB - quotient + 2;
-                          }
-                          start = Math.round(vm.FULL_BWP * rb_start / vm.NUM_PRB);
-                          bandwidth = Math.round(vm.FULL_BWP * num_of_rb / vm.NUM_PRB);
-                          // assign bwp
-                          ue.bwpData.bwpId = bwpId;
-                          ue.bwpData.start = start;
-                          ue.bwpData.bandwidth = bandwidth;
-                        }
-                      }
-                    }
+                    vm.ueAmfMapping[res[i]['ran_ue_ngap_id'] + ''] = res[i]['ue_imsi'];
                   }
+                  // get UE BWP information
+                  vm.a1MediatorService.getSdlData('TS-UE-metrics', '0')
+                    .pipe(
+                      finalize(() => vm.setTimeoutTask = setTimeout(func, vm.intervalData.refreshInterval, vm))
+                    )
+                    .subscribe(
+                      (res: string) => {
+                        for (let i = 0; i < res.length; i++) {
+                          let imsi = vm.ueAmfMapping[res[i]['UE-ID']];
+                          if (imsi == undefined) {
+                            console.log('ERROR: can not get AMF mapping!');
+                          } else {
+                            // find this UE by imsi
+                            for (let j = 0; j < vm.ueList.length; j++) {
+                              let ue = vm.ueList[j]
+                              if (ue.id == imsi) {
+                                // update BWP data
+                                let bwpId = res[i]['BWP-Data']['BWP-ID']
+                                let start, bandwidth;
+                                let locationAndBandwidth = res[i]['BWP-Data']['Location-And-Bandwidth'];
+                                let remainder = locationAndBandwidth % vm.NUM_PRB;
+                                let quotient = Math.floor(locationAndBandwidth / vm.NUM_PRB);
+                                let num_of_rb = quotient + 1;
+                                let rb_start = remainder;
+                                if (num_of_rb + rb_start > vm.NUM_PRB) {
+                                  rb_start = vm.NUM_PRB - 1 - remainder;
+                                  num_of_rb = vm.NUM_PRB - quotient + 2;
+                                }
+                                start = Math.round(vm.FULL_BWP * rb_start / vm.NUM_PRB);
+                                bandwidth = Math.round(vm.FULL_BWP * num_of_rb / vm.NUM_PRB);
+                                // assign bwp
+                                ue.bwpData.bwpId = bwpId;
+                                ue.bwpData.start = start;
+                                ue.bwpData.bandwidth = bandwidth;
+                              }
+                            }
+                          }
+                        }
+                      },
+                      ((her: HttpErrorResponse) => {
+                        // the error field should have an ErrorTransport object
+                        let msg = her.message;
+                        if (her.error && her.error.message) {
+                          msg = her.error.message;
+                        }
+                        console.log(her);
+                      })
+                    );
                 },
                 ((her: HttpErrorResponse) => {
                   // the error field should have an ErrorTransport object
@@ -236,32 +246,22 @@ export class FastHandoverComponent implements OnInit {
                   console.log(her);
                 })
               );
-            },
-            ((her: HttpErrorResponse) => {
-              // the error field should have an ErrorTransport object
-              let msg = her.message;
-              if (her.error && her.error.message) {
-                msg = her.error.message;
-              }
-              console.log(her);
-            })
-          );
-        },
-        ((her: HttpErrorResponse) => {
-          // the error field should have an ErrorTransport object
-          let msg = her.message;
-          if (her.error && her.error.message) {
-            msg = her.error.message;
-          }
-          console.log(her);
-        })
-      );
+          },
+          ((her: HttpErrorResponse) => {
+            // the error field should have an ErrorTransport object
+            let msg = her.message;
+            if (her.error && her.error.message) {
+              msg = her.error.message;
+            }
+            console.log(her);
+          })
+        );
     }
     func(this);
   }
 
   updateCellInfo(): void {
-    var update = function(vm, res) {
+    var update = function (vm, res) {
       // update cell info
       let bsData = res[0]['bs_data'];
       for (let i = 0; i < bsData.length; i++) {
@@ -306,87 +306,98 @@ export class FastHandoverComponent implements OnInit {
       vm.boundarySetup.realHeight = parseInt(res[0]['height']);
       vm.refreshTopology();
     }
-    var func = function(vm) {
+    var func = function (vm) {
       if (!vm.readingEnv) {
         clearTimeout(vm.readFieldTask);
         return;
       }
       vm.a1MediatorService.getSdlData('env_ns', 'ho_env_info')
-      .pipe(
-        finalize(() => vm.readFieldTask = setTimeout(func, 1000, vm))
-      )
-      .subscribe(
-        (res: string) => {
-          // Answers 204/No content on success
-          if (res.length == 0) {
-            console.log('no cell data in env_ns, try search bwp_env_ns...');
-            vm.a1MediatorService.getSdlData('bwp_env_ns', 'bwp_env_info')
-            .subscribe(
-              (res: string) => {
-                if (res.length == 0) {
-                  console.log('ERROR: no cell data in SDL!');
-                } else {
-                  update(vm, res);
-                }
-              },
-              ((her: HttpErrorResponse) => {
-                // the error field should have an ErrorTransport object
-                let msg = her.message;
-                if (her.error && her.error.message) {
-                  msg = her.error.message;
-                }
-                console.log(her);
-              })
-            );
-          } else {
-            update(vm, res);
-          }
-          // update UE throughput if tracking
-          if (vm.isTracking) {
-            vm.a1MediatorService.getSdlData('mqtt_ns', '0').subscribe(
-              (res: string) => {
-                if (res.length == 0) {
-                  console.log('ERROR: no throughput data in SDL.');
-                } else {
-                  // update throughput data
-                  for (let data of res) {
-                    vm.throughput_map[data['imsi']].value = Math.floor(data['throughput'] * 8 / 10000) / 100;
+        .pipe(
+          finalize(() => vm.readFieldTask = setTimeout(func, 1000, vm))
+        )
+        .subscribe(
+          (res: string) => {
+            // Answers 204/No content on success
+            if (res.length == 0) {
+              console.log('no cell data in env_ns, try search bwp_env_ns...');
+              vm.a1MediatorService.getSdlData('bwp_env_ns', 'bwp_env_info')
+                .subscribe(
+                  (res: string) => {
+                    if (res.length == 0) {
+                      console.log('ERROR: no cell data in SDL!');
+                    } else {
+                      update(vm, res);
+                    }
+                  },
+                  ((her: HttpErrorResponse) => {
+                    // the error field should have an ErrorTransport object
+                    let msg = her.message;
+                    if (her.error && her.error.message) {
+                      msg = her.error.message;
+                    }
+                    console.log(her);
+                  })
+                );
+            } else {
+              update(vm, res);
+            }
+            // update UE throughput if tracking
+            if (vm.isTracking) {
+              vm.a1MediatorService.getSdlData('mqtt_ns', '0').subscribe(
+                (res: string) => {
+                  if (res.length == 0) {
+                    console.log('ERROR: no throughput data in SDL.');
+                  } else {
+                    // update throughput data
+                    for (let data of res) {
+                      vm.throughput_map[data['imsi']].value = Math.floor(data['throughput'] * 8 / 10000) / 100;
+                    }
                   }
-                }
-              },
-              ((her: HttpErrorResponse) => {
-                // the error field should have an ErrorTransport object
-                let msg = her.message;
-                if (her.error && her.error.message) {
-                  msg = her.error.message;
-                }
-                console.log(her);
-              })
-            );
-          }
-        },
-        ((her: HttpErrorResponse) => {
-          // the error field should have an ErrorTransport object
-          let msg = her.message;
-          if (her.error && her.error.message) {
-            msg = her.error.message;
-          }
-          console.log(her);
-        })
-      );
+                },
+                ((her: HttpErrorResponse) => {
+                  // the error field should have an ErrorTransport object
+                  let msg = her.message;
+                  if (her.error && her.error.message) {
+                    msg = her.error.message;
+                  }
+                  console.log(her);
+                })
+              );
+            }
+          },
+          ((her: HttpErrorResponse) => {
+            // the error field should have an ErrorTransport object
+            let msg = her.message;
+            if (her.error && her.error.message) {
+              msg = her.error.message;
+            }
+            console.log(her);
+          })
+        );
     }
     func(this);
   }
 
-  startTracking(): void {
-    this.isTracking = true;
-    this.updatePosition();
+  changeTracking() {
+    console.log('enter');
+    this.isTracking = !this.isTracking;
+    console.log(this.isTracking)
+    if (this.isTracking) {
+      this.updatePosition();
+    } else {
+      clearTimeout(this.setTimeoutTask);
+    }
   }
 
-  stopTracking(): void {
-    this.isTracking = false;
-    clearTimeout(this.setTimeoutTask);
-  }
+  // startTracking(): void {
+  //   this.isTracking = true;
+  //   this.updatePosition();
+  // }
+
+  // stopTracking(): void {
+  //   this.isTracking = false;
+  //   clearTimeout(this.setTimeoutTask);
+  // }
 
   getBsCoverageStyle(bs): string {
     let bsCoverage = bs.coverage * this.getZoomPercentage();
@@ -585,5 +596,11 @@ export class FastHandoverComponent implements OnInit {
       this.avg_throughput = Math.floor(total * 100 / this.ueList.length) / 100;
     }
     return Math.floor(total * 100) / 100;
+  }
+
+  debug(){
+    console.log(this.throughput_map);
+    console.log(this.ueList)
+    // <rd-statistics-chart [isTracking]="isTracking" [throughput_map]="throughput_map" [ueList]="ueList"></rd-statistics-chart>
   }
 }

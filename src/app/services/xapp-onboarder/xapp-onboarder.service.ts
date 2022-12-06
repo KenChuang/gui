@@ -41,7 +41,7 @@ export class XappOnboarderService {
 
   onboardXappURL(descriptor_remote: any, instanceKey: string): Observable<HttpResponse<Object>> {
     // const path = this.dashboardSvc.buildPath(this.component, instanceKey, 'onboard','download');
-    const path = 'http://192.168.0.180:8888/onboard/download';
+    const path = 'http://127.0.0.1:8888/onboard/download';
     return this.httpClient.post(path, descriptor_remote, { observe: 'response' });
   }
 }

@@ -35,19 +35,19 @@ export class A1MediatorService {
 
   getUeCurrentPosition(instanceKey: string): Observable<string> {
     // const path = this.dashboardSvc.buildPath(this.component, null, 'ue_current_position');
-    const path = 'http://192.168.0.180:8888/ms/current_position';
+    const path = 'http://127.0.0.1:8888/ms/current_position';
     return this.httpClient.get<string>(path);
   }
 
   getPrometheusData(itemName: string, timeBefore: Number, timeTo: Number, granularity: Number): Observable<string> {
     // const path = this.dashboardSvc.buildPath('admin/prometheus', null, itemName, timeBefore, timeTo, granularity);
-    const path = 'http://192.168.0.180:8888/prometheus/' + itemName + '/' + timeBefore + '/' + timeTo + '/' + granularity;
+    const path = 'http://127.0.0.1:8888/prometheus/' + itemName + '/' + timeBefore + '/' + timeTo + '/' + granularity;
     return this.httpClient.get<string>(path);
   }
 
   getSdlData(namespace: string, dataType: string): Observable<string> {
     // const path = this.dashboardSvc.buildPath('admin/sdlrest', null, 'sdl', namespace, dataType);
-    const path = 'http://192.168.0.180:8888/' + namespace + '/' + dataType;
+    const path = 'http://127.0.0.1:8888/' + namespace + '/' + dataType;
     return this.httpClient.get<string>(path);
   }
 }
