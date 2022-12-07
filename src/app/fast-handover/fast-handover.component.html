@@ -22,18 +22,21 @@
     
     <span class="percent">Percentage: {{zoomPercentage}}% <img src="../../assets/ruler.png"> {{getRuler()}} m </span>
 
-    <span class="float-right">
-      <button (click)="zoomInOperation()"><i class="fa-light fa-magnifying-glass-plus"></i></button>
-      <button (click)="zoomOutOperation()"><i class="fa-light fa-magnifying-glass-minus"></i></button>
+    <span class="float-right zoom">
+      <button (click)="zoomInOperation()"><span class="material-icons">add</span></button>
+      <button (click)="zoomOutOperation()"><span class="material-icons">remove</span></button>
     </span>
   </div>
   
   <!-- network topology -->
   
-  <div [style]="'position: relative; width: ' + fieldData.fieldWidth + 'px; height: ' + fieldData.fieldHeight + 'px; overflow: hidden;'
-  + 'background-color: white;'">
-    <div ngDraggable [style]="'position: relative; width: ' + fieldData.fieldWidth + 'px; height: ' + fieldData.fieldHeight + 'px; overflow: visible;'
+  <!-- <div [style]="'position: relative; width: ' + fieldData.fieldWidth + 'px; height: ' + fieldData.fieldHeight + 'px; overflow: hidden;'
+  + 'background-color: white;'"> 
+  <div ngDraggable [style]="'position: relative; width: ' + fieldData.fieldWidth + 'px; height: ' + fieldData.fieldHeight + 'px; overflow: visible;'
       + 'background-color: white;'">
+      <div ngDraggable [style]="'position: relative; width: ' + fieldData.fieldWidth + 'px; height: ' + fieldData.fieldHeight + 'px; overflow: visible;'
+      + 'background-color: white;'">-->
+  <div class="map">    
       <div id="network" ngDraggable [position]="boundarySetup.position" [ngDraggable]=false style="position: absolute;">
         <img src="../../assets/boundary.png" [width]="boundarySetup.width" [height]="boundarySetup.height">
       </div>
@@ -51,8 +54,7 @@
         (focus)="ueFocus[ue.index] = true" (blur)="ueFocus[ue.index] = false">
         <br>{{ue.name}}
       </div>
-    </div>
-  </div>
+</div>
 </div>
   <!-- right side pannel -->
   <!-- <div class="rightArea" [style]="'position: absolute; top: ' + ueInfoIndex + 'px; left: '
