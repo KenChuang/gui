@@ -111,6 +111,8 @@ export class FastHandoverComponent implements OnInit {
   NUM_PRB = 275;
   FULL_BWP = 100;
 
+  selectGnb = 'gNB1';
+
   ngOnInit(): void {
     // copy bs data to bsInput
     for (let i = 0; i < this.bsList.length; i++) {
@@ -599,6 +601,8 @@ export class FastHandoverComponent implements OnInit {
   debug(){
     console.log(this.throughput_map);
     console.log(this.ueList)
+    console.log(this.bsList)
+    console.log(this.selectGnb)
     // <rd-statistics-chart [isTracking]="isTracking" [throughput_map]="throughput_map" [ueList]="ueList"></rd-statistics-chart>
   }
 }
