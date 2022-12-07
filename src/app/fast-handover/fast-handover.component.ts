@@ -379,9 +379,7 @@ export class FastHandoverComponent implements OnInit {
   }
 
   changeTracking() {
-    console.log('enter');
     this.isTracking = !this.isTracking;
-    console.log(this.isTracking)
     if (this.isTracking) {
       this.updatePosition();
     } else {

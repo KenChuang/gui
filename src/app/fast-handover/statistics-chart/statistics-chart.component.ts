@@ -73,6 +73,19 @@ export class StatisticsChartComponent implements OnInit {
     },
     legend: {
       position: 'right'
+    },
+    plugins: {
+      datalabels: {
+        formatter: (value, ctx) => {
+          const dataset = ctx.dataset;
+          const label = dataset.label;
+          if (label === this.lineChartData[0].label) {
+            return value;
+          } else {
+            return '';
+          }
+        }
+      }
     }
   };
   public lineChartColors: Color[] = [
@@ -146,7 +159,7 @@ export class StatisticsChartComponent implements OnInit {
             vm.lineChartData[i].data.splice(0, 1);
           }
         }
-        console.log(vm.lineChartData);
+        // console.log(vm.lineChartData);
       }
       vm.setTimeoutTask = setTimeout(func, vm.QUERY_INTERVAL, vm);
     }
