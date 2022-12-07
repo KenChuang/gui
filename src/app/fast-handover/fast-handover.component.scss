@@ -1,12 +1,32 @@
-* {
-  font-family: Microsoft JhengHei;
+.leftArea,.rightArea {
+  font-family:Microsoft JhengHei;
 }
-  
+.map {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100vh;
+}
+.zoom {
+  margin: 0.7em 0.8em 0 0;
+}
+.zoom button {
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #fff;
+  margin-top: .5em;
+  outline: 0;
+  border-radius: 3px;
+}
+.zoom button .material-icons { 
+  font-size: 18px;
+  vertical-align: text-bottom;
+}
 h5 {
   display: inline-block;
   font-weight: bold;
-  font-size: 1.2em;
-  margin-bottom: 0;
+  font-size: 1.3em;
 }
 .header .switch {
   margin: 0 1em;
@@ -23,6 +43,7 @@ h5 {
   display: inline-block;
   vertical-align: top;
   padding: 1em;
+  background-color: #fff;
 }
 .dot {
   border-radius: 100em;
@@ -86,6 +107,7 @@ h6 {
   margin: 0;
   padding: 0;
 }
+
 .barTable table {
   margin-top: 0.2em;
   display: table;

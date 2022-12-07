@@ -42,13 +42,14 @@ export class StatisticsChartComponent implements OnInit {
     responsive: true,
     scales: {
       // We use this empty structure as a placeholder for dynamic theming.
+      
       xAxes: [{}],
       yAxes: [
         {
           id: 'y-axis-0',
           position: 'left',
           ticks: {
-            max: 500,
+            max: 400,
             min: 0
           }
         }
@@ -72,7 +73,8 @@ export class StatisticsChartComponent implements OnInit {
       ]
     },
     legend: {
-      position: 'right'
+      position: 'right',
+      align:'start'
     },
     plugins: {
       datalabels: {
@@ -90,12 +92,12 @@ export class StatisticsChartComponent implements OnInit {
   };
   public lineChartColors: Color[] = [
     { // green
-      backgroundColor: 'rgba(0, 128, 0, 0)',
+      backgroundColor: 'rgba(99, 99, 99, 0)',
       borderColor: '#000000',
-      pointBackgroundColor: '#ffe66a',
-      pointBorderColor: '#008000',
-      pointHoverBackgroundColor: '#008000',
-      pointHoverBorderColor: '#ffffff'
+      //pointBackgroundColor: '#999999',
+      //pointBorderColor: '#008000',
+      //pointHoverBackgroundColor: '#008000',
+      //pointHoverBorderColor: '#ffffff'
     }
   ];
   public ueColors = [
