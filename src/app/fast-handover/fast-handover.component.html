@@ -34,7 +34,7 @@
   + 'background-color: white;'">
     <div ngDraggable [style]="'position: relative; width: ' + fieldData.fieldWidth + 'px; height: ' + fieldData.fieldHeight + 'px; overflow: visible;'
       + 'background-color: white;'">
-      <div ngDraggable [position]="boundarySetup.position" [ngDraggable]=false style="position: absolute;">
+      <div id="network" ngDraggable [position]="boundarySetup.position" [ngDraggable]=false style="position: absolute;">
         <img src="../../assets/boundary.png" [width]="boundarySetup.width" [height]="boundarySetup.height">
       </div>
       <span *ngFor="let bs of bsList" class="dot" [style]="getBsCoverageStyle(bs)"></span>

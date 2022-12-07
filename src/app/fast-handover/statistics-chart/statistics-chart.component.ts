@@ -17,7 +17,7 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, HostListener } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Color, BaseChartDirective, Label } from 'ng2-charts';
 
@@ -43,14 +43,15 @@ export class StatisticsChartComponent implements OnInit {
     scales: {
       // We use this empty structure as a placeholder for dynamic theming.
       xAxes: [{}],
-      yAxes: [{
-        id: 'y-axis-0',
-        position: 'left',
-        ticks: {
-          max: 500,
-          min: 0
+      yAxes: [
+        {
+          id: 'y-axis-0',
+          position: 'left',
+          ticks: {
+            max: 500,
+            min: 0
+          }
         }
-      }
       ]
     },
     annotation: {
@@ -68,13 +69,11 @@ export class StatisticsChartComponent implements OnInit {
             content: 'LineAnno'
           }
         },
-      ],
+      ]
     },
-  
-      legend: {
-        position:'right'
-      }
-    
+    legend: {
+      position: 'right'
+    }
   };
   public lineChartColors: Color[] = [
     { // green
@@ -96,11 +95,17 @@ export class StatisticsChartComponent implements OnInit {
 
   @ViewChild(BaseChartDirective, { static: true }) chart: BaseChartDirective;
 
+  canvasWidth: number = 800;
+  @HostListener('window:resize') onResize() {
+    this.resize();
+  }
+
   constructor() { }
 
   ngOnInit(): void {
     this.QUERY_INTERVAL = 1000; // 1s
     this.startQuery();
+    this.resize();
   }
 
   ngOnDestroy(): void {
@@ -141,6 +146,7 @@ export class StatisticsChartComponent implements OnInit {
             vm.lineChartData[i].data.splice(0, 1);
           }
         }
+        console.log(vm.lineChartData);
       }
       vm.setTimeoutTask = setTimeout(func, vm.QUERY_INTERVAL, vm);
     }
@@ -164,5 +170,20 @@ export class StatisticsChartComponent implements OnInit {
   public hideOne(): void {
     const isHidden = this.chart.isDatasetHidden(1);
     this.chart.hideDataset(1, !isHidden);
+  }
+
+  resize() {
+    window.setTimeout(() => {
+      const clientWidth = window.innerWidth;
+      const el: any = document.getElementById('network');
+      this.canvasWidth = clientWidth - el.offsetWidth - el.getBoundingClientRect().left;
+      // const ctx = (document.getElementById("statisticsChart") as any).getContext("2d");
+      // ctx.canvas.width = clientWidth - el.offsetWidth;
+      // console.log('~>>>~~~@');
+      // console.log(clientWidth);
+      // console.log(el.offsetWidth);
+      // console.log(this.canvasWidth);
+      // console.log( clientWidth - el.offsetWidth)
+    }, 0);
   }
 }
