@@ -35,7 +35,7 @@ export class StatisticsChartComponent implements OnInit {
   public setTimeoutTask: any;
   public QUERY_INTERVAL: number;
   public lineChartData: ChartDataSets[] = [
-    { data: [], label: 'Total UE Throughput (Mbps)' },
+    { data: [], label: 'Total UE' },
   ];
   public lineChartLabels: Label[] = [];
   public lineChartOptions: (ChartOptions & { annotation: any }) = {
@@ -77,12 +77,12 @@ export class StatisticsChartComponent implements OnInit {
   };
   public lineChartColors: Color[] = [
     { // green
-      backgroundColor: 'rgba(0, 128, 0, 0.3)',
-      borderColor: 'green',
-      pointBackgroundColor: 'rgba(0, 128, 0, 1)',
+      backgroundColor: 'rgba(0, 128, 0, 0)',
+      borderColor: '#000000',
+      pointBackgroundColor: '#ffe66a',
       pointBorderColor: '#008000',
       pointHoverBackgroundColor: '#008000',
-      pointHoverBorderColor: 'rgba(0, 128, 0, 0.8)'
+      pointHoverBorderColor: '#ffffff'
     }
   ];
   public ueColors = [
