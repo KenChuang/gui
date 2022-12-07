@@ -105,7 +105,7 @@ export class StatisticsChartComponent implements OnInit {
   ngOnInit(): void {
     this.QUERY_INTERVAL = 1000; // 1s
     this.startQuery();
-    this.resize();
+    window.setTimeout(() => this.resize(), 100);
   }
 
   ngOnDestroy(): void {
@@ -177,13 +177,6 @@ export class StatisticsChartComponent implements OnInit {
       const clientWidth = window.innerWidth;
       const el: any = document.getElementById('network');
       this.canvasWidth = clientWidth - el.offsetWidth - el.getBoundingClientRect().left;
-      // const ctx = (document.getElementById("statisticsChart") as any).getContext("2d");
-      // ctx.canvas.width = clientWidth - el.offsetWidth;
-      // console.log('~>>>~~~@');
-      // console.log(clientWidth);
-      // console.log(el.offsetWidth);
-      // console.log(this.canvasWidth);
-      // console.log( clientWidth - el.offsetWidth)
     }, 0);
   }
 }
