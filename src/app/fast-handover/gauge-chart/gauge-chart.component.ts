@@ -18,10 +18,8 @@
  * ========================LICENSE_END===================================
  */
 import { Component, OnInit, Input } from '@angular/core';
-import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
-import { Label } from 'ng2-charts';
 import { A1MediatorService } from '../../services/a1-mediator/a1-mediator.service';
-import * as pluginDataLabels from 'chartjs-plugin-datalabels';
+import { FastHandoverComponent } from '../fast-handover.component';
 
 @Component({
   selector: 'rd-gauge-chart',
@@ -29,6 +27,8 @@ import * as pluginDataLabels from 'chartjs-plugin-datalabels';
   styleUrls: ['./gauge-chart.component.scss']
 })
 export class GaugeChartComponent implements OnInit {
+  @Input() fastHandoverComponent: FastHandoverComponent;
+  @Input() idx: number;
   @Input() name: string;
   @Input() canvasWidth: number;
   @Input() optionVal: GaugeOptions;
@@ -55,35 +55,6 @@ export class GaugeChartComponent implements OnInit {
   public setTimeoutTask: any;
   public QUERY_INTERVAL: number;
 
-  // bar chart
-  public barChartOptions: ChartOptions = {
-    responsive: true,
-    // We use these empty structures as placeholders for dynamic theming.
-    scales: {
-      xAxes: [{}],
-      yAxes: [{
-        ticks: {
-          max : 100,
-          min: 0
-        }
-      }] },
-    plugins: {
-      datalabels: {
-        anchor: 'end',
-        align: 'end',
-      }
-    }
-  };
-  public barChartLabels: Label[] = ['BS0', 'BS1', 'BS2'];
-  public barChartType: ChartType = 'bar';
-  public barChartLegend = true;
-  public barChartPlugins = [pluginDataLabels];
-
-  public barChartData: ChartDataSets[] = [
-    { data: [], label: 'BS Loading (%)' },
-    { data: [], label: 'Connected UEs' }
-  ];
-
   ngOnInit(): void {
     this.options.arcColors = this.optionVal.arcColors;
     this.options.rangeLabel = this.optionVal.rangeLabel;
@@ -102,7 +73,7 @@ export class GaugeChartComponent implements OnInit {
   }
 
   startQuery(): void {
-    let func = function(vm) {
+    let func = function (vm) {
       if (!vm.exists) {
         clearTimeout(vm.setTimeoutTask);
         return;
@@ -111,33 +82,35 @@ export class GaugeChartComponent implements OnInit {
         switch (vm.optionVal.gaugeType) {
           case 'PERFORMANCE':
             vm.a1MediatorService.getSdlData(vm.sdlNamespace, vm.sdlKey)
-            .subscribe((res: string) => {
-              let key = vm.sdlKey + '_time';
-              if (res[0][key] != undefined) {
-                let delay = Math.floor(res[0][vm.sdlKey + '_time'] / 1000);
-                vm.bottomLabel = delay;
-                vm.needleValue = Math.floor(vm.gaugeLimit * delay);
-              } else {
-                console.log('Performance %s no data.', key);
-              }
-            });
+              .subscribe((res: string) => {
+                let key = vm.sdlKey + '_time';
+                if (res[0][key] != undefined) {
+                  let delay = Math.floor(res[0][vm.sdlKey + '_time'] / 1000);
+                  vm.bottomLabel = delay;
+                  vm.needleValue = Math.floor(vm.gaugeLimit * delay);
+                  vm.updatBarData();
+                } else {
+                  console.log('Performance %s no data.', key);
+                }
+              });
             break;
           case 'THROUGHPUT':
             if (vm.throughput_map[vm.sdlKey]) {
               let throughput = vm.throughput_map[vm.sdlKey].value;
               vm.bottomLabel = throughput;
               vm.needleValue = Math.floor(vm.gaugeLimit * throughput);
+              vm.updatBarData();
               break;
             } else {
               console.log('SDL no data for %s', vm.sdlKey);
             }
             break;
         }
-        console.log(vm.needleValue);
-        console.log(vm.centralLabel);
-        console.log(vm.options)
-        console.log(vm.name)          // UE1
-        console.log(vm.bottomLabel)   // 數值
+        // console.log(vm.needleValue);
+        // console.log(vm.centralLabel);
+        // console.log(vm.options)
+        // console.log(vm.name)          // UE1
+        // console.log(vm.bottomLabel)   // 數值
       }
       vm.setTimeoutTask = setTimeout(func, vm.QUERY_INTERVAL, vm);
     }
@@ -147,6 +120,12 @@ export class GaugeChartComponent implements OnInit {
   stopQuery(): void {
     this.exists = false;
     clearTimeout(this.setTimeoutTask);
+  }
+
+  updatBarData() {
+    const data: any = this.fastHandoverComponent.barChartData[0].data.slice(0);
+    data[this.idx] = this.bottomLabel as any;
+    this.fastHandoverComponent.barChartData[0].data = data;
   }
 }
 

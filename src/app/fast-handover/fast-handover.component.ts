@@ -27,6 +27,9 @@ import { FieldSetupComponent } from './field-setup/field-setup.component';
 import { GnbSetupComponent } from './gnb-setup/gnb-setup.component';
 import { OffsetSetupComponent } from './offset-setup/offset-setup.component';
 import { IntervalSetupComponent } from './interval-setup/interval-setup.component';
+import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
+import { Label } from 'ng2-charts';
+import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 
 @Component({
   selector: 'rd-fast-handover',
@@ -112,6 +115,46 @@ export class FastHandoverComponent implements OnInit {
   FULL_BWP = 100;
 
   selectGnb = 'gNB1';
+  // bar chart
+  public barChartOptions: ChartOptions = {
+    responsive: true,
+    // We use these empty structures as placeholders for dynamic theming.
+    scales: {
+      xAxes: [{}],
+      yAxes: [{
+        ticks: {
+          max: 100,
+          min: 0
+        }
+      }]
+    },
+    plugins: {
+      datalabels: {
+        anchor: 'end',
+        align: 'end',
+      }
+    }
+  };
+  public barChartLabels: Label[] = [];
+  public barChartType: ChartType = 'bar';
+  public barChartLegend = false;
+  public barChartPlugins = [pluginDataLabels];
+
+  public barChartData: ChartDataSets[] = [
+    {
+      data: [],
+      label: '',
+      backgroundColor: [
+        '#EC407A',
+        '#AB47BC',
+        '#42A5F5',
+        '#7E57C2',
+        '#66BB6A',
+        '#FFCA28',
+        '#26A69A'
+      ]
+    }
+  ];
 
   ngOnInit(): void {
     // copy bs data to bsInput
@@ -143,6 +186,7 @@ export class FastHandoverComponent implements OnInit {
         .subscribe(
           (res: string) => {
             // Answers 204/No content on success
+            console.log('~~~~AA~~')
             for (let i = 0; i < res.length; i++) {
               if (!vm.ueList[i]) {
                 vm.ueList[i] = {
@@ -169,6 +213,7 @@ export class FastHandoverComponent implements OnInit {
                 vm.ueList[i].index = i;
                 vm.ueList[i].id = res[i]['ue_imsi'];
                 vm.ueList[i].name = 'UE' + (parseInt(res[i]['ue_imsi']) + 1);
+                vm.barChartLabels[i] = vm.ueList[i].name;
 
                 // initialize throughput data
                 vm.throughput_map[res[i]['ue_imsi']] = {
@@ -598,11 +643,22 @@ export class FastHandoverComponent implements OnInit {
     return Math.floor(total * 100) / 100;
   }
 
-  debug(){
+  editName(ue, el) {
+    ue.__edit = true;
+    window.setTimeout(() => el.focus(), 0);
+  }
+
+  changeEdit(ue, idx: number) {
+    this.barChartLabels[idx] = ue.name;
+  }
+
+  debug() {
     console.log(this.throughput_map);
     console.log(this.ueList)
     console.log(this.bsList)
     console.log(this.selectGnb)
+    console.log('~~~>>');
+    console.log(this.barChartData)
     // <rd-statistics-chart [isTracking]="isTracking" [throughput_map]="throughput_map" [ueList]="ueList"></rd-statistics-chart>
   }
 }
