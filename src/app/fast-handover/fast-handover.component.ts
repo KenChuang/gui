@@ -136,6 +136,9 @@ export class FastHandoverComponent implements OnInit {
         anchor: 'end',
         align: 'end',
       }
+    },
+    tooltips: {
+      enabled: false
     }
   };
   public barChartLabels: Label[] = [];
