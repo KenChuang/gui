@@ -114,7 +114,9 @@ export class FastHandoverComponent implements OnInit {
   NUM_PRB = 275;
   FULL_BWP = 100;
 
-  selectGnb = 'gNB1';
+  selectGnb = 'gNB2';
+  gnbGroupAcc = {};
+  idMapGroupIdx: Map<string, number> = new Map();
   // bar chart
   public barChartOptions: ChartOptions = {
     responsive: true,
@@ -177,7 +179,7 @@ export class FastHandoverComponent implements OnInit {
   }
 
   updatePosition(): void {
-    var func = function (vm) {
+    var func = function (vm: FastHandoverComponent) {
       if (!vm.isTracking) {
         clearTimeout(vm.setTimeoutTask);
         return;
@@ -188,6 +190,7 @@ export class FastHandoverComponent implements OnInit {
             // Answers 204/No content on success
             console.log('~~~~AA~~')
             vm.barChartLabels = [];
+            vm.gnbGroupAcc = {};
             for (let i = 0; i < res.length; i++) {
               if (!vm.ueList[i]) {
                 vm.ueList[i] = {
@@ -227,10 +230,17 @@ export class FastHandoverComponent implements OnInit {
               let newY = vm.transformPositionHeight(vm.ueList[i].realPosition.y);
               vm.ueList[i].position = { x: newX, y: newY };
 
-              if (vm.selectGnb === vm.getConnectedBsName(vm.ueList[i])) {
+              const groupName = vm.getConnectedBsName(vm.ueList[i]);
+              if (vm.selectGnb === groupName) {
                 vm.barChartLabels.push(vm.ueList[i].name);
               }
+              if (!(groupName in vm.gnbGroupAcc)) {
+                vm.gnbGroupAcc[groupName] = 0;
+              }
+              vm.idMapGroupIdx.set(vm.ueList[i].id, vm.gnbGroupAcc[groupName]);
+              vm.gnbGroupAcc[groupName]++;
             }
+
             // get UE AMF Mapping
             vm.a1MediatorService.getSdlData('amf_ns', 'ue_amf')
               .subscribe(
@@ -672,7 +682,8 @@ export class FastHandoverComponent implements OnInit {
     console.log(this.bsList)
     console.log(this.selectGnb)
     console.log('~~~>>');
-    console.log(this.barChartData)
-    // <rd-statistics-chart [isTracking]="isTracking" [throughput_map]="throughput_map" [ueList]="ueList"></rd-statistics-chart>
+    console.log(this.barChartData);
+    console.log(this.barChartLabels);
+    console.log(this.gnbGroupAcc);
   }
 }

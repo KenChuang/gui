@@ -124,14 +124,21 @@ export class GaugeChartComponent implements OnInit {
   }
 
   updatBarData() {
-    const data: any = this.fastHandoverComponent.barChartData[0].data.slice(0);
-    data[this.idx] = this.bottomLabel as any;
-    this.fastHandoverComponent.barChartData[0].data = data;
+    // const data: any = this.fastHandoverComponent.barChartData[0].data.slice(0);
+    // data[this.idx] = this.bottomLabel as any;
+    // this.fastHandoverComponent.barChartData[0].data = data;
+
+    const selectGnb = this.fastHandoverComponent.selectGnb;
+    const ueGnb = this.fastHandoverComponent.getConnectedBsName(this.ueList[this.idx]);
+    const idx = this.fastHandoverComponent.idMapGroupIdx.get(this.sdlKey);
+    if (selectGnb === ueGnb) {
+      this.fastHandoverComponent.barChartData[0].data[idx] = this.bottomLabel as any;
+    }
 
     // const selectGnb = this.fastHandoverComponent.selectGnb;
     // this.ueList[this.idx]['__barValue'] = this.bottomLabel;
     // const data = [];
-    // this.ueList.forEach((ue) => {
+    // // this.ueList.forEach((ue) => {
     //   if (selectGnb === this.fastHandoverComponent.getConnectedBsName(ue)) {
     //     const barValue = this.ueList[this.idx]['__barValue'];
     //     if (barValue) {
