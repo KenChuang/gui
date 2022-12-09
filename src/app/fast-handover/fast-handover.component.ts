@@ -116,6 +116,7 @@ export class FastHandoverComponent implements OnInit {
 
   selectGnb = 'gNB2';
   gnbGroupAcc = {};
+  gnbGroupData = {};
   idMapGroupIdx: Map<string, number> = new Map();
   // bar chart
   public barChartOptions: ChartOptions = {
@@ -153,7 +154,10 @@ export class FastHandoverComponent implements OnInit {
         '#7E57C2',
         '#66BB6A',
         '#FFCA28',
-        '#26A69A'
+        '#26A69A',
+        '#EC407A',
+        '#AB47BC',
+        '#42A5F5',
       ]
     }
   ];
@@ -188,7 +192,6 @@ export class FastHandoverComponent implements OnInit {
         .subscribe(
           (res: string) => {
             // Answers 204/No content on success
-            console.log('~~~~AA~~')
             vm.barChartLabels = [];
             vm.gnbGroupAcc = {};
             for (let i = 0; i < res.length; i++) {
@@ -230,7 +233,9 @@ export class FastHandoverComponent implements OnInit {
               let newY = vm.transformPositionHeight(vm.ueList[i].realPosition.y);
               vm.ueList[i].position = { x: newX, y: newY };
 
+              // bar chart group
               const groupName = vm.getConnectedBsName(vm.ueList[i]);
+              // console.log(groupName);
               if (vm.selectGnb === groupName) {
                 vm.barChartLabels.push(vm.ueList[i].name);
               }
@@ -325,6 +330,7 @@ export class FastHandoverComponent implements OnInit {
     var update = function (vm, res) {
       // update cell info
       let bsData = res[0]['bs_data'];
+      vm.gnbGroupData = {};
       for (let i = 0; i < bsData.length; i++) {
         if (!vm.bsList[i]) {
           vm.bsList[i] = {
@@ -360,6 +366,9 @@ export class FastHandoverComponent implements OnInit {
         // signal center
         vm.bsList[i].signalRealPosition.x = parseInt(bsData[i]['sc_x']);
         vm.bsList[i].signalRealPosition.y = parseInt(bsData[i]['sc_y']);
+
+        // init bar group data
+        vm.gnbGroupData['gNB' + (i + 1)] = [];
       }
       vm.bsList.length = bsData.length;
       // update field info
@@ -674,6 +683,7 @@ export class FastHandoverComponent implements OnInit {
         this.barChartLabels.push(ue.name);
       }
     });
+    this.barChartData[0].data = this.gnbGroupData[this.selectGnb].slice(0);
   }
 
   debug() {
@@ -685,5 +695,6 @@ export class FastHandoverComponent implements OnInit {
     console.log(this.barChartData);
     console.log(this.barChartLabels);
     console.log(this.gnbGroupAcc);
+    console.log(this.gnbGroupData);
   }
 }
