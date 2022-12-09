@@ -55,7 +55,7 @@ export class FastHandoverComponent implements OnInit {
     fieldHeight: 800
   }
   ueInfoWidth = 800;
-  ueInfoHeight = 400;
+  ueInfoHeight = 300;
   ueInfoIndex = 80;
   bsIcons = ['bs1_bare.png', 'bs3_bare.png', 'bs2_bare.png'];
   bsColorList = ['blue', 'red', 'black'];
@@ -125,7 +125,7 @@ export class FastHandoverComponent implements OnInit {
       xAxes: [{}],
       yAxes: [{
         ticks: {
-          max: 100,
+          max: 70,
           min: 0
         }
       }]

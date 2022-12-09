@@ -9,13 +9,12 @@
   height: 100vh;
 }
 .zoom {
-  margin: 0.7em 0.8em 0 0;
+  margin: 0 0.8em 0 0;
 }
 .zoom button {
   background-color: #333;
   color: #fff;
   border: 1px solid #fff;
-  margin-top: .5em;
   outline: 0;
   border-radius: 3px;
 }
@@ -26,11 +25,18 @@
 h5 {
   display: inline-block;
   font-weight: bold;
-  font-size: 1.3em;
+  font-size: 1.5em;
+  margin: 0;
 }
 .header .switch {
   margin: 0 1em;
   vertical-align: text-bottom;
+}
+.header > span {
+  display: inline-block;
+}
+.header .float-right {
+  margin: 1.2em 1em 0 0.5em;
 }
 .leftArea {
   width: 55%;
@@ -51,14 +57,14 @@ h5 {
 .percent {
   font-size: .9em;
   color: #333;
-  margin: 0 1em;
+  margin: 2em .3em 0!important;
 }
 .percent img {
   width: 2.5em;
   height: auto;
 }
 .ueINFO {
-  margin: 1.5em 0;
+  margin: .5em 0;
 }
 .ueINFO span {
   display: inline-block;
@@ -66,8 +72,9 @@ h5 {
   font-weight: bold;
 }
 .ueINFO h6 {
-  margin: 0 ;
-  font-size: 1.1em;
+  margin: 0;
+  font-size: 1em;
+  font-weight: bold;
 }
 .ueINFO h6 + span {
   font-size: 1.3em;
@@ -78,7 +85,10 @@ h5 {
   margin: 0 0 0 .5em;
   border-radius: 5px;
   height: 4.5em;
-  width: 24%;
+  width: 24.2%;
+}
+.ueINFO > span:first-child {
+  margin-left: 0;
 }
 .ueINFO > span label {
   vertical-align: sub;
@@ -111,22 +121,52 @@ h6 {
 .barTable table {
   margin-top: 0.2em;
   display: table;
-  width: 100%;
 }
 .barTable table th,
 .barTable table td {
-  padding: .5em;
   text-align: center;
 }
 .barTable table thead tr th {
-  background-color: #bedcff;
-  border: 1px solid #fff;
-  font-size: .9em;
+  background-color: #e2e8ef;
+    border: 1px solid #fff;
+    font-size: 0.8em;
+    padding: 0.3em;
 }
 .barTable table tbody tr td {
   border-bottom: 1px solid #ddd;
-  font-size: .9em;
+  font-size: .84em;
+  padding: 0.3em;
+  line-height: 1.15;
+  word-break: break-all;
+}
+td label {
+  margin: 0;
+  word-break: break-all;
+}
+td input {
+  width: 100%;
 }
 .throughputMAP {
   margin: 1em 0;
+}
+.w30 {
+  width: 30%;
+}
+.ueList {
+  width: 100%;
+  display: block;
+}
+.ueList canvas {
+  height: 300px!important;
+  width: 65%!important;
+  display: inline-block!important;
+  vertical-align: top;
+}
+.ueList .barTable {
+  width: 35%;
+  display: inline-block;
+  vertical-align: top;
+}
+.ueList .barTable table {
+  width: 100%;
 }

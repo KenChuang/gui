@@ -15,45 +15,44 @@
           </span>
       </label>
     </span>
-    
-    <!-- <button (click)="startTracking()" [(disabled)]="isTracking">Start UAV Tracking</button>
-    <button (click)="stopTracking()">Stop UAV Tracking</button> -->
-    <!-- zoom related components -->
-    
-    <span class="percent">Percentage: {{zoomPercentage}}% <img src="../../assets/ruler.png"> {{getRuler()}} m </span>
-
     <span class="float-right zoom">
       <button (click)="zoomInOperation()"><span class="material-icons">add</span></button>
       <button (click)="zoomOutOperation()"><span class="material-icons">remove</span></button>
     </span>
+    <!-- <button (click)="startTracking()" [(disabled)]="isTracking">Start UAV Tracking</button>
+    <button (click)="stopTracking()">Stop UAV Tracking</button> -->
+    <!-- zoom related components -->
+    
+    <span class="float-right percent">Percentage: {{zoomPercentage}}% <img src="../../assets/ruler.png"> {{getRuler()}} m </span>
+
+    
   </div>
   
   <!-- network topology -->
-  
-  <!-- <div [style]="'position: relative; width: ' + fieldData.fieldWidth + 'px; height: ' + fieldData.fieldHeight + 'px; overflow: hidden;'
-  + 'background-color: white;'"> 
-  <div ngDraggable [style]="'position: relative; width: ' + fieldData.fieldWidth + 'px; height: ' + fieldData.fieldHeight + 'px; overflow: visible;'
-      + 'background-color: white;'">
+  <div class="map"> 
+    <div [style]="'position: relative; width: ' + fieldData.fieldWidth + 'px; height: ' + fieldData.fieldHeight + 'px; overflow: hidden;'
+    + 'background-color: white;'">
       <div ngDraggable [style]="'position: relative; width: ' + fieldData.fieldWidth + 'px; height: ' + fieldData.fieldHeight + 'px; overflow: visible;'
-      + 'background-color: white;'">-->
-  <div class="map">    
-      <div id="network" ngDraggable [position]="boundarySetup.position" [ngDraggable]=false style="position: absolute;">
-        <img src="../../assets/boundary.png" [width]="boundarySetup.width" [height]="boundarySetup.height">
+        + 'background-color: white;'">
+        <div ngDraggable [position]="boundarySetup.position" [ngDraggable]=false style="position: absolute;">
+          <img src="../../assets/boundary.png" [width]="boundarySetup.width" [height]="boundarySetup.height">
+        </div>
+        <span *ngFor="let bs of bsList" class="dot" [style]="getBsCoverageStyle(bs)"></span>
+        <div ngDraggable *ngFor="let bs of bsList; let i = index" [position]="bs.position" [ngDraggable]=false style="position: absolute;">
+          <img [src]="'../../assets/' + bs.icon" [height]="bsSize"
+          [matTooltip]="'BS ID: ' + bs.index + ', x: ' + bs.realPosition.x + ', y: ' + bs.realPosition.y"
+          matTooltipClass="mat-tooltip-large">
+          <br>gNB{{i + 1}}
+        </div>
+        <div ngDraggable *ngFor="let ue of ueList" [position]="ue.position" [ngDraggable]=false style="position: absolute;">
+          <img [src]="'../../assets/' + ueIcons[getConnectBsIndex(ue)]" [height]="ueSize"
+          [matTooltip]="'UE IMSI: ' + ue.id + ', x: ' + ue.realPosition.x + ', y: ' + ue.realPosition.y"
+          matTooltipClass="mat-tooltip-large" [tabindex]="ue.index"
+          (focus)="ueFocus[ue.index] = true" (blur)="ueFocus[ue.index] = false">
+          <br>{{ue.name}}
+        </div>
       </div>
-      <span *ngFor="let bs of bsList" class="dot" [style]="getBsCoverageStyle(bs)"></span>
-      <div ngDraggable *ngFor="let bs of bsList; let i = index" [position]="bs.position" [ngDraggable]=false style="position: absolute;">
-        <img [src]="'../../assets/' + bs.icon" [height]="bsSize"
-        [matTooltip]="'BS ID: ' + bs.index + ', x: ' + bs.realPosition.x + ', y: ' + bs.realPosition.y"
-        matTooltipClass="mat-tooltip-large">
-        <br>gNB{{i + 1}}
-      </div>
-      <div ngDraggable *ngFor="let ue of ueList" [position]="ue.position" [ngDraggable]=false style="position: absolute;">
-        <img [src]="'../../assets/' + ueIcons[getConnectBsIndex(ue)]" [height]="ueSize"
-        [matTooltip]="'UE IMSI: ' + ue.id + ', x: ' + ue.realPosition.x + ', y: ' + ue.realPosition.y"
-        matTooltipClass="mat-tooltip-large" [tabindex]="ue.index"
-        (focus)="ueFocus[ue.index] = true" (blur)="ueFocus[ue.index] = false">
-        <br>{{ue.name}}
-      </div>
+    </div>
 </div>
 </div>
   <!-- right side pannel -->
@@ -62,7 +61,7 @@
   <div class="rightArea">
     
     <h5>UE Info</h5>
-    <span class="groupBTN float-right">
+    <span class="groupBTN">
       <button (click)="openAreaSetup()">Field Setup</button>
       <button (click)="openOffsetSetup()">Offset Setup</button>
       <button (click)="openIntervalSetup()">GUI Setup</button>
@@ -97,40 +96,49 @@
       </label>
     </span>
 
-    <div class="barChart" style="width:100%;height:10em;background-color:#eee">
-      @ken 
-    </div>
+  
+<div class="ueList">
+  <canvas baseChart
+    [datasets]="barChartData"
+    [labels]="barChartLabels"
+    [options]="barChartOptions"
+    [plugins]="barChartPlugins"
+    [legend]="barChartLegend"
+    [chartType]="barChartType">
+  </canvas>
 
+  <div class="barTable">
+    <table>
+      <thead>
+        <tr>
+          <th class="w30">UE</th>
+          <!-- <th>Connect BS ID</th> -->
+          <th>BWP ID</th>
+          <th>Start</th>
+          <th>Bandwidth</th>
+        </tr>
+    </thead>
+    <tbody>
+      <ng-template ngFor let-ue [ngForOf]="ueList" let-i="index">
+        <tr *ngIf="selectGnb === getConnectedBsName(ue)">
+          <td (click)="editName(ue,editInput)">
+            <label [style.display]="ue.__edit?'none':''">{{ue.name}}</label>
+            <input type="text" [style.display]="ue.__edit?'':'none'" [(ngModel)]="ue.name" (ngModelChange)="changeEdit(ue,i)" (blur)="ue.__edit = false" #editInput>
+          </td>
+          <!-- <td>{{getConnectedBsName(ue)}}</td> -->
+          <td>{{ue.bwpData.bwpId}}</td>
+          <td>{{ue.bwpData.start}}</td>
+          <td>{{ue.bwpData.bandwidth}}</td>
+        </tr>
+      </ng-template>
+    </tbody>
+    </table>
+  </div>
+</div>
     <!-- <button mat-flat-button color="primary" class="right-button" (click)="openUeInfo()">UE Info On/Off</button>
     <button mat-flat-button color="primary" class="right-button" (click)="onboard()">Config UE Name</button><br><br> -->
 
-    <div class="barTable">
-      <table>
-        <thead>
-          <tr>
-            <th>UE Name</th>
-            <!-- <th>Connect BS ID</th> -->
-            <th>BWP ID</th>
-            <th>Start</th>
-            <th>Bandwidth</th>
-          </tr>
-      </thead>
-      <tbody>
-        <ng-template ngFor let-ue [ngForOf]="ueList" let-i="index">
-          <tr *ngIf="selectGnb === getConnectedBsName(ue)">
-            <td (click)="editName(ue,editInput)">
-              <label [style.display]="ue.__edit?'none':''">{{ue.name}}</label>
-              <input type="text" [style.display]="ue.__edit?'':'none'" [(ngModel)]="ue.name" (ngModelChange)="changeEdit(ue,i)" (blur)="ue.__edit = false" #editInput>
-            </td>
-            <!-- <td>{{getConnectedBsName(ue)}}</td> -->
-            <td>{{ue.bwpData.bwpId}}</td>
-            <td>{{ue.bwpData.start}}</td>
-            <td>{{ue.bwpData.bandwidth}}</td>
-          </tr>
-        </ng-template>
-      </tbody>
-      </table>
-    </div>
+    
     <table border="0" hidden>
       <tr *ngIf="ueList.length > 0">
         <th *ngIf="ueList.length > 0">
@@ -208,16 +216,6 @@
   </div>
 </div>
 
-<div style="position: relative;display: block;width:800px;height:400px">
-  <canvas baseChart
-    [datasets]="barChartData"
-    [labels]="barChartLabels"
-    [options]="barChartOptions"
-    [plugins]="barChartPlugins"
-    [legend]="barChartLegend"
-    [chartType]="barChartType">
-  </canvas>
-</div>
 
 
 <!-- <div style="position: relative;display: block;" [style.width.px]="canvasWidth">
