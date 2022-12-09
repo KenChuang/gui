@@ -131,7 +131,9 @@ export class GaugeChartComponent implements OnInit {
     const selectGnb = this.fastHandoverComponent.selectGnb;
     const ueGnb = this.fastHandoverComponent.getConnectedBsName(this.ueList[this.idx]);
     const idx = this.fastHandoverComponent.idMapGroupIdx.get(this.sdlKey);
+    this.fastHandoverComponent.gnbGroupData[selectGnb][idx] = this.bottomLabel;
     if (selectGnb === ueGnb) {
+      // console.log('~~~>>>')
       this.fastHandoverComponent.barChartData[0].data[idx] = this.bottomLabel as any;
     }
 

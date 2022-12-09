@@ -92,7 +92,7 @@
 
     <h5>UE List</h5>
     <span class="groupBTN">connect BS
-      <label class="{{(selectGnb === ('gNB'+ (i + 1)))?'active':''}}" *ngFor="let bs of bsList;let i=index" (click)="selectGnb = ('gNB'+ (i + 1))">
+      <label class="{{(selectGnb === ('gNB'+ (i + 1)))?'active':''}}" *ngFor="let bs of bsList;let i=index" (click)="changeConnectBS(i)">
         gNB{{i + 1}}
       </label>
     </span>
