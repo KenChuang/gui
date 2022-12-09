@@ -28,6 +28,7 @@ import { FastHandoverComponent } from '../fast-handover.component';
 })
 export class GaugeChartComponent implements OnInit {
   @Input() fastHandoverComponent: FastHandoverComponent;
+  @Input() ueList = [];
   @Input() idx: number;
   @Input() name: string;
   @Input() canvasWidth: number;
@@ -126,6 +127,21 @@ export class GaugeChartComponent implements OnInit {
     const data: any = this.fastHandoverComponent.barChartData[0].data.slice(0);
     data[this.idx] = this.bottomLabel as any;
     this.fastHandoverComponent.barChartData[0].data = data;
+
+    // const selectGnb = this.fastHandoverComponent.selectGnb;
+    // this.ueList[this.idx]['__barValue'] = this.bottomLabel;
+    // const data = [];
+    // this.ueList.forEach((ue) => {
+    //   if (selectGnb === this.fastHandoverComponent.getConnectedBsName(ue)) {
+    //     const barValue = this.ueList[this.idx]['__barValue'];
+    //     if (barValue) {
+    //       data.push(barValue);
+    //     } else {
+    //       data.push(0);
+    //     }
+    //   }
+    // });
+    // this.fastHandoverComponent.barChartData[0].data = data;
   }
 }
 

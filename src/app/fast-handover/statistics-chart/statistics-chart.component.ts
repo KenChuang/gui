@@ -42,7 +42,7 @@ export class StatisticsChartComponent implements OnInit {
     responsive: true,
     scales: {
       // We use this empty structure as a placeholder for dynamic theming.
-      
+
       xAxes: [{}],
       yAxes: [
         {
@@ -74,7 +74,7 @@ export class StatisticsChartComponent implements OnInit {
     },
     legend: {
       position: 'right',
-      align:'start'
+      align: 'start'
     },
     plugins: {
       datalabels: {

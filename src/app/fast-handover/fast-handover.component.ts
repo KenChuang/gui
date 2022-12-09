@@ -187,6 +187,7 @@ export class FastHandoverComponent implements OnInit {
           (res: string) => {
             // Answers 204/No content on success
             console.log('~~~~AA~~')
+            vm.barChartLabels = [];
             for (let i = 0; i < res.length; i++) {
               if (!vm.ueList[i]) {
                 vm.ueList[i] = {
@@ -213,7 +214,6 @@ export class FastHandoverComponent implements OnInit {
                 vm.ueList[i].index = i;
                 vm.ueList[i].id = res[i]['ue_imsi'];
                 vm.ueList[i].name = 'UE' + (parseInt(res[i]['ue_imsi']) + 1);
-                vm.barChartLabels[i] = vm.ueList[i].name;
 
                 // initialize throughput data
                 vm.throughput_map[res[i]['ue_imsi']] = {
@@ -226,6 +226,10 @@ export class FastHandoverComponent implements OnInit {
               let newX = vm.transformPositionWidth(vm.ueList[i].realPosition.x);
               let newY = vm.transformPositionHeight(vm.ueList[i].realPosition.y);
               vm.ueList[i].position = { x: newX, y: newY };
+
+              if (vm.selectGnb === vm.getConnectedBsName(vm.ueList[i])) {
+                vm.barChartLabels.push(vm.ueList[i].name);
+              }
             }
             // get UE AMF Mapping
             vm.a1MediatorService.getSdlData('amf_ns', 'ue_amf')
@@ -650,6 +654,16 @@ export class FastHandoverComponent implements OnInit {
 
   changeEdit(ue, idx: number) {
     this.barChartLabels[idx] = ue.name;
+  }
+
+  changeConnectBS(i) {
+    this.selectGnb = ('gNB' + (i + 1));
+    this.barChartLabels = [];
+    this.ueList.forEach((ue) => {
+      if (this.selectGnb === this.getConnectedBsName(ue)) {
+        this.barChartLabels.push(ue.name);
+      }
+    });
   }
 
   debug() {
