@@ -70,17 +70,17 @@
         <span class="blueBG"><h6>Total UE Throughput</h6><span>{{getTotalThroughput()}}</span><label>Mbps</label></span>
         <span class="blueBG"><h6>Avg UE Throughput</h6><span>{{avg_throughput}}</span><label>Mbps</label></span>
         <span class="blueBorder">
-          <h6>HO Processing Time</h6><span>@ken</span><label>ms</label>
+          <h6>HO Processing Time</h6><span>{{hoProcessingComponent.bottomLabel}}</span><label>ms</label>
+          <rd-gauge-chart hidden [name]="'HO Processing Time'" [canvasWidth]=150 [optionVal]="processGaugeOption"
+          [sdlNamespace]="'ho_perf_ns'" [sdlKey]="'ho_perf'" [isTracking]="isTracking" #hoProcessingComponent></rd-gauge-chart>
         </span>
         
         <span class="blueBorder">
-          <h6>BWP Processing Time</h6><span>@ken</span><label>ms</label>
+          <h6>BWP Processing Time</h6><span>{{bwpProcessing.bottomLabel}}</span><label>ms</label>
+          <rd-gauge-chart hidden [name]="'BWP Processing Time'" [canvasWidth]=150 [optionVal]="processGaugeOption"
+          [sdlNamespace]="'bwp_perf_ns'" [sdlKey]="'bwp_perf'" [isTracking]="isTracking" #bwpProcessing></rd-gauge-chart>
         </span>
     </div>
-        <!-- <rd-gauge-chart [name]="'HO Processing Time'" [canvasWidth]=150 [optionVal]="processGaugeOption"
-        [sdlNamespace]="'ho_perf_ns'" [sdlKey]="'ho_perf'" [isTracking]="isTracking"></rd-gauge-chart> -->
-        <!-- <rd-gauge-chart [name]="'BWP Processing Time'" [canvasWidth]=150 [optionVal]="processGaugeOption"
-        [sdlNamespace]="'bwp_perf_ns'" [sdlKey]="'bwp_perf'" [isTracking]="isTracking"></rd-gauge-chart> -->
         <!-- <button (click)="openGnbSetup()">gNB Setup</button><br><br> -->
     
    

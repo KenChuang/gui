@@ -124,33 +124,20 @@ export class GaugeChartComponent implements OnInit {
   }
 
   updatBarData() {
-    // const data: any = this.fastHandoverComponent.barChartData[0].data.slice(0);
-    // data[this.idx] = this.bottomLabel as any;
-    // this.fastHandoverComponent.barChartData[0].data = data;
+    if (this.sdlKey === 'ho_perf' || this.sdlKey === 'bwp_perf') {
 
-    const selectGnb = this.fastHandoverComponent.selectGnb;
-    const ueGnb = this.fastHandoverComponent.getConnectedBsName(this.ueList[this.idx]);
-    const idx = this.fastHandoverComponent.idMapGroupIdx.get(this.sdlKey);
-    this.fastHandoverComponent.gnbGroupData[selectGnb][idx] = this.bottomLabel;
-    if (selectGnb === ueGnb) {
-      // console.log('~~~>>>')
-      this.fastHandoverComponent.barChartData[0].data[idx] = this.bottomLabel as any;
+    } else {
+      // const data: any = this.fastHandoverComponent.barChartData[0].data.slice(0);
+      // data[this.idx] = this.bottomLabel as any;
+      // this.fastHandoverComponent.barChartData[0].data = data;
+      const selectGnb = this.fastHandoverComponent.selectGnb;
+      const ueGnb = this.fastHandoverComponent.getConnectedBsName(this.ueList[this.idx]);
+      const idx = this.fastHandoverComponent.idMapGroupIdx.get(this.sdlKey);
+      this.fastHandoverComponent.gnbGroupData[selectGnb][idx] = this.bottomLabel;
+      if (selectGnb === ueGnb) {
+        this.fastHandoverComponent.barChartData[0].data[idx] = this.bottomLabel as any;
+      }
     }
-
-    // const selectGnb = this.fastHandoverComponent.selectGnb;
-    // this.ueList[this.idx]['__barValue'] = this.bottomLabel;
-    // const data = [];
-    // // this.ueList.forEach((ue) => {
-    //   if (selectGnb === this.fastHandoverComponent.getConnectedBsName(ue)) {
-    //     const barValue = this.ueList[this.idx]['__barValue'];
-    //     if (barValue) {
-    //       data.push(barValue);
-    //     } else {
-    //       data.push(0);
-    //     }
-    //   }
-    // });
-    // this.fastHandoverComponent.barChartData[0].data = data;
   }
 }
 

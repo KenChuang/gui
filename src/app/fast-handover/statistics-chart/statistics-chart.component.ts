@@ -188,10 +188,10 @@ export class StatisticsChartComponent implements OnInit {
   }
 
   resize() {
-    window.setTimeout(() => {
-      const clientWidth = window.innerWidth;
-      const el: any = document.getElementById('network');
-      this.canvasWidth = clientWidth - el.offsetWidth - el.getBoundingClientRect().left;
-    }, 0);
+    // window.setTimeout(() => {
+    //   const clientWidth = window.innerWidth;
+    //   const el: any = document.getElementById('network');
+    //   this.canvasWidth = clientWidth - el.offsetWidth - el.getBoundingClientRect().left;
+    // }, 0);
   }
 }
