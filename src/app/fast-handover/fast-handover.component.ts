@@ -698,11 +698,11 @@ export class FastHandoverComponent implements OnInit {
   }
 
   debug() {
-    console.log(this.throughput_map);
-    console.log(this.ueList)
-    console.log(this.bsList)
-    console.log(this.selectGnb)
     console.log('~~~>>');
+    console.log(this.throughput_map);
+    console.log(this.ueList);
+    console.log(this.bsList);
+    console.log(this.selectGnb);
     console.log(this.barChartData);
     console.log(this.barChartLabels);
     console.log(this.gnbGroupAcc);
