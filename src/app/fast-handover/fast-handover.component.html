@@ -30,12 +30,15 @@
   
   <!-- network topology -->
   <div class="map"> 
-    <div [style]="'position: relative; width: ' + fieldData.fieldWidth + 'px; height: ' + fieldData.fieldHeight + 'px; overflow: hidden;'
-    + 'background-color: white;'">
-      <div ngDraggable [style]="'position: relative; width: ' + fieldData.fieldWidth + 'px; height: ' + fieldData.fieldHeight + 'px; overflow: visible;'
+    <!-- <div [style]="'position: relative; width: ' + fieldData.fieldWidth + 'px; height: ' + fieldData.fieldHeight + 'px; overflow: hidden;'
+    + 'background-color: white;'"> 
+    <div ngDraggable [style]="'position: relative; width: ' + fieldData.fieldWidth + 'px; height: ' + fieldData.fieldHeight + 'px; overflow: visible;'
         + 'background-color: white;'">
+  -->
+    <div [style]="'position: relative; width: ' + fieldData.fieldWidth + 'px; height: ' + fieldData.fieldHeight + 'px; overflow: hidden;'">
+      <div ngDraggable [style]="'position: relative; width: ' + fieldData.fieldWidth + 'px; height: ' + fieldData.fieldHeight + 'px; overflow: visible;'">
         <div ngDraggable [position]="boundarySetup.position" [ngDraggable]=false style="position: absolute;">
-          <img src="../../assets/boundary.png" [width]="boundarySetup.width" [height]="boundarySetup.height">
+          <!-- <img src="../../assets/boundary.png" [width]="boundarySetup.width" [height]="boundarySetup.height"> -->
         </div>
         <span *ngFor="let bs of bsList" class="dot" [style]="getBsCoverageStyle(bs)"></span>
         <div ngDraggable *ngFor="let bs of bsList; let i = index" [position]="bs.position" [ngDraggable]=false style="position: absolute;">
@@ -44,7 +47,7 @@
           matTooltipClass="mat-tooltip-large">
           <br>gNB{{i + 1}}
         </div>
-        <div ngDraggable *ngFor="let ue of ueList" [position]="ue.position" [ngDraggable]=false style="position: absolute;">
+        <div class="ue" ngDraggable *ngFor="let ue of ueList" [position]="ue.position" [ngDraggable]=false style="position: absolute;">
           <img [src]="'../../assets/' + ueIcons[getConnectBsIndex(ue)]" [height]="ueSize"
           [matTooltip]="'UE IMSI: ' + ue.id + ', x: ' + ue.realPosition.x + ', y: ' + ue.realPosition.y"
           matTooltipClass="mat-tooltip-large" [tabindex]="ue.index"
@@ -60,159 +63,155 @@
   + getUeInfoLeftOffset() + 'px; width: ' + ueInfoWidth +'px; height: ' + ueInfoHeight + 'px;'"> -->
   <div class="rightArea">
     
-    <h5>UE Info</h5>
-    <span class="groupBTN">
-      <button (click)="openAreaSetup()">Field Setup</button>
-      <button (click)="openOffsetSetup()">Offset Setup</button>
-      <button (click)="openIntervalSetup()">GUI Setup</button>
-    </span>
-    <div class="ueINFO">
-        <span class="blueBG"><h6>Total UE Throughput</h6><span>{{getTotalThroughput()}}</span><label>Mbps</label></span>
-        <span class="blueBG"><h6>Avg UE Throughput</h6><span>{{avg_throughput}}</span><label>Mbps</label></span>
-        <span class="blueBorder">
-          <h6>HO Processing Time</h6><span>{{hoProcessingComponent.bottomLabel}}</span><label>ms</label>
-          <rd-gauge-chart hidden [name]="'HO Processing Time'" [canvasWidth]=150 [optionVal]="processGaugeOption"
-          [sdlNamespace]="'ho_perf_ns'" [sdlKey]="'ho_perf'" [isTracking]="isTracking" #hoProcessingComponent></rd-gauge-chart>
-        </span>
-        
-        <span class="blueBorder">
-          <h6>BWP Processing Time</h6><span>{{bwpProcessing.bottomLabel}}</span><label>ms</label>
-          <rd-gauge-chart hidden [name]="'BWP Processing Time'" [canvasWidth]=150 [optionVal]="processGaugeOption"
-          [sdlNamespace]="'bwp_perf_ns'" [sdlKey]="'bwp_perf'" [isTracking]="isTracking" #bwpProcessing></rd-gauge-chart>
-        </span>
+    <!-- <h5>UE Info</h5> -->
+    <div class="right">
+      <span class="groupBTN">
+        <button (click)="openAreaSetup()">Field Setup</button>
+        <button (click)="openOffsetSetup()">Offset Setup</button>
+        <button (click)="openIntervalSetup()">GUI Setup</button>
+      </span>
     </div>
-        <!-- <button (click)="openGnbSetup()">gNB Setup</button><br><br> -->
-    
-   
-    
     <div class="throughputMAP" [style]="'position: relative; width: ' + ueInfoWidth + 'px;'">
+      <div class="ueINFO">
+          <span class="blueBG"><h6>Total UE Throughput</h6><span>{{getTotalThroughput()}}</span><label>Mbps</label></span>
+          <span class="blueBG"><h6>Avg UE Throughput</h6><span>{{avg_throughput}}</span><label>Mbps</label></span>
+          <span class="blueBorder">
+            <h6>HO Processing Time</h6><span>{{hoProcessingComponent.bottomLabel}}</span><label>ms</label>
+            <rd-gauge-chart hidden [name]="'HO Processing Time'" [canvasWidth]=150 [optionVal]="processGaugeOption"
+            [sdlNamespace]="'ho_perf_ns'" [sdlKey]="'ho_perf'" [isTracking]="isTracking" #hoProcessingComponent></rd-gauge-chart>
+          </span>
+          
+          <span class="blueBorder">
+            <h6>BWP Processing Time</h6><span>{{bwpProcessing.bottomLabel}}</span><label>ms</label>
+            <rd-gauge-chart hidden [name]="'BWP Processing Time'" [canvasWidth]=150 [optionVal]="processGaugeOption"
+            [sdlNamespace]="'bwp_perf_ns'" [sdlKey]="'bwp_perf'" [isTracking]="isTracking" #bwpProcessing></rd-gauge-chart>
+          </span>
+      </div>
+        <!-- <button (click)="openGnbSetup()">gNB Setup</button><br><br> -->
       <rd-statistics-chart [isTracking]="isTracking" [throughput_map]="throughput_map" [ueList]="ueList"></rd-statistics-chart>
-    </div>
-
-    <h5>UE List</h5>
-    <span class="groupBTN">connect BS
-      <label class="{{(selectGnb === ('gNB'+ (i + 1)))?'active':''}}" *ngFor="let bs of bsList;let i=index" (click)="changeConnectBS(i)">
-        gNB{{i + 1}}
-      </label>
-    </span>
-
-  
-<div class="ueList">
-  <canvas baseChart
-    [datasets]="barChartData"
-    [labels]="barChartLabels"
-    [options]="barChartOptions"
-    [plugins]="barChartPlugins"
-    [legend]="barChartLegend"
-    [chartType]="barChartType">
-  </canvas>
-
-  <div class="barTable">
-    <table>
-      <thead>
-        <tr>
-          <th class="w30">UE</th>
-          <!-- <th>Connect BS ID</th> -->
-          <th>BWP ID</th>
-          <th>Start</th>
-          <th>Bandwidth</th>
-        </tr>
-    </thead>
-    <tbody>
-      <ng-template ngFor let-ue [ngForOf]="ueList" let-i="index">
-        <tr *ngIf="selectGnb === getConnectedBsName(ue)">
-          <td (click)="editName(ue,editInput)">
-            <label [style.display]="ue.__edit?'none':''">{{ue.name}}</label>
-            <input type="text" [style.display]="ue.__edit?'':'none'" [(ngModel)]="ue.name" (ngModelChange)="changeEdit(ue,i)" (blur)="ue.__edit = false" #editInput>
-          </td>
-          <!-- <td>{{getConnectedBsName(ue)}}</td> -->
-          <td>{{ue.bwpData.bwpId}}</td>
-          <td>{{ue.bwpData.start}}</td>
-          <td>{{ue.bwpData.bandwidth}}</td>
-        </tr>
-      </ng-template>
-    </tbody>
-    </table>
-  </div>
-</div>
-    <!-- <button mat-flat-button color="primary" class="right-button" (click)="openUeInfo()">UE Info On/Off</button>
-    <button mat-flat-button color="primary" class="right-button" (click)="onboard()">Config UE Name</button><br><br> -->
-
     
-    <table border="0" hidden>
-      <tr *ngIf="ueList.length > 0">
-        <th *ngIf="ueList.length > 0">
-          <rd-gauge-chart [fastHandoverComponent]="this" [ueList]="ueList" [idx]="0" [name]="ueList[0].name" [canvasWidth]=150 [optionVal]="throughputGaugeOption"
-            [sdlNamespace]="'mqtt_ns'" [sdlKey]="ueList[0].id" [isTracking]="isTracking" [throughput_map]="throughput_map"></rd-gauge-chart>
-        </th>
-        <th *ngIf="ueList.length > 1">
-          <rd-gauge-chart [fastHandoverComponent]="this" [ueList]="ueList" [idx]="1" [name]="ueList[1].name" [canvasWidth]=150 [optionVal]="throughputGaugeOption"
-            [sdlNamespace]="'mqtt_ns'" [sdlKey]="ueList[1].id" [isTracking]="isTracking" [throughput_map]="throughput_map"></rd-gauge-chart>
-        </th>
-        <th *ngIf="ueList.length > 2">
-          <rd-gauge-chart [fastHandoverComponent]="this" [ueList]="ueList" [idx]="2" [name]="ueList[2].name" [canvasWidth]=150 [optionVal]="throughputGaugeOption"
-            [sdlNamespace]="'mqtt_ns'" [sdlKey]="ueList[2].id" [isTracking]="isTracking" [throughput_map]="throughput_map"></rd-gauge-chart>
-        </th>
-        <th *ngIf="ueList.length > 3">
-          <rd-gauge-chart [fastHandoverComponent]="this" [ueList]="ueList" [idx]="3" [name]="ueList[3].name" [canvasWidth]=150 [optionVal]="throughputGaugeOption"
-            [sdlNamespace]="'mqtt_ns'" [sdlKey]="ueList[3].id" [isTracking]="isTracking" [throughput_map]="throughput_map"></rd-gauge-chart>
-        </th>
-        <th *ngIf="ueList.length > 4">
-          <rd-gauge-chart [fastHandoverComponent]="this" [ueList]="ueList" [idx]="4" [name]="ueList[4].name" [canvasWidth]=150 [optionVal]="throughputGaugeOption"
-            [sdlNamespace]="'mqtt_ns'" [sdlKey]="ueList[4].id" [isTracking]="isTracking" [throughput_map]="throughput_map"></rd-gauge-chart>
-        </th>
-      </tr>
-      <tr *ngIf="ueList.length > 5">
-        <th *ngIf="ueList.length > 5">
-          <rd-gauge-chart [fastHandoverComponent]="this" [ueList]="ueList" [idx]="5" [name]="ueList[5].name" [canvasWidth]=150 [optionVal]="throughputGaugeOption"
-            [sdlNamespace]="'mqtt_ns'" [sdlKey]="ueList[5].id" [isTracking]="isTracking" [throughput_map]="throughput_map"></rd-gauge-chart>
-        </th>
-        <th *ngIf="ueList.length > 6">
-          <rd-gauge-chart [fastHandoverComponent]="this" [ueList]="ueList" [idx]="6" [name]="ueList[6].name" [canvasWidth]=150 [optionVal]="throughputGaugeOption"
-            [sdlNamespace]="'mqtt_ns'" [sdlKey]="ueList[6].id" [isTracking]="isTracking" [throughput_map]="throughput_map"></rd-gauge-chart>
-        </th>
-        <th *ngIf="ueList.length > 7">
-          <rd-gauge-chart [fastHandoverComponent]="this" [ueList]="ueList" [idx]="7" [name]="ueList[7].name" [canvasWidth]=150 [optionVal]="throughputGaugeOption"
-            [sdlNamespace]="'mqtt_ns'" [sdlKey]="ueList[7].id" [isTracking]="isTracking" [throughput_map]="throughput_map"></rd-gauge-chart>
-        </th>
-        <th *ngIf="ueList.length > 8">
-          <rd-gauge-chart [fastHandoverComponent]="this" [ueList]="ueList" [idx]="8" [name]="ueList[8].name" [canvasWidth]=150 [optionVal]="throughputGaugeOption"
-            [sdlNamespace]="'mqtt_ns'" [sdlKey]="ueList[8].id" [isTracking]="isTracking" [throughput_map]="throughput_map"></rd-gauge-chart>
-        </th>
-        <th *ngIf="ueList.length > 9">
-          <rd-gauge-chart [fastHandoverComponent]="this" [ueList]="ueList" [idx]="9" [name]="ueList[9].name" [canvasWidth]=150 [optionVal]="throughputGaugeOption"
-            [sdlNamespace]="'mqtt_ns'" [sdlKey]="ueList[9].id" [isTracking]="isTracking" [throughput_map]="throughput_map"></rd-gauge-chart>
-        </th>
-      </tr>
-      <tr *ngIf="ueList.length > 10">
-        <th *ngIf="ueList.length > 10">
-          <rd-gauge-chart [fastHandoverComponent]="this" [ueList]="ueList" [idx]="10" [name]="ueList[10].name" [canvasWidth]=150 [optionVal]="throughputGaugeOption"
-            [sdlNamespace]="'mqtt_ns'" [sdlKey]="ueList[10].id" [isTracking]="isTracking" [throughput_map]="throughput_map"></rd-gauge-chart>
-        </th>
-        <th *ngIf="ueList.length > 11">
-          <rd-gauge-chart [fastHandoverComponent]="this" [ueList]="ueList" [idx]="11" [name]="ueList[11].name" [canvasWidth]=150 [optionVal]="throughputGaugeOption"
-            [sdlNamespace]="'mqtt_ns'" [sdlKey]="ueList[11].id" [isTracking]="isTracking" [throughput_map]="throughput_map"></rd-gauge-chart>
-        </th>
-        <th *ngIf="ueList.length > 12">
-          <rd-gauge-chart [fastHandoverComponent]="this" [ueList]="ueList" [idx]="12" [name]="ueList[12].name" [canvasWidth]=150 [optionVal]="throughputGaugeOption"
-            [sdlNamespace]="'mqtt_ns'" [sdlKey]="ueList[12].id" [isTracking]="isTracking" [throughput_map]="throughput_map"></rd-gauge-chart>
-        </th>
-        <th *ngIf="ueList.length > 13">
-          <rd-gauge-chart [fastHandoverComponent]="this" [ueList]="ueList" [idx]="13" [name]="ueList[13].name" [canvasWidth]=150 [optionVal]="throughputGaugeOption"
-            [sdlNamespace]="'mqtt_ns'" [sdlKey]="ueList[13].id" [isTracking]="isTracking" [throughput_map]="throughput_map"></rd-gauge-chart>
-        </th>
-        <th *ngIf="ueList.length > 14">
-          <rd-gauge-chart [fastHandoverComponent]="this" [ueList]="ueList" [idx]="14" [name]="ueList[14].name" [canvasWidth]=150 [optionVal]="throughputGaugeOption"
-            [sdlNamespace]="'mqtt_ns'" [sdlKey]="ueList[14].id" [isTracking]="isTracking" [throughput_map]="throughput_map"></rd-gauge-chart>
-        </th>
-      </tr>
-      <tr *ngIf="ueList.length > 15">
-        <th *ngIf="ueList.length > 15">
-          <rd-gauge-chart [fastHandoverComponent]="this" [ueList]="ueList" [idx]="15" [name]="ueList[15].name" [canvasWidth]=150 [optionVal]="throughputGaugeOption"
-            [sdlNamespace]="'mqtt_ns'" [sdlKey]="ueList[15].id" [isTracking]="isTracking" [throughput_map]="throughput_map"></rd-gauge-chart>
-        </th>
-      </tr>
-    </table>
+   <!--  <h5>UE List</h5> -->
+      <span class="groupBTN">
+        Connect BS
+        <label class="{{(selectGnb === ('gNB'+ (i + 1)))?'active':''}}" *ngFor="let bs of bsList;let i=index" (click)="changeConnectBS(i)">
+          gNB{{i + 1}}
+        </label>
+      </span>
+      <div class="ueList">
+        <canvas baseChart
+          [datasets]="barChartData"
+          [labels]="barChartLabels"
+          [options]="barChartOptions"
+          [plugins]="barChartPlugins"
+          [legend]="barChartLegend"
+          [chartType]="barChartType">
+        </canvas>
+
+        <div class="barTable">
+          <table>
+            <thead>
+              <tr>
+                <th class="w30">UE</th>
+                <!-- <th>Connect BS ID</th> -->
+                <th>BWP ID</th>
+                <th>Start</th>
+                <th>Bandwidth</th>
+              </tr>
+          </thead>
+          <tbody>
+            <ng-template ngFor let-ue [ngForOf]="ueList" let-i="index">
+              <tr *ngIf="selectGnb === getConnectedBsName(ue)">
+                <td (click)="editName(ue,editInput)">
+                  <label [style.display]="ue.__edit?'none':''">{{ue.name}}</label>
+                  <input type="text" [style.display]="ue.__edit?'':'none'" [(ngModel)]="ue.name" (ngModelChange)="changeEdit(ue,i)" (blur)="ue.__edit = false" #editInput>
+                </td>
+                <!-- <td>{{getConnectedBsName(ue)}}</td> -->
+                <td>{{ue.bwpData.bwpId}}</td>
+                <td>{{ue.bwpData.start}}</td>
+                <td>{{ue.bwpData.bandwidth}}</td>
+              </tr>
+            </ng-template>
+          </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- <button mat-flat-button color="primary" class="right-button" (click)="openUeInfo()">UE Info On/Off</button>
+      <button mat-flat-button color="primary" class="right-button" (click)="onboard()">Config UE Name</button><br><br> -->
+      <table border="0" hidden>
+        <tr *ngIf="ueList.length > 0">
+          <th *ngIf="ueList.length > 0">
+            <rd-gauge-chart [fastHandoverComponent]="this" [ueList]="ueList" [idx]="0" [name]="ueList[0].name" [canvasWidth]=150 [optionVal]="throughputGaugeOption"
+              [sdlNamespace]="'mqtt_ns'" [sdlKey]="ueList[0].id" [isTracking]="isTracking" [throughput_map]="throughput_map"></rd-gauge-chart>
+          </th>
+          <th *ngIf="ueList.length > 1">
+            <rd-gauge-chart [fastHandoverComponent]="this" [ueList]="ueList" [idx]="1" [name]="ueList[1].name" [canvasWidth]=150 [optionVal]="throughputGaugeOption"
+              [sdlNamespace]="'mqtt_ns'" [sdlKey]="ueList[1].id" [isTracking]="isTracking" [throughput_map]="throughput_map"></rd-gauge-chart>
+          </th>
+          <th *ngIf="ueList.length > 2">
+            <rd-gauge-chart [fastHandoverComponent]="this" [ueList]="ueList" [idx]="2" [name]="ueList[2].name" [canvasWidth]=150 [optionVal]="throughputGaugeOption"
+              [sdlNamespace]="'mqtt_ns'" [sdlKey]="ueList[2].id" [isTracking]="isTracking" [throughput_map]="throughput_map"></rd-gauge-chart>
+          </th>
+          <th *ngIf="ueList.length > 3">
+            <rd-gauge-chart [fastHandoverComponent]="this" [ueList]="ueList" [idx]="3" [name]="ueList[3].name" [canvasWidth]=150 [optionVal]="throughputGaugeOption"
+              [sdlNamespace]="'mqtt_ns'" [sdlKey]="ueList[3].id" [isTracking]="isTracking" [throughput_map]="throughput_map"></rd-gauge-chart>
+          </th>
+          <th *ngIf="ueList.length > 4">
+            <rd-gauge-chart [fastHandoverComponent]="this" [ueList]="ueList" [idx]="4" [name]="ueList[4].name" [canvasWidth]=150 [optionVal]="throughputGaugeOption"
+              [sdlNamespace]="'mqtt_ns'" [sdlKey]="ueList[4].id" [isTracking]="isTracking" [throughput_map]="throughput_map"></rd-gauge-chart>
+          </th>
+        </tr>
+        <tr *ngIf="ueList.length > 5">
+          <th *ngIf="ueList.length > 5">
+            <rd-gauge-chart [fastHandoverComponent]="this" [ueList]="ueList" [idx]="5" [name]="ueList[5].name" [canvasWidth]=150 [optionVal]="throughputGaugeOption"
+              [sdlNamespace]="'mqtt_ns'" [sdlKey]="ueList[5].id" [isTracking]="isTracking" [throughput_map]="throughput_map"></rd-gauge-chart>
+          </th>
+          <th *ngIf="ueList.length > 6">
+            <rd-gauge-chart [fastHandoverComponent]="this" [ueList]="ueList" [idx]="6" [name]="ueList[6].name" [canvasWidth]=150 [optionVal]="throughputGaugeOption"
+              [sdlNamespace]="'mqtt_ns'" [sdlKey]="ueList[6].id" [isTracking]="isTracking" [throughput_map]="throughput_map"></rd-gauge-chart>
+          </th>
+          <th *ngIf="ueList.length > 7">
+            <rd-gauge-chart [fastHandoverComponent]="this" [ueList]="ueList" [idx]="7" [name]="ueList[7].name" [canvasWidth]=150 [optionVal]="throughputGaugeOption"
+              [sdlNamespace]="'mqtt_ns'" [sdlKey]="ueList[7].id" [isTracking]="isTracking" [throughput_map]="throughput_map"></rd-gauge-chart>
+          </th>
+          <th *ngIf="ueList.length > 8">
+            <rd-gauge-chart [fastHandoverComponent]="this" [ueList]="ueList" [idx]="8" [name]="ueList[8].name" [canvasWidth]=150 [optionVal]="throughputGaugeOption"
+              [sdlNamespace]="'mqtt_ns'" [sdlKey]="ueList[8].id" [isTracking]="isTracking" [throughput_map]="throughput_map"></rd-gauge-chart>
+          </th>
+          <th *ngIf="ueList.length > 9">
+            <rd-gauge-chart [fastHandoverComponent]="this" [ueList]="ueList" [idx]="9" [name]="ueList[9].name" [canvasWidth]=150 [optionVal]="throughputGaugeOption"
+              [sdlNamespace]="'mqtt_ns'" [sdlKey]="ueList[9].id" [isTracking]="isTracking" [throughput_map]="throughput_map"></rd-gauge-chart>
+          </th>
+        </tr>
+        <tr *ngIf="ueList.length > 10">
+          <th *ngIf="ueList.length > 10">
+            <rd-gauge-chart [fastHandoverComponent]="this" [ueList]="ueList" [idx]="10" [name]="ueList[10].name" [canvasWidth]=150 [optionVal]="throughputGaugeOption"
+              [sdlNamespace]="'mqtt_ns'" [sdlKey]="ueList[10].id" [isTracking]="isTracking" [throughput_map]="throughput_map"></rd-gauge-chart>
+          </th>
+          <th *ngIf="ueList.length > 11">
+            <rd-gauge-chart [fastHandoverComponent]="this" [ueList]="ueList" [idx]="11" [name]="ueList[11].name" [canvasWidth]=150 [optionVal]="throughputGaugeOption"
+              [sdlNamespace]="'mqtt_ns'" [sdlKey]="ueList[11].id" [isTracking]="isTracking" [throughput_map]="throughput_map"></rd-gauge-chart>
+          </th>
+          <th *ngIf="ueList.length > 12">
+            <rd-gauge-chart [fastHandoverComponent]="this" [ueList]="ueList" [idx]="12" [name]="ueList[12].name" [canvasWidth]=150 [optionVal]="throughputGaugeOption"
+              [sdlNamespace]="'mqtt_ns'" [sdlKey]="ueList[12].id" [isTracking]="isTracking" [throughput_map]="throughput_map"></rd-gauge-chart>
+          </th>
+          <th *ngIf="ueList.length > 13">
+            <rd-gauge-chart [fastHandoverComponent]="this" [ueList]="ueList" [idx]="13" [name]="ueList[13].name" [canvasWidth]=150 [optionVal]="throughputGaugeOption"
+              [sdlNamespace]="'mqtt_ns'" [sdlKey]="ueList[13].id" [isTracking]="isTracking" [throughput_map]="throughput_map"></rd-gauge-chart>
+          </th>
+          <th *ngIf="ueList.length > 14">
+            <rd-gauge-chart [fastHandoverComponent]="this" [ueList]="ueList" [idx]="14" [name]="ueList[14].name" [canvasWidth]=150 [optionVal]="throughputGaugeOption"
+              [sdlNamespace]="'mqtt_ns'" [sdlKey]="ueList[14].id" [isTracking]="isTracking" [throughput_map]="throughput_map"></rd-gauge-chart>
+          </th>
+        </tr>
+        <tr *ngIf="ueList.length > 15">
+          <th *ngIf="ueList.length > 15">
+            <rd-gauge-chart [fastHandoverComponent]="this" [ueList]="ueList" [idx]="15" [name]="ueList[15].name" [canvasWidth]=150 [optionVal]="throughputGaugeOption"
+              [sdlNamespace]="'mqtt_ns'" [sdlKey]="ueList[15].id" [isTracking]="isTracking" [throughput_map]="throughput_map"></rd-gauge-chart>
+          </th>
+        </tr>
+      </table>
+    </div>
   </div>
 </div>
 
