@@ -27,12 +27,18 @@ h5 {
 }
 .gNB1 {
     background: radial-gradient(circle, rgb(41 48 165 / 81%) 0%, rgb(59 54 74 / 44%) 100%);
+    opacity: initial!important;
+    background-color: initial!important;
 }
 .gNB2 {
-background: radial-gradient(circle, rgb(145 57 130 / 81%) 0%, rgb(59 54 74 / 44%) 100%);
+    background: radial-gradient(circle, rgb(145 57 130 / 81%) 0%, rgb(59 54 74 / 44%) 100%);
+    opacity: initial!important;
+    background-color: initial!important;
 }
 .gNB3 {
-background: radial-gradient(circle, rgb(118 116 118 / 81%) 0%, rgb(59 54 74 / 44%) 100%);
+    background: radial-gradient(circle, rgb(118 116 118 / 81%) 0%, rgb(59 54 74 / 44%) 100%);
+    opacity: initial!important;
+    background-color: initial!important;
 }
 .zoom button {
     margin: 0 0 3px 3px;
@@ -128,4 +134,11 @@ background: radial-gradient(circle, rgb(118 116 118 / 81%) 0%, rgb(59 54 74 / 44
 }
 .groupBTN label:first-child {
     margin: 0 0 0 0.5em;
+}
+rd-statistics-chart {
+    margin: 0 0 1em 0;
+    display: block;
+}
+rd-statistics-chart + .groupBTN {
+
 }

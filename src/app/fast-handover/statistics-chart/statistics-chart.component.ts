@@ -102,12 +102,12 @@ export class StatisticsChartComponent implements OnInit {
   };
   public lineChartColors: Color[] = [
     { // green
-      backgroundColor: 'rgba(99, 99, 99, 0)',
-      borderColor: '#000000',
-      //pointBackgroundColor: '#999999',
-      //pointBorderColor: '#008000',
-      //pointHoverBackgroundColor: '#008000',
-      //pointHoverBorderColor: '#ffffff'
+      backgroundColor: 'rgba(255, 255, 255, 0.1)',
+      borderColor: '#ffffff',
+      pointBackgroundColor: '#999999',
+      pointBorderColor: '#008000',
+      pointHoverBackgroundColor: '#008000',
+      pointHoverBorderColor: '#ffffff'
     }
   ];
   public ueColors = [
