@@ -102,7 +102,7 @@ export class StatisticsChartComponent implements OnInit {
   };
   public lineChartColors: Color[] = [
     { // green
-      backgroundColor: 'rgba(255, 255, 255, 0.1)',
+      backgroundColor: '#ffffff10',
       borderColor: '#ffffff',
       pointBackgroundColor: '#999999',
       pointBorderColor: '#008000',
