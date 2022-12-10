@@ -40,7 +40,7 @@
         <div ngDraggable [position]="boundarySetup.position" [ngDraggable]=false style="position: absolute;">
           <!-- <img src="../../assets/boundary.png" [width]="boundarySetup.width" [height]="boundarySetup.height"> -->
         </div>
-        <span *ngFor="let bs of bsList" class="dot" [style]="getBsCoverageStyle(bs)"></span>
+        <span *ngFor="let bs of bsList; let i = index" class="dot" [style]="getBsCoverageStyle(bs)" class="gNB{{i + 1}}"></span>
         <div ngDraggable *ngFor="let bs of bsList; let i = index" [position]="bs.position" [ngDraggable]=false style="position: absolute;">
           <img [src]="'../../assets/' + bs.icon" [height]="bsSize"
           [matTooltip]="'BS ID: ' + bs.index + ', x: ' + bs.realPosition.x + ', y: ' + bs.realPosition.y"

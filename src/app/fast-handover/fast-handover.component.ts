@@ -123,11 +123,18 @@ export class FastHandoverComponent implements OnInit {
     responsive: true,
     // We use these empty structures as placeholders for dynamic theming.
     scales: {
-      xAxes: [{}],
+      xAxes: [
+        {
+          ticks: {
+            fontColor: '#ffffff'
+          }
+        }
+      ],
       yAxes: [{
         ticks: {
           max: 70,
-          min: 0
+          min: 0,
+          fontColor: '#ffffff',
         }
       }]
     },
@@ -135,6 +142,7 @@ export class FastHandoverComponent implements OnInit {
       datalabels: {
         anchor: 'end',
         align: 'end',
+        color: '#ffffff',
       }
     },
     tooltips: {

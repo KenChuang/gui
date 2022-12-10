@@ -42,15 +42,21 @@ export class StatisticsChartComponent implements OnInit {
     responsive: true,
     scales: {
       // We use this empty structure as a placeholder for dynamic theming.
-
-      xAxes: [{}],
+      xAxes: [
+        {
+          ticks: {
+            fontColor: '#ffffff'
+          }
+        }
+      ],
       yAxes: [
         {
           id: 'y-axis-0',
           position: 'left',
           ticks: {
             max: 400,
-            min: 0
+            min: 0,
+            fontColor: '#ffffff',
           }
         }
       ]
@@ -74,10 +80,14 @@ export class StatisticsChartComponent implements OnInit {
     },
     legend: {
       position: 'right',
-      align: 'start'
+      align: 'start',
+      labels: {
+        fontColor: '#ffffff'
+      }
     },
     plugins: {
       datalabels: {
+        color: '#ffffff',
         formatter: (value, ctx) => {
           const dataset = ctx.dataset;
           const label = dataset.label;
@@ -188,10 +198,10 @@ export class StatisticsChartComponent implements OnInit {
   }
 
   resize() {
-    // window.setTimeout(() => {
-    //   const clientWidth = window.innerWidth;
-    //   const el: any = document.getElementById('network');
-    //   this.canvasWidth = clientWidth - el.offsetWidth - el.getBoundingClientRect().left;
-    // }, 0);
+    window.setTimeout(() => {
+      const clientWidth = window.innerWidth;
+      const el: any = document.getElementsByClassName('leftArea')[0];
+      this.canvasWidth = clientWidth - el.offsetWidth - el.getBoundingClientRect().left;
+    }, 0);
   }
 }
