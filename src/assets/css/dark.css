@@ -1,0 +1,131 @@
+.main__header {
+    color: #fff;
+    background-color: #1e1e2a;
+}
+.hamburger__icon__fill {
+    fill: #ffffff!important;
+}
+.main__container {
+    background-color: #41414c;
+}
+.rightArea {
+    background-color: initial!important;
+}
+.header {
+    border-bottom: 2px solid #21c47e;
+    padding: 0.3em 0 0.5em 0;
+}
+h5 {
+    font-size: 1.35em!important;
+    color: #eee;
+    text-shadow: 0 2px 5px #160606;
+}
+.percent {
+    color: #a7a7a7!important;
+    font-size: 0.8em!important;
+    margin: 2em 0.3em 0 !important;
+}
+.gNB1 {
+    background: radial-gradient(circle, rgb(41 48 165 / 81%) 0%, rgb(59 54 74 / 44%) 100%);
+}
+.gNB2 {
+background: radial-gradient(circle, rgb(145 57 130 / 81%) 0%, rgb(59 54 74 / 44%) 100%);
+}
+.gNB3 {
+background: radial-gradient(circle, rgb(118 116 118 / 81%) 0%, rgb(59 54 74 / 44%) 100%);
+}
+.zoom button {
+    margin: 0 0 3px 3px;
+    background: rgb(32,200,124);
+    background: linear-gradient(34deg, rgba(32,200,124,1) 17%, rgba(37,126,162,1) 100%)!important;;
+    border: none!important;
+}
+.switch label {
+    background: linear-gradient(45deg, #323232, #878787b8)!important;
+}
+.switch input:checked + label {
+    background: linear-gradient(34deg, #13a965 17%, rgba(37,126,162,1) 100%)!important;
+    box-shadow: 0 2px 3px inset;
+}
+.switch input:checked + label:after {
+    border: 2px solid #30e1a6!important;
+}
+.groupBTN button {
+    background: linear-gradient(180deg, #22b170 7%, #136f93 70%)!important;
+    border: none!important;
+    border-right: 1px solid #24382e!important;
+}
+.groupBTN label {
+    border:1px solid #234c4c!important;
+    background: linear-gradient(180deg, #353536 0%, #282833 100%);
+    color: #949b9a!important;
+    margin: 0 0 0 -1px;
+}
+.groupBTN label.active {
+    color: #ffffff!important;
+    background: linear-gradient(180deg, #22b170 7%, #136f93 70%)!important;
+}
+
+.barTable table thead tr th {
+    background-color: transparent!important;
+    border: none!important;
+    border-bottom: 1px solid #1c74a9!important;
+    padding: 0.3em;
+    font-weight: normal;
+    color: #eee!important;
+}
+.barTable table tbody tr td {
+    border-bottom: 0!important;
+    color: #eee!important;
+    padding: 0.4em!important;
+}
+.barTable table tbody tr:nth-child(even) td {
+    background-color: #34343f;
+}
+.throughputMAP {
+    margin: 1em 0 0.5em!important;
+    background: radial-gradient( transparent,#1e1e2a);
+    border-radius: 6px;
+    padding: 1em;
+    width: 100%!important;
+}
+
+.blueBG,.blueBorder{
+    border-radius: 0!important;
+    border: initial!important;
+    border-right: 1px solid #1e1e2a!important;
+    padding: 3% 2.4%!important;
+    background-color: initial!important;
+    margin: -0.95em 0 4% 0!important;
+    width: initial!important;
+}
+.ueINFO{
+    margin: 0!important;
+}
+.leftArea {
+    padding: 0 1em 0!important;
+}
+.ueINFO h6 {
+    color: #b3b3b3;
+}
+.ueINFO > span > label,
+.ueINFO h6 + span {
+    color: #fff!important;
+}
+.legend {
+    color: #ddd;
+}
+.map {
+    margin-top: 0.8em;
+}
+.groupBTN {
+    color: #bfbfbf;
+    margin: 0 0 1em 0;
+    display: block;
+}
+.ueList canvas {
+    margin: 0;
+}
+.groupBTN label:first-child {
+    margin: 0 0 0 0.5em;
+}
