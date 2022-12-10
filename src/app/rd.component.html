@@ -90,17 +90,22 @@
                   class="hamburger__icon__fill" data-name="Rectangle 11" rx="2"
                   transform="translate(31.5 30)" />
           </svg>
-          <img src="../../assets/oran-logo.png" width="180%" height="100%" style="position: relative; z-index: 50" />
+          <span class="itri">
+            <img class="logo" src="../../assets/logo.png">
+            <h1>Near-RT RIC Dashboard</h1>
+          </span>
+          <a role="button" (click)="redirectBouncer()">
+            <img [src]="'../../assets/' + getRicStatus()"/>
+          </a>
+          <!-- <img src="../../assets/oran-logo.png" width="180%" height="100%" style="position: relative; z-index: 50" />
           <svg class="logo__icon" viewBox="150.3 22.2 313.7 42.8">
             <text [ngClass]="{'logo__text-dark': darkModeActive}" class="logo__text" fill="#432c85"
                   font-size="30" font-weight="600"
                   letter-spacing=".1em" transform="translate(149 56)">
               <tspan x="0" y="0">RIC Dashboard</tspan>
             </text>
-          </svg>
-          <a role="button" (click)="redirectBouncer()">
-            <img [src]="'../../assets/' + getRicStatus()" height=40 style="position: absolute; top: 10px; left: 300px; z-index: 50" />
-          </a>
+          </svg> -->
+          
         </div>
       </header>
 
@@ -113,14 +118,14 @@
       </main>
 
       <!-- Footer -->
-      <footer class="main__footer" [ngClass]="{'main-footer__bg-dark': darkModeActive}">
+      <!-- <footer class="main__footer" [ngClass]="{'main-footer__bg-dark': darkModeActive}">
         <div class="main-footer-licence">
           <rd-footer></rd-footer>
         </div>
         <button mat-flat-button  color="primary" class="main-footer-instance" (click)="openInstanceSelectorDialog()" >
           <span> {{selectedInstanceName}} </span>
         </button>
-      </footer>
+      </footer> -->
 
     </div>
   </mat-drawer-content>

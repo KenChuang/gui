@@ -139,6 +139,7 @@ h5 {
   padding: .3em 1em;
   border: 1px solid #2d9fe2;
   color: #999;
+  font-size: .9em;
   cursor: pointer;
 }
 .groupBTN label.active {
@@ -150,4 +151,33 @@ h5 {
 }
 .groupBTN label:last-child {
   border-radius: 0 3px 3px 0;
+}
+.itri {
+  position: relative;
+}
+.itri h1 {
+  font-size: 1.4em;
+  font-weight: bold;
+  white-space: nowrap;
+  font-style: italic;
+  display: inline-block !important;
+  vertical-align: middle;
+  margin: 0.3em 0 0 2.5em;
+  padding: 0;
+}
+.itri + a {
+  display: inline-block;
+  vertical-align: middle;
+  width: 6em;
+  margin: 0 0 0 1em;
+}
+.itri + a img {
+  width: 100%;
+}
+.itri img.logo {
+  height: 2.5em;
+  width: auto;
+  position: absolute;
+  left: 0;
+  top: 0;
 }
