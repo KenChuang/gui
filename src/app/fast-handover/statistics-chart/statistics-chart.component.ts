@@ -1,3 +1,4 @@
+import { EventEmitter } from '@angular/core';
 /*-
  * ========================LICENSE_START=================================
  * O-RAN-SC
@@ -17,7 +18,7 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-import { Component, OnInit, ViewChild, Input, HostListener } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, HostListener, Output } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Color, BaseChartDirective, Label } from 'ng2-charts';
 
@@ -30,6 +31,7 @@ export class StatisticsChartComponent implements OnInit {
   @Input() isTracking: boolean;
   @Input() throughput_map: object;
   @Input() ueList: object;
+  @Output() updateColor: EventEmitter<Map<string, string>> = new EventEmitter()
 
   public exists = true;
   public setTimeoutTask: any;
@@ -145,13 +147,14 @@ export class StatisticsChartComponent implements OnInit {
   }
 
   startQuery(): void {
-    let func = function (vm) {
+    let func = function (vm: StatisticsChartComponent) {
       if (!vm.exists) {
         clearTimeout(vm.setTimeoutTask);
         return;
       }
       if (vm.isTracking) {
         let total = 0, id = 1;
+        const bsIdMapColor: Map<string, string> = new Map();
         for (let key in vm.throughput_map) {
           if (!vm.lineChartData[id]) {
             let color = vm.ueColors[id];
@@ -162,13 +165,14 @@ export class StatisticsChartComponent implements OnInit {
               borderColor: `rgb(${color[0]}, ${color[1]}, ${color[2]})`
             };
           }
+          bsIdMapColor.set(key, vm.lineChartData[id].borderColor as string);
           vm.lineChartData[id].label = vm.ueList[id - 1].name;
           vm.lineChartData[id].data.push(vm.throughput_map[key].value);
           total += vm.throughput_map[key].value;
           id++;
         }
         vm.lineChartData.length = id;
-        vm.lineChartData[0].data.push(total.toFixed(2));
+        vm.lineChartData[0].data.push(total.toFixed(2) as any);
         let date = new Date();
         let label = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
         vm.lineChartLabels.push(label);
@@ -178,6 +182,7 @@ export class StatisticsChartComponent implements OnInit {
             vm.lineChartData[i].data.splice(0, 1);
           }
         }
+        vm.updateColor.emit(bsIdMapColor);
         // console.log(vm.lineChartData);
       }
       vm.setTimeoutTask = setTimeout(func, vm.QUERY_INTERVAL, vm);

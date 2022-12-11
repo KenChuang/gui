@@ -17,7 +17,7 @@
  * limitations under the License.
  * ========================LICENSE_END===================================
  */
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { A1MediatorService } from '../../services/a1-mediator/a1-mediator.service';
 import { FastHandoverComponent } from '../fast-handover.component';
 
@@ -27,8 +27,6 @@ import { FastHandoverComponent } from '../fast-handover.component';
   styleUrls: ['./gauge-chart.component.scss']
 })
 export class GaugeChartComponent implements OnInit {
-  @Input() fastHandoverComponent: FastHandoverComponent;
-  @Input() ueList = [];
   @Input() idx: number;
   @Input() name: string;
   @Input() canvasWidth: number;
@@ -37,6 +35,7 @@ export class GaugeChartComponent implements OnInit {
   @Input() sdlKey: string;
   @Input() isTracking: boolean;
   @Input() throughput_map: object;
+  @Output() updatBarData: EventEmitter<{}> = new EventEmitter();
 
   constructor(private a1MediatorService: A1MediatorService) { }
   public needleValue = 0
@@ -89,7 +88,7 @@ export class GaugeChartComponent implements OnInit {
                   let delay = Math.floor(res[0][vm.sdlKey + '_time'] / 1000);
                   vm.bottomLabel = delay;
                   vm.needleValue = Math.floor(vm.gaugeLimit * delay);
-                  vm.updatBarData();
+                  vm.updatData();
                 } else {
                   console.log('Performance %s no data.', key);
                 }
@@ -100,7 +99,7 @@ export class GaugeChartComponent implements OnInit {
               let throughput = vm.throughput_map[vm.sdlKey].value;
               vm.bottomLabel = throughput;
               vm.needleValue = Math.floor(vm.gaugeLimit * throughput);
-              vm.updatBarData();
+              vm.updatData();
               break;
             } else {
               console.log('SDL no data for %s', vm.sdlKey);
@@ -123,21 +122,12 @@ export class GaugeChartComponent implements OnInit {
     clearTimeout(this.setTimeoutTask);
   }
 
-  updatBarData() {
-    if (this.sdlKey === 'ho_perf' || this.sdlKey === 'bwp_perf') {
-
-    } else {
-      // const data: any = this.fastHandoverComponent.barChartData[0].data.slice(0);
-      // data[this.idx] = this.bottomLabel as any;
-      // this.fastHandoverComponent.barChartData[0].data = data;
-      const selectGnb = this.fastHandoverComponent.selectGnb;
-      const ueGnb = this.fastHandoverComponent.getConnectedBsName(this.ueList[this.idx]);
-      const idx = this.fastHandoverComponent.idMapGroupIdx.get(this.sdlKey);
-      this.fastHandoverComponent.gnbGroupData[selectGnb][idx] = this.bottomLabel;
-      if (selectGnb === ueGnb) {
-        this.fastHandoverComponent.barChartData[0].data[idx] = this.bottomLabel as any;
-      }
-    }
+  updatData() {
+    this.updatBarData.emit({
+      sdlKey: this.sdlKey,
+      idx: this.idx,
+      bottomLabel: this.bottomLabel
+    });
   }
 }
 
