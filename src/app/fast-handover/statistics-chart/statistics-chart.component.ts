@@ -70,6 +70,7 @@ export class StatisticsChartComponent implements OnInit {
           value: 'March',
           borderColor: 'orange',
           borderWidth: 2,
+          
           label: {
             enabled: true,
             fontColor: 'orange',
@@ -82,12 +83,18 @@ export class StatisticsChartComponent implements OnInit {
       position: 'right',
       align: 'start',
       labels: {
-        fontColor: '#ffffff'
+        fontColor: '#ffffff',
+        boxWidth: 3,
+        padding:10,
+        usePointStyle:true,
       }
     },
+    
     plugins: {
+      
       datalabels: {
         color: '#ffffff',
+        
         formatter: (value, ctx) => {
           const dataset = ctx.dataset;
           const label = dataset.label;
@@ -98,14 +105,14 @@ export class StatisticsChartComponent implements OnInit {
           }
         }
       }
-    }
+    },
   };
   public lineChartColors: Color[] = [
     { // green
       backgroundColor: '#ffffff10',
       borderColor: '#ffffff',
-      pointBackgroundColor: '#999999',
-      pointBorderColor: '#008000',
+      pointBackgroundColor: '#ffffff',
+      pointBorderColor: '#ffffff',
       pointHoverBackgroundColor: '#008000',
       pointHoverBorderColor: '#ffffff'
     }

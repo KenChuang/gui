@@ -1,3 +1,19 @@
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #7a7a7a;
+  border-radius: 3em;
+}
+//捲軸寬度
+::-webkit-scrollbar {
+  width: 8px;
+  border-radius: 3em;
+  
+}
+//捲軸本體顏色
+::-webkit-scrollbar-thumb {
+  border-radius: 3em;
+  background-color: #474747;
+}
 .leftArea,.rightArea {
   font-family:Microsoft JhengHei;
 }
@@ -134,8 +150,10 @@ h6 {
 }
 
 .barTable table {
-  margin-top: 0.2em;
-  display: table;
+  width: 100%;
+  max-height: 18em;
+  overflow: auto;
+  display: block;
 }
 .barTable table th,
 .barTable table td {
@@ -146,6 +164,9 @@ h6 {
     border: 1px solid #fff;
     font-size: 0.8em;
     padding: 0.3em;
+    position: sticky;
+    top: 0;
+    z-index: 999;
 }
 .barTable table tbody tr td {
   border-bottom: 1px solid #ddd;
@@ -153,6 +174,9 @@ h6 {
   padding: 0.3em;
   line-height: 1.15;
   word-break: break-all;
+}
+.barTable table tbody tr td:first-child {
+  width: 5em;
 }
 td label {
   margin: 0;
@@ -182,6 +206,8 @@ td input {
   width: 35%;
   display: inline-block;
   vertical-align: top;
+  padding: 0 0 0 2%;
+  margin: -2.5% 0 0;
 }
 .ueList .barTable table {
   width: 100%;

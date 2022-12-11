@@ -17,9 +17,12 @@
   limitations under the License.
   ========================LICENSE_END===================================
   -->
-<b>Refresh Interval Setup:</b><br>
+
+<h4>Refresh Interval Setup</h4>
 <mat-form-field class="button" appearance="fill">
   <mat-label>GUI Refresh Interval (ms)</mat-label>
   <input matInput [(ngModel)]="intervalInput">
 </mat-form-field>
-<button mat-flat-button color="primary" class="right-button" (click)="applyInterval()">Apply</button><br><br>
+<div class="btn_area"> 
+<button mat-flat-button  class="right-button" (click)="applyInterval()">Apply</button>
+</div> 

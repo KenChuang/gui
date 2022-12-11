@@ -2,6 +2,12 @@
     color: #fff;
     background-color: #1e1e2a;
 }
+main {
+    /* padding: 0 2.5%!important; */
+}
+.ueTrend canvas {
+    width: 88% !important;
+}
 .hamburger__icon__fill {
     fill: #ffffff!important;
 }
@@ -9,11 +15,15 @@
     background-color: #41414c;
 }
 .rightArea {
+    width: 47%!important;
     background-color: initial!important;
 }
 .header {
     border-bottom: 2px solid #21c47e;
     padding: 0.3em 0 0.5em 0;
+}
+h3 {
+    color: #eee;
 }
 h5 {
     font-size: 1.35em!important;
@@ -43,7 +53,7 @@ h5 {
 .zoom button {
     margin: 0 0 3px 3px;
     background: rgb(32,200,124);
-    background: linear-gradient(34deg, rgba(32,200,124,1) 17%, rgba(37,126,162,1) 100%)!important;;
+    background: linear-gradient(34deg, rgba(32,200,124,1) 17%, rgba(37,126,162,1) 100%)!important;
     border: none!important;
 }
 .switch label {
@@ -73,7 +83,7 @@ h5 {
 }
 
 .barTable table thead tr th {
-    background-color: transparent!important;
+    background: linear-gradient(180deg,#292934 0% ,#373742 92% , #4dc6d9 100%);
     border: none!important;
     border-bottom: 1px solid #1c74a9!important;
     padding: 0.3em;
@@ -100,7 +110,6 @@ h5 {
     border-radius: 0!important;
     border: initial!important;
     border-right: 1px solid #1e1e2a!important;
-    padding: 3% 2.4%!important;
     background-color: initial!important;
     margin: -0.95em 0 4% 0!important;
     width: initial!important;
@@ -108,25 +117,31 @@ h5 {
 .ueINFO{
     margin: 0!important;
 }
+.ueINFO > span {
+    padding: 3% 2%!important;
+}
+.ueINFO > span:last-child {border:none!important}
 .leftArea {
-    padding: 0 1em 0!important;
+    padding: 0 1em 0 4em!important;
+    width: 50%!important;
 }
 .ueINFO h6 {
-    color: #b3b3b3;
+    color: #ffffff;
 }
 .ueINFO > span > label,
 .ueINFO h6 + span {
-    color: #fff!important;
+    color: #55dbb6!important;
 }
 .legend {
     color: #ddd;
+    right: 19.5%!important;
 }
 .map {
     margin-top: 0.8em;
 }
 .groupBTN {
     color: #bfbfbf;
-    margin: 0 0 1em 0;
+    margin: 0 0 1em 2.2em;
     display: block;
 }
 .ueList canvas {
@@ -139,6 +154,32 @@ rd-statistics-chart {
     margin: 0 0 1em 0;
     display: block;
 }
-rd-statistics-chart + .groupBTN {
 
+.mat-form-field.mat-focused
+.mat-form-field-label {
+    color: #0fb1b1;
+}
+.mat-form-field.mat-focused
+.mat-form-field-ripple {
+    background-color: #0fb1b1;
+}
+mat-drawer-content {
+    overflow: auto!important;
+}
+.mat-dialog-container h4 {
+    background-color: #136f93;
+    margin: -24px -24px 1em!important;
+    color: #fff;
+    text-align: center;
+    padding: 0.5em 0;
+    font-size: 1.2em;
+}
+.mat-dialog-container  .mat-form-field {
+    margin: 2%;
+}
+.mat-dialog-container .btn_area button {
+    margin: auto;
+    color: #fff;
+    display: block;
+    background:  linear-gradient(34deg, rgba(32,200,124,1) 17%, rgba(37,126,162,1) 100%)!important;
 }

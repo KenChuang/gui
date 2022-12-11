@@ -17,7 +17,8 @@
   limitations under the License.
   ========================LICENSE_END===================================
   -->
-<b>Field Setup:</b><br>
+
+<h4>Field Setup</h4>
 <mat-form-field class="button" appearance="fill">
   <mat-label>Width</mat-label>
   <input matInput [(ngModel)]="fieldWidthInput">
@@ -26,4 +27,6 @@
   <mat-label>Height</mat-label>
   <input matInput [(ngModel)]="fieldHeightInput">
 </mat-form-field>
-<button mat-flat-button color="primary" class="right-button" (click)="applyArea()">Apply</button><br><br>
+<div class="btn_area"> 
+<button mat-flat-button  class="right-button" (click)="applyArea()">Apply</button>
+</div>
