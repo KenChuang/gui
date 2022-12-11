@@ -114,14 +114,15 @@ export class FastHandoverComponent implements OnInit {
   NUM_PRB = 275;
   FULL_BWP = 100;
 
-  selectGnb = 'gNB2';
+  // Connect BS Group
+  selectGnb = 'gNB1';
   gnbGroupAcc = {};
   gnbGroupData = {};
-  idMapGroupIdx: Map<string, number> = new Map();
+  ueIdMapGroupIdx: Map<string, number> = new Map();
+  bsIdMapColor = new Map();
   // bar chart
   public barChartOptions: ChartOptions = {
     responsive: true,
-    // We use these empty structures as placeholders for dynamic theming.
     scales: {
       xAxes: [
         {
@@ -153,24 +154,16 @@ export class FastHandoverComponent implements OnInit {
   public barChartType: ChartType = 'bar';
   public barChartLegend = false;
   public barChartPlugins = [pluginDataLabels];
-
   public barChartData: ChartDataSets[] = [
     {
       data: [],
       label: '',
-      backgroundColor: [
-        '#EC407A',
-        '#AB47BC',
-        '#42A5F5',
-        '#7E57C2',
-        '#66BB6A',
-        '#FFCA28',
-        '#26A69A',
-        '#EC407A',
-        '#AB47BC',
-        '#42A5F5',
-      ]
+      backgroundColor: []
     }
+  ];
+  public ueColors = [
+    [], [255, 0, 0], [128, 0, 0], [255, 255, 0], [128, 128, 0], [0, 255, 0], [0, 255, 255], [0, 128, 128], [0, 0, 255],
+    [223, 255, 0], [255, 191, 0], [255, 127, 80], [222, 49, 99], [159, 226, 191], [64, 224, 208], [100, 149, 237], [204, 204, 255]
   ];
 
   ngOnInit(): void {
@@ -205,6 +198,7 @@ export class FastHandoverComponent implements OnInit {
             // Answers 204/No content on success
             vm.barChartLabels = [];
             vm.gnbGroupAcc = {};
+            vm.barChartData[0].backgroundColor = [];
             for (let i = 0; i < res.length; i++) {
               if (!vm.ueList[i]) {
                 vm.ueList[i] = {
@@ -244,17 +238,19 @@ export class FastHandoverComponent implements OnInit {
               let newY = vm.transformPositionHeight(vm.ueList[i].realPosition.y);
               vm.ueList[i].position = { x: newX, y: newY };
 
-              // bar chart group
-              const groupName = vm.getConnectedBsName(vm.ueList[i]);
-              // console.log(groupName);
-              if (vm.selectGnb === groupName) {
+              // Connected Bs Group
+              const connectedBsName = vm.getConnectedBsName(vm.ueList[i]);
+              if (vm.selectGnb === connectedBsName) {
+                const color = vm.bsIdMapColor.get(vm.ueList[i].id);
                 vm.barChartLabels.push(vm.ueList[i].name);
+                vm.barChartData[0].backgroundColor.push(color);
               }
-              if (!(groupName in vm.gnbGroupAcc)) {
-                vm.gnbGroupAcc[groupName] = 0;
+              if (!(connectedBsName in vm.gnbGroupAcc)) {
+                vm.gnbGroupAcc[connectedBsName] = 0;
               }
-              vm.idMapGroupIdx.set(vm.ueList[i].id, vm.gnbGroupAcc[groupName]);
-              vm.gnbGroupAcc[groupName]++;
+              vm.ueIdMapGroupIdx.set(vm.ueList[i].id, vm.gnbGroupAcc[connectedBsName]);
+              vm.gnbGroupAcc[connectedBsName]++;
+              // console.log(vm.barChartData[0].backgroundColor)
             }
 
             // get UE AMF Mapping
@@ -682,27 +678,33 @@ export class FastHandoverComponent implements OnInit {
     window.setTimeout(() => el.focus(), 0);
   }
 
-  changeEdit(ue, idx: number) {
-    this.barChartLabels[idx] = ue.name;
-  }
-
   changeConnectBS(i) {
     this.selectGnb = ('gNB' + (i + 1));
-    this.barChartLabels = [];
-    this.ueList.forEach((ue) => {
-      if (this.selectGnb === this.getConnectedBsName(ue)) {
-        this.barChartLabels.push(ue.name);
-      }
-    });
     this.barChartData[0].data = this.gnbGroupData[this.selectGnb].slice(0);
+  }
+
+  updatBarData(e) {
+    const sdlKey = e.sdlKey;
+    const idx = e.idx;
+    const bottomLabel = e.bottomLabel
+    const ueGnb = this.getConnectedBsName(this.ueList[idx]);
+    const gIdx = this.ueIdMapGroupIdx.get(sdlKey);
+    this.gnbGroupData[this.selectGnb][gIdx] = bottomLabel;
+    if (this.selectGnb === ueGnb) {
+      this.barChartData[0].data[gIdx] = bottomLabel;
+    }
+  }
+
+  updateColor(e) {
+    this.bsIdMapColor = e;
   }
 
   debug() {
     console.log('~~~>>');
-    console.log(this.throughput_map);
-    console.log(this.ueList);
-    console.log(this.bsList);
-    console.log(this.selectGnb);
+    // console.log(this.throughput_map);
+    // console.log(this.ueList);
+    // console.log(this.bsList);
+    // console.log(this.selectGnb);
     console.log(this.barChartData);
     console.log(this.barChartLabels);
     console.log(this.gnbGroupAcc);
