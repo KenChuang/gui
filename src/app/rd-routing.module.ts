@@ -33,7 +33,7 @@ import { BouncerComponent } from './bouncer/bouncer.component'
 import { FastHandoverComponent } from './fast-handover/fast-handover.component';
 
 const routes: Routes = [
-    {path: '', component: FastHandoverComponent},
+    {path: '', component: MainComponent},
     {path: 'catalog', component: CatalogComponent},
     {path: 'control', component: ControlComponent},
     {path: 'stats', component: StatsComponent},
