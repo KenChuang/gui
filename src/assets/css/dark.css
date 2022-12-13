@@ -83,7 +83,7 @@ h5 {
 }
 
 .barTable table thead tr th {
-    background: linear-gradient(180deg,#292934 0% ,#373742 92% , #4dc6d9 100%);
+    background-color: #383843!important;
     border: none!important;
     border-bottom: 1px solid #1c74a9!important;
     padding: 0.3em;

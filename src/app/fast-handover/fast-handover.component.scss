@@ -163,14 +163,14 @@ h6 {
   background-color: #e2e8ef;
     border: 1px solid #fff;
     font-size: 0.8em;
-    padding: 0.3em;
+    padding: 0.3em .6em;
     position: sticky;
     top: 0;
     z-index: 999;
 }
 .barTable table tbody tr td {
   border-bottom: 1px solid #ddd;
-  font-size: .64em;
+  font-size: .8em;
   padding: 0.3em;
   line-height: 1.15;
   word-break: break-all;
@@ -178,11 +178,11 @@ h6 {
 .barTable table tbody tr td:first-child {
   width: 5em;
 }
-td label {
+.barTable table tbody td label {
   margin: 0;
   word-break: break-all;
 }
-td input {
+.barTable table tbody td input {
   width: 100%;
 }
 .throughputMAP {
@@ -207,7 +207,7 @@ td input {
   display: inline-block;
   vertical-align: top;
   padding: 0 0 0 2%;
-  margin: -2.5% 0 0;
+  margin: -4.5% 0 0;
 }
 .ueList .barTable table {
   width: 100%;
