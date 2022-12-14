@@ -456,7 +456,6 @@ export class FastHandoverComponent implements OnInit {
   }
 
   changeTracking() {
-    this.isTracking = !this.isTracking;
     if (this.isTracking) {
       this.updatePosition();
     } else {

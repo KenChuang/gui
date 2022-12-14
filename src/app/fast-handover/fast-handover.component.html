@@ -6,7 +6,7 @@
 
     <h5>UAV Tracking</h5>
 
-    <span class="switch">
+    <!-- <span class="switch">
       <input type="checkbox" id="switch" />
       <label for="switch" (click)="changeTracking()">
           <span class="switch-txt" turnOn="On" turnOff="Off">
@@ -14,7 +14,11 @@
             <span class="off">Off</span>
           </span>
       </label>
-    </span>
+    </span> -->
+    <mat-slide-toggle [(ngModel)]="isTracking" (ngModelChange)="changeTracking()">
+      {{isTracking?'On':'Off'}}
+    </mat-slide-toggle>
+
     <span class="float-right zoom">
       <button (click)="zoomInOperation()"><span class="material-icons">add</span></button>
       <button (click)="zoomOutOperation()"><span class="material-icons">remove</span></button>
