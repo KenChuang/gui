@@ -362,3 +362,41 @@ a:hover, a:active {
   display: inline-block;
   padding-left: 6px;
 }
+.sysStatus {
+  position: absolute;
+  right: 4%;
+  top: 2%;
+  width: 11em;
+}
+.sysStatus span {
+  font-size: 0.8em;
+  color: #ddd;
+  line-height: 1;
+  margin: 0 0 0 1em;
+  vertical-align: middle;
+  display: inline-block;
+}
+.sysStatus span label {
+  font-size: 135%;
+  margin: .2em 0 0 0;
+  display: block;
+}
+.sysStatus img {
+  width: 5em;
+}
+.sysStatus div.light {
+  width: 2.3em;
+  height: 2.3em;
+  border-radius: 50%;
+  display: inline-block;
+  vertical-align: middle;
+}
+.redLight {
+  background:linear-gradient(222deg, #a90743 7%, #d72860 70%);
+}
+.yellowLight {
+  background:linear-gradient(198deg, #ffe633 7%, #d3bb10 70%);
+}
+.greenLight {
+  background:linear-gradient(209deg, #22b170 7%, #1a744b 70%);
+}

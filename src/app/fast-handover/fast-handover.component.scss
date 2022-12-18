@@ -54,13 +54,13 @@ h5 {
   display: inline-block;
 }
 .header .float-right {
-  margin: 1.2em 1em 0 0.5em;
+  margin: 0 1em 0 0.5em;
 }
 .leftArea {
-  width: 55%;
+  width: 50%!important;
   display: inline-block;
   vertical-align: top;
-  padding: 1em;
+  padding: 1.5em 1em 0 4em;
 }
 .rightArea {
   width: 45%;
@@ -85,21 +85,24 @@ h5 {
   border-radius: 100em;
 }
 .percent {
-  font-size: .9em;
+  font-size: .8em;
   color: #333;
-  margin: 2em .3em 0;
+  margin: .8em .3em 0!important;
 }
 .percent img {
   width: 2.5em;
   height: auto;
 }
 .ueINFO {
-  margin: .5em 0;
+  margin: 0;
 }
-.ueINFO span {
+.ueINFO > span {
   display: inline-block;
   vertical-align: top;
   font-weight: bold;
+  margin: -0.95em 0 4% 0!important;
+  border-radius: 0!important;
+  text-align: center;
 }
 .ueINFO h6 {
   margin: 0;
@@ -109,20 +112,22 @@ h5 {
 .ueINFO h6 + span {
   font-size: 1.3em;
   color: #3b83e9;
-  margin: 0.2em 0 0 2em;
+  margin: 0.2em 0 0 0;
 }
+.ueINFO > span:last-child {
+  border:none!important
+}
+
 .ueINFO > span  {
   margin: 0 0 0 .5em;
   border-radius: 5px;
   height: 4.5em;
-  width: 24.2%;
+  width: 25%;
+  padding: 3% 2%!important;
 }
 .ueINFO > span:first-child {
   margin-left: 0;
 }
-.ueINFO > span label {
-  vertical-align: sub;
-} 
 .ueINFO > span >  label {
   font-size: .8em;
   font-weight: normal;
@@ -135,9 +140,6 @@ h5 {
 .blueBorder {
   border:2px solid #bedcff;
   padding: .5em;
-}
-.blueBorder h6 + span {
-  margin: 0.2em 0 0 3.4em;
 }
 h5 + .groupBTN {
   margin: 0 0 0 1em;
@@ -196,11 +198,7 @@ h6 {
   display: block;
 }
 .ueList canvas {
-  height: auto!important;
-  width: 63%!important;
-  display: inline-block!important;
   margin: 0 0 0 2%;
-  vertical-align: top;
 }
 .ueList .barTable {
   width: 35%;

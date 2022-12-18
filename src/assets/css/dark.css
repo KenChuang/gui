@@ -5,9 +5,7 @@
 main {
     /* padding: 0 2.5%!important; */
 }
-.ueTrend canvas {
-    width: 88% !important;
-}
+
 .hamburger__icon__fill {
     fill: #ffffff!important;
 }
@@ -30,10 +28,14 @@ h5 {
     color: #eee;
     text-shadow: 0 2px 5px #160606;
 }
+h5 + .mat-slide-toggle {
+    margin-left: 1.5em!important;
+}
+h5 + .mat-slide-toggle  .mat-slide-toggle-content {
+    color: #a7a7a7!important;
+}
 .percent {
     color: #a7a7a7!important;
-    font-size: 0.8em!important;
-    margin: 2em 0.3em 0 !important;
 }
 .gNB1 {
     background: radial-gradient(circle, rgb(41 48 165 / 81%) 0%, rgb(59 54 74 / 44%) 100%);
@@ -107,23 +109,9 @@ h5 {
 }
 
 .blueBG,.blueBorder{
-    border-radius: 0!important;
     border: initial!important;
     border-right: 1px solid #1e1e2a!important;
     background-color: initial!important;
-    margin: -0.95em 0 4% 0!important;
-    width: initial!important;
-}
-.ueINFO{
-    margin: 0!important;
-}
-.ueINFO > span {
-    padding: 3% 2%!important;
-}
-.ueINFO > span:last-child {border:none!important}
-.leftArea {
-    padding: 0 1em 0 4em!important;
-    width: 50%!important;
 }
 .ueINFO h6 {
     color: #ffffff;

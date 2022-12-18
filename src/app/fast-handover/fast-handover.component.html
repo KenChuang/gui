@@ -118,12 +118,11 @@
           [chartType]="barChartType">
         </canvas>
 
-        <div class="barTable">
+        <!--<div class="barTable">
           <table>
             <thead>
               <tr>
                 <th class="w30">UE</th>
-                <!-- <th>Connect BS ID</th> -->
                 <th>BWP ID</th>
                 <th>Start</th>
                 <th>Bandwidth</th>
@@ -136,7 +135,6 @@
                   <label [style.display]="ue.__edit?'none':''">{{ue.name}}</label>
                   <input type="text" [style.display]="ue.__edit?'':'none'" [(ngModel)]="ue.name" (blur)="ue.__edit = false" #editInput>
                 </td>
-                <!-- <td>{{getConnectedBsName(ue)}}</td> -->
                 <td>{{ue.bwpData.bwpId}}</td>
                 <td>{{ue.bwpData.start}}</td>
                 <td>{{ue.bwpData.bandwidth}}</td>
@@ -144,7 +142,7 @@
             </ng-template>
           </tbody>
           </table>
-        </div>
+        </div>-->
       </div>
       <!-- <button mat-flat-button  class="right-button" (click)="openUeInfo()">UE Info On/Off</button>
       <button mat-flat-button  class="right-button" (click)="onboard()">Config UE Name</button><br><br> -->

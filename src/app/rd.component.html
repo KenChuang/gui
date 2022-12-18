@@ -94,8 +94,11 @@
             <img class="logo" src="../../assets/logo.png">
             <h1>Near-RT RIC Dashboard</h1>
           </span>
-          <a role="button" (click)="redirectBouncer()">
-            <img [src]="'../../assets/' + getRicStatus()"/>
+          <a class="sysStatus" role="button" (click)="redirectBouncer()">
+            <!-- <img [src]="'../../assets/' + getRicStatus()"/> -->
+            <div class="light greenLight"></div>
+            <span>Performance Status <label>Good</label>
+            </span>
           </a>
           <!-- <img src="../../assets/oran-logo.png" width="180%" height="100%" style="position: relative; z-index: 50" />
           <svg class="logo__icon" viewBox="150.3 22.2 313.7 42.8">
